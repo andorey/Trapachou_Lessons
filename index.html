@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Trapachou_lesson</title>
+</head>
+<body onload="data()">
+	<p class="data"></p>
+
+	<input id="first"; placeholder="input number 1"; type="number">
+	<input id="second"; placeholder="input number 2"; type="number">
+	<button id="bt_1">CALCULATE</button>
+	<p id="out_1">&nbsp;</p>
+	
+	<div class="alert">
+		<input type="text">
+		<button>ALERT</button>
+	</div>
+	
+	<button class="three_char">THREE CHAR (!!!)</button>
+	
+	<script>
+        // даны два инпута, кнопка и абзац. В инпуты вводятся числа.
+        // По нажатию на кнопку запишите сумму чисел в абзац.
+        function f1() {
+            const inpt1 = document.querySelector('#first').value;
+            const inpt2 = document.querySelector('#second').value;
+
+            return document.querySelector('#out_1').innerText = Number(inpt1) + Number(inpt2);
+        }
+        document.querySelector('#bt_1').onclick = () => f1();
+
+
+        // выведи на экран текущий день в формате год-месяц-день
+        function data() {
+			const arr = String(new Date()).split(' ');
+			return document.querySelector('.data').innerText = `${arr[3]} - ${arr[1]} - ${arr[2]}`
+        }
+
+
+        // дан инпут и кнопка
+        // по нажатию на кнопку выведи алертом текст из инпута
+		function alett() {
+			const text = document.querySelector('.alert>input').value;
+			alert(text);
+        }
+        document.querySelector('.alert>button').onclick = () => alett();
+
+
+        // дана кнопка
+        // по нажатию на нее выведи алертом '!!!'
+        document.querySelector('.three_char').onclick = () => alert('!!!');
+        
+        
+		
+	</script>
+</body>
+</html>
