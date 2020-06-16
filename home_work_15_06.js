@@ -54,7 +54,16 @@ const searchTree = (arr) => arr.some(el => el === 3) ? 'есть' : 'нет';
 // дан абзац, в нем записано число, например, 10
 // сделайте так, чтобы в абзаце начался обратный отсчет,
 // каждую секунду число будет делать -1 пока не дойдет до нуля
-
+const counter = function(){
+    let num = document.querySelector('.counter').innerHTML;
+    if (Number(num) === 0){
+        return document.querySelector('.counter').innerHTML = 0;
+    }else{
+        document.querySelector('.counter').innerHTML = Number(num) - 1;
+    }
+    setTimeout('counter()', 1000);
+}
+document.querySelector('.butCount').onclick = () => counter();
 
 
 // выведи на экран текущий день в формате год-месяц-день
@@ -82,5 +91,7 @@ document.querySelector('.three_char').onclick = () => alert('!!!');
 // 100 на 100 px
 // сделай так, чтобы по клику на любое место окна браузера
 // этот див перeмещался в место клика
-//
+
+
+
 // игру крестики нолики сделаешь?

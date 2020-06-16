@@ -4,13 +4,20 @@
 	<meta charset="UTF-8">
 	<title>Trapachou_lesson</title>
 </head>
-<body onload="data()">
-	<p class="data"></p>
+<body onload="data()"; style="text-align: center">
+	<p class="data"; style="color: lightslategray"></p>
+	
+	<div style="padding: 20px;">
+		<span class="counter"; style="font-size: 30px; color: darkblue">10</span>
+		<button class="butCount">Start</button>
+	</div>
 
-	<input id="first"; placeholder="input number 1"; type="number">
-	<input id="second"; placeholder="input number 2"; type="number">
-	<button id="bt_1">CALCULATE</button>
-	<p id="out_1">&nbsp;</p>
+	<div>
+		<input id="first"; placeholder="input number 1"; type="number">
+		<input id="second"; placeholder="input number 2"; type="number">
+		<button id="bt_1">CALCULATE</button>
+		<p id="out_1"; style="font-size: 30px; color: coral">&nbsp;</p>
+	</div>
 	
 	<div class="alert">
 		<input type="text">
@@ -50,7 +57,23 @@
         // дана кнопка
         // по нажатию на нее выведи алертом '!!!'
         document.querySelector('.three_char').onclick = () => alert('!!!');
+
+
+        // дан абзац, в нем записано число, например, 10
+        // сделайте так, чтобы в абзаце начался обратный отсчет,
+        // каждую секунду число будет делать -1 пока не дойдет до нуля
         
+		const counter = function(){
+            let num = document.querySelector('.counter').innerHTML;
+		    if (Number(num) === 0){
+		        return document.querySelector('.counter').innerHTML = 0;
+			}else{
+            	document.querySelector('.counter').innerHTML = Number(num) - 1;
+			}
+            setTimeout('counter()', 1000);
+		}
+        document.querySelector('.butCount').onclick = () => counter();
+		
         
 		
 	</script>
