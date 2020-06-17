@@ -91,7 +91,13 @@ document.querySelector('.three_char').onclick = () => alert('!!!');
 // 100 на 100 px
 // сделай так, чтобы по клику на любое место окна браузера
 // этот див перeмещался в место клика
+const cont = document.querySelector('.container');
 
+window.addEventListener('click', function (event) {
+    event = event || window.event;
+    cont.style.top = (event.y - 50) + 'px';
+    cont.style.left = (event.x - 50) + 'px';
+})
 
 
 // игру крестики нолики сделаешь?

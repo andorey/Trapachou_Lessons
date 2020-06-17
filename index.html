@@ -3,20 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Trapachou_lesson</title>
+	
+	<style type="text/css">
+		.container{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			border: solid rgba(255, 0, 0, 0.49) 3px;
+		}
+	</style>
+	
 </head>
-<body onload="data()"; style="text-align: center">
-	<p class="data"; style="color: lightslategray"></p>
+<body onload="data()" style="text-align: center">
+
+	<div class="container"></div>
+	
+	<p class="data" style="color: #779699"></p>
 	
 	<div style="padding: 20px;">
-		<span class="counter"; style="font-size: 30px; color: darkblue">10</span>
+		<span class="counter" style="font-size: 30px; color: #31008b">10</span>
 		<button class="butCount">Start</button>
 	</div>
 
 	<div>
-		<input id="first"; placeholder="input number 1"; type="number">
-		<input id="second"; placeholder="input number 2"; type="number">
+		<input id="first" placeholder="input number 1" type="number">
+		<input id="second" placeholder="input number 2" type="number">
 		<button id="bt_1">CALCULATE</button>
-		<p id="out_1"; style="font-size: 30px; color: coral">&nbsp;</p>
+		<p id="out_1" style="font-size: 30px; color: #f8041a">&nbsp;</p>
 	</div>
 	
 	<div class="alert">
@@ -62,7 +77,6 @@
         // дан абзац, в нем записано число, например, 10
         // сделайте так, чтобы в абзаце начался обратный отсчет,
         // каждую секунду число будет делать -1 пока не дойдет до нуля
-        
 		const counter = function(){
             let num = document.querySelector('.counter').innerHTML;
 		    if (Number(num) === 0){
@@ -73,8 +87,19 @@
             setTimeout('counter()', 1000);
 		}
         document.querySelector('.butCount').onclick = () => counter();
+
+        // дан див
+        // 100 на 100 px
+        // сделай так, чтобы по клику на любое место окна браузера
+        // этот див перeмещался в место клика
+        const cont = document.querySelector('.container');
+
+        window.addEventListener('click', function (event) {
+            event = event || window.event;
+            cont.style.top = (event.y - 50) + 'px';
+            cont.style.left = (event.x - 50) + 'px';
+        })
 		
-        
 		
 	</script>
 </body>
