@@ -98,6 +98,3 @@ window.addEventListener('click', function (event) {
     cont.style.top = (event.y - 50) + 'px';
     cont.style.left = (event.x - 50) + 'px';
 })
-
-
-// игру крестики нолики сделаешь?

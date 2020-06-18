@@ -7,18 +7,43 @@
 			border: 2px solid cyan;
 		}
 	</style>
+</head>
+
+<body style="background: #150101">
+	<p align="center" style="color: #17f1f0; font-size: 25px">CROSS-ZERRO<br>
+		<br>
+	</p>
+	<div align="center">
+		
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"><img src = "../gifki/back.gif" name="pole0" onClick="Place(0)" WIDTH="170" HEIGHT="170"></td>
+				<td align="center"><img src = "../gifki/back.gif" name="pole1" onClick="Place(1)" WIDTH="170" HEIGHT="170"></td>
+				<td align="center"><img src = "../gifki/back.gif" name="pole2" onClick="Place(2)" WIDTH="170" HEIGHT="170"></td>
+			</tr>
+			<tr>
+				<td align="center"><img src = "../gifki/back.gif" name="pole3" onClick="Place(3)" WIDTH="170" HEIGHT="170"></td>
+				<td align="center"><img src = "../gifki/back.gif" name="pole4" onClick="Place(4)" WIDTH="170" HEIGHT="170"></td>
+				<td align="center"><img src = "../gifki/back.gif" name="pole5" onClick="Place(5)" WIDTH="170" HEIGHT="170"></td>
+			</tr>
+			<tr>
+				<td align="center"><img src = "../gifki/back.gif" name="pole6" onClick="Place(6)" WIDTH="170" HEIGHT="170"></td>
+				<td align="center"><img src = "../gifki/back.gif" name="pole7" onClick="Place(7)" WIDTH="170" HEIGHT="170"></td>
+				<td align="center"><img src = "../gifki/back.gif" name="pole8" onClick="Place(8)" WIDTH="170" HEIGHT="170"></td>
+			</tr>
+		</table>
+	</div>
 	
 	<script type="text/javascript">
-        <!--
         let cell = new Array(9);
         for (let i = 0; i < 9; i++) cell[i] = 0;
 
         x = new Image(170,170);
-        x.src = "gifki/pyramid.gif";
+        x.src = "../gifki/pyramid.gif";
         o = new Image(170,170);
-        o.src = "gifki/cub.gif";
+        o.src = "../gifki/cub.gif";
         e = new Image(170,170);
-        e.src = "gifki/back.gif";
+        e.src = "../gifki/back.gif";
 
         function Cross(value) {
             if (value === 0) document.pole0.src = x.src;
@@ -130,34 +155,6 @@
                 }
             }
         }
-        //-->
 	</script>
-</head>
-
-<body style="background: #150101">
-	<p align="center" style="color: #17f1f0; font-size: 25px">CROSS-ZERRO<br>
-		<br>
-	</p>
-	<div align="center">
-		
-		<table BORDER="0" CELLSPACING="0">
-			<tr>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole0" onClick="Place(0)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole1" onClick="Place(1)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole2" onClick="Place(2)" WIDTH="170" HEIGHT="170"></td>
-			</tr>
-			<tr>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole3" onClick="Place(3)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole4" onClick="Place(4)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole5" onClick="Place(5)" WIDTH="170" HEIGHT="170"></td>
-			</tr>
-			<tr>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole6" onClick="Place(6)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole7" onClick="Place(7)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "gifki/back.gif" NAME="pole8" onClick="Place(8)" WIDTH="170" HEIGHT="170"></td>
-			</tr>
-		</table>
-	</div>
-
 </body>
 </html>
