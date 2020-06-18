@@ -90,7 +90,7 @@ function quadratic(){
     }else{
         out = '(D < 0); No roots!';
     }
-    out5.innerHTML = out;
+    out5.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + out;
 }
 
 document.querySelector('.b-5').onclick = quadratic;
@@ -114,7 +114,7 @@ function pythagoreanTriple() {
         out = `${x}, ${y}, ${z} - are not Pythagorean Triple`;
     }
 
-    document.querySelector('.out-6').innerHTML = out;
+    document.querySelector('.out-6').innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + out;
 }
 
 document.querySelector('.b-6').onclick = pythagoreanTriple;
@@ -129,7 +129,7 @@ function divider() {
     for (let i = 1; i <= num; i++){
         if ( num % i === 0 ){ out.push(i) }
     }
-    document.querySelector('.out-7').innerHTML = `${out.join(', ')} &nbsp; - &nbsp; is dividers ${num}`
+    document.querySelector('.out-7').innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${out.join(', ')} &nbsp; - &nbsp; is dividers ${num}`
 }
 
 document.querySelector('.b-7').onclick = divider;
@@ -147,7 +147,7 @@ function dividers1() {
 
     const out = out1.filter(el => out2.includes(el));
 
-    document.querySelector('.out-8').innerHTML = `${out.join(', ')} &nbsp; - &nbsp; common dividers for ${num1} and ${num2}`
+    document.querySelector('.out-8').innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${out.join(', ')} &nbsp; - &nbsp; common dividers for ${num1} and ${num2}`
 }
 
 document.querySelector('.b-8').onclick = dividers1;
@@ -165,7 +165,7 @@ function dividers2() {
 
     const out = out1.filter(el => out2.includes(el)).sort((a,b) => b - a);
 
-    document.querySelector('.out-9').innerHTML = `${out[0]} &nbsp; - &nbsp; the biggest divisor for  ${num1} and ${num2}`
+    document.querySelector('.out-9').innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${out[0]} &nbsp; - &nbsp; the biggest divisor for  ${num1} and ${num2}`
 }
 
 document.querySelector('.b-9').onclick = dividers2;
@@ -180,13 +180,63 @@ function dividers3() {
     const out = [];
     for (let i = 1; i <= num1 * num2; i++){ if ( i % num1 === 0 && i % num2 === 0 ){ out.push(i) } }
 
-    document.querySelector('.out-10').innerHTML = `${out[0]} &nbsp; - &nbsp; the least divisible for  ${num1} and ${num2}`
+    document.querySelector('.out-10').innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${out[0]} &nbsp; - &nbsp; the least divisible for  ${num1} and ${num2}`
 }
 
 document.querySelector('.b-10').onclick = dividers3;
 
 
-//
+// Задача
+// Дан textarea. Пусть в него вводится текст. Сделайте так, чтобы по потери фокуса под текстареа вывелось сообщение о том, сколько в этом тексте слов.
+
+function counterOfWords() {
+    const text = document.querySelector('.t-11');
+    const count = text.value.trim().split(' ');
+    document.querySelector('.out-11').innerText = count.length;
+}
+
+document.querySelector('.t-11').onmouseout = counterOfWords;
+
+
+// Задача
+// Модифицируйте предыдущую задачу так, чтобы также вывелось сообщение о том, сколько в тексте символов.
+
+function counterOfSymbols() {
+    const text = document.querySelector('.t-12');
+    const count = text.value.split('');
+    document.querySelector('.out-12').innerText = count.length;
+}
+
+document.querySelector('.t-12').onmouseout = counterOfSymbols;
+
+
+// Задача
+// Модифицируйте предыдущую задачу так, чтобы также вывелось сообщение о том, сколько в тексте символов за вычетом пробелов.
+
+function counterOfSpace() {
+    const text = document.querySelector('.t-13');
+    const count = text.value.replace(/\s/g, '').split('');
+    document.querySelector('.out-13').innerText = count.length;
+}
+
+document.querySelector('.t-13').onmouseout = counterOfSpace;
+
+
+// Задача
+// Модифицируйте предыдущую задачу так, чтобы также вывелось сообщение о процентном содержании каждого символа в тексте.
+
+function counterPersent() {
+    const text = document.querySelector('.t-14');
+    const character = text.value.replace(/\s/g, '').split('');
+
+    document.querySelector('.out-14').innerText = count.length;
+}
+
+document.querySelector('.t-14').onmouseout = counterPersent;
+
+
+// Задача
+// В предыдущих задачах мы сделали так, что для нашего текста выводятся 4 параметра. Сделайте 4 чекбокса, которые будут регулировать, какие именно параметры показывать.
 
 
 
