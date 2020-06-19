@@ -8,6 +8,7 @@
 		body{
 			font-family: 'Roboto Mono', monospace;
 			padding: 0 10px 10px 10px;
+			font-size: 16px;
 		}
 		button {
 			padding: 5px 10px;
@@ -257,20 +258,25 @@
 <hr>
 
 <section>
-	<p></p>
+	<p>Модифицируйте вашу задачу так, чтобы был один текстареа, чекбокс и див. Если чекбокс отмечен, то пусть в див по потери фокуса выводится транслит текста, а если не отмечен - то текст текстареа пусть преобразуется из транслита в русский текст.<br>
+	   Модифицируйте предыдущую задачу так, чтобы текст в диве появлялся не по потери фокуса, а по мере ввода текста в текстареа.</p>
+	<label><span class="sp18">Trancelit</span>
+		<textarea class="t-18" style="width: 460px; height: 80px; font-size: 18px"></textarea>
+	</label>&nbsp;&nbsp;
 	<label>
-		<input class="i-181" type="number">
-		<input class="i-182" type="number">
+		<input type="checkbox" class="i-18" checked="checked">(choose) Literal / Trancelit
 	</label>
-	<div>
-		<button class="b-18">CALCULATE</button>
+	<div><br>Output:
 		<span class="out-18"></span>
 	</div>
 </section>
 <hr>
 
 <section>
-	<p></p>
+	<p><h3>Игра угадай число на JavaScript</h3>
+	   Сейчас мы с вами реализуем игру угадай число. В этой игре компьютер загадывает число от 1 до 100. В инпут на экране игрок вводит число от 1 до 100, пытаясь угадать, что же загадал компьютер.<br>
+	
+	   Если игрок ввел число, меньше загаданного, компьютер должен написать 'введите число побольше', а если введено больше загаданного, то, соответственно, компьютер должен написать 'введите число поменьше'.</p>
 	<label>
 		<input class="i-191" type="number">
 		<input class="i-192" type="number">

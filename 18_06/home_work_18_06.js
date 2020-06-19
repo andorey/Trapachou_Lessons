@@ -276,7 +276,7 @@ function counterOfSymbols15() {
 function counterOfWords15() {
     const text = document.querySelector('.t-15');
     const count = text.value.trim().split(' ');
-    document.querySelector('.out-15').innerHTML += "Counter of Words: " + count.length + '<br>';
+    document.querySelector('.out-15').innerHTML += "Counter of Words: " + (count[0] === '' ? 0 : count.length) + '<br>';
 }
 
 function allCounterText() {
@@ -316,10 +316,10 @@ const abcLat = { "'": "ь", "A": "А", "B": "Б", "C": "Ц", "Ch": "Ч", "E": "�
 
 function latABC(){
     let inText = document.querySelector('.t-17').value;
-    inText = inText.replace(/Ch/g, "Ч").replace(/Ja/g, "Я").replace(/Jo/g, "Ё")
-    .replace(/Ju/g, "Ю").replace(/Sch/g, "Щ").replace(/Sh/g, "Ш")
-    .replace(/Zh/g, "Ж").replace(/ch/g, "ч").replace(/ja/g, "я")
-    .replace(/jo/g, "ё").replace(/ju/g, "ю").replace(/sch/g, "щ")
+    inText = inText.replace(/Sch/g, "Щ").replace(/Ja/g, "Я").replace(/Jo/g, "Ё")
+    .replace(/Ju/g, "Ю").replace(/Ch/g, "Ч").replace(/Sh/g, "Ш")
+    .replace(/Zh/g, "Ж").replace(/sch/g, "щ").replace(/ja/g, "я")
+    .replace(/jo/g, "ё").replace(/ju/g, "ю").replace(/ch/g, "ч")
     .replace(/sh/g, "ш").replace(/zh/g, "ж");
     const transl = inText.trim().split('').map(el => abcLat[el] ? abcLat[el] : el);
     document.querySelector('.out-17').innerHTML = transl.join('')
@@ -331,11 +331,41 @@ document.querySelector('.t-17').onmouseout = latABC;
 
 // Задача
 // Модифицируйте вашу задачу так, чтобы был один текстареа, чекбокс и див. Если чекбокс отмечен, то пусть в див по потери фокуса выводится транслит текста, а если не отмечен - то текст текстареа пусть преобразуется из транслита в русский текст.
-
-
-
-
-// Задача
 // Модифицируйте предыдущую задачу так, чтобы текст в диве появлялся не по потери фокуса, а по мере ввода текста в текстареа.
+
+document.querySelector('.i-18').onclick = () =>{
+    if (document.querySelector('.i-18').checked){
+        document.querySelector('.sp18').innerText = 'Trancelit';
+        document.querySelector('.t-18').value = '';
+    }else{
+        document.querySelector('.sp18').innerText = 'Literal';
+        document.querySelector('.t-18').value = '';
+    }
+}
+
+function chooseABC() {
+    if(document.querySelector('.i-18').checked){
+        let inText = document.querySelector('.t-18').value;
+        inText = inText.replace(/Sch/g, "Щ").replace(/Ja/g, "Я").replace(/Jo/g, "Ё")
+        .replace(/Ju/g, "Ю").replace(/Ch/g, "Ч").replace(/Sh/g, "Ш")
+        .replace(/Zh/g, "Ж").replace(/sch/g, "щ").replace(/ja/g, "я")
+        .replace(/jo/g, "ё").replace(/ju/g, "ю").replace(/ch/g, "ч")
+        .replace(/sh/g, "ш").replace(/zh/g, "ж");
+        const transl = inText.trim().split('').map(el => abcLat[el] ? abcLat[el] : el);
+        document.querySelector('.out-18').innerHTML = transl.join('')
+    }else{
+        const inText = document.querySelector('.t-18').value;
+        const transl = inText.trim().split('').map(el => absCyr[el] ? absCyr[el] : el);
+        document.querySelector('.out-18').innerHTML = transl.join('')
+    }
+}
+
+document.querySelector('.t-18').oninput = chooseABC;
+
+
+// Игра угадай число на JavaScript
+// Сейчас мы с вами реализуем игру угадай число. В этой игре компьютер загадывает число от 1 до 100. В инпут на экране игрок вводит число от 1 до 100, пытаясь угадать, что же загадал компьютер.
+//
+// Если игрок ввел число, меньше загаданного, компьютер должен написать 'введите число побольше', а если введено больше загаданного, то, соответственно, компьютер должен написать 'введите число поменьше'.
 
 
