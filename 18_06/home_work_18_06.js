@@ -225,19 +225,77 @@ document.querySelector('.t-13').onmouseout = counterOfSpace;
 // Задача
 // Модифицируйте предыдущую задачу так, чтобы также вывелось сообщение о процентном содержании каждого символа в тексте.
 
-function counterPersent() {
+function counterPercent() {
     const text = document.querySelector('.t-14');
-    const character = text.value.replace(/\s/g, '').split('');
+    const character = text.value.toLowerCase()
+                        .replace(/\s/g, '').split('').sort()
+                        .reduce((a, i)=> ({ ...a, [i]: a[i]+1 || 1}), {});
+    const percent = text.value.replace(/\s/g, '').length;
+    let out = [];
 
-    document.querySelector('.out-14').innerText = count.length;
+    for (let i in character){
+        out.push(`${i}: ${(character[i] * 100 / percent).toFixed(2)}%`)
+    }
+
+    document.querySelector('.out-14').innerText = out.join(', ');
 }
 
-document.querySelector('.t-14').onmouseout = counterPersent;
+document.querySelector('.t-14').onmouseout = counterPercent;
 
 
 // Задача
 // В предыдущих задачах мы сделали так, что для нашего текста выводятся 4 параметра. Сделайте 4 чекбокса, которые будут регулировать, какие именно параметры показывать.
 
+function counterPercent15() {
+    const text = document.querySelector('.t-15');
+    const character = text.value.toLowerCase()
+    .replace(/\s/g, '').split('').sort()
+    .reduce((a, i)=> ({ ...a, [i]: a[i]+1 || 1}), {});
+    const percent = text.value.replace(/\s/g, '').length;
+    let out = [];
 
+    for (let i in character){
+        out.push(`${i}: ${(character[i] * 100 / percent).toFixed(2)}%`)
+    }
+
+    document.querySelector('.out-15').innerHTML += 'Counter Percent: ' + out.join(', ');
+}
+
+function counterOfSpace15() {
+    const text = document.querySelector('.t-15');
+    const count = text.value.replace(/\s/g, '').split('');
+    document.querySelector('.out-15').innerHTML += 'Counter of Symbols without space: ' + count.length + '<br>';
+}
+
+function counterOfSymbols15() {
+    const text = document.querySelector('.t-15');
+    const count = text.value.split('');
+    document.querySelector('.out-15').innerHTML += 'Counter of Symbols: ' + count.length + '<br>';
+}
+
+function counterOfWords15() {
+    const text = document.querySelector('.t-15');
+    const count = text.value.trim().split(' ');
+    document.querySelector('.out-15').innerHTML += "Counter of Words: " + count.length + '<br>';
+}
+
+function allCounterText() {
+    document.querySelector('.out-15').innerHTML = '';
+
+    const all = document.querySelectorAll('.i-15');
+    for (let i in all){
+        if (all[i].checked){
+            if(all[i].value === '1') counterOfWords15()
+            if(all[i].value === '2') counterOfSymbols15()
+            if(all[i].value === '3') counterOfSpace15()
+            if(all[i].value === '4') counterPercent15()
+        }
+    }
+}
+
+document.querySelector('.t-15').onmouseout = allCounterText;
+
+
+//
 
 

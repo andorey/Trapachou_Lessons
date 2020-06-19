@@ -7,6 +7,7 @@
 	<style>
 		body{
 			font-family: 'Roboto Mono', monospace;
+			padding: 0 10px 10px 10px;
 		}
 		button {
 			padding: 5px 10px;
@@ -196,7 +197,7 @@
 		<textarea class="t-13" style="width: 400px; height: 50px"></textarea>
 	</label>
 	<p>
-		Counter of symbols: <span class="out-13" style="font-size: 20px"></span>
+		Counter of symbols without space: <span class="out-13" style="font-size: 20px"></span>
 	</p>
 </section>
 <hr>
@@ -207,21 +208,29 @@
 		<textarea class="t-14" style="width: 400px; height: 50px"></textarea>
 	</label>
 	<p>
-		Counter of symbols: <span class="out-14" style="font-size: 20px"></span>
+		Percent of symbols: <span class="out-14" style="font-size: 20px"></span>
 	</p>
 </section>
 <hr>
 
 <section>
-	<p></p>
+	<p>В предыдущих задачах мы сделали так, что для нашего текста выводятся 4 параметра. Сделайте 4 чекбокса, которые будут регулировать, какие именно параметры показывать.</p>
 	<label>
-		<input class="i-151" type="number">
-		<input class="i-152" type="number">
+		<textarea class="t-15" style="width: 99%; height: 50px"></textarea>
 	</label>
-	<div>
-		<button class="b-15">CALCULATE</button>
-		<span class="out-15"></span>
-	</div>
+	
+	<fieldset>
+		<legend>Textarea Control</legend>
+		<div class="form-control">
+			<label><input type='checkbox' class="i-15" checked value="1">Counter of words</label>
+			&nbsp;&nbsp;<label><input type="checkbox" class="i-15" value="2">Counter of symbols </label>
+			&nbsp;&nbsp;<label><input type="checkbox" class="i-15" value="3">Counter of symbols without space</label>
+			&nbsp;&nbsp;<label><input type="checkbox" class="i-15" value="4">Percent of symbols</label>
+		</div>
+	</fieldset>
+	<p>
+		<span class="out-15" style="font-size: 20px"></span>
+	</p>
 </section>
 <hr>
 
