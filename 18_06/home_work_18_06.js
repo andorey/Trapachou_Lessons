@@ -332,6 +332,7 @@ document.querySelector('.t-17').onmouseout = latABC;
 // Задача
 // Модифицируйте вашу задачу так, чтобы был один текстареа, чекбокс и див. Если чекбокс отмечен, то пусть в див по потери фокуса выводится транслит текста, а если не отмечен - то текст текстареа пусть преобразуется из транслита в русский текст.
 // Модифицируйте предыдущую задачу так, чтобы текст в диве появлялся не по потери фокуса, а по мере ввода текста в текстареа.
+document.querySelector('.i-18').checked = true;
 
 document.querySelector('.i-18').onclick = () =>{
     if (document.querySelector('.i-18').checked){
@@ -368,4 +369,56 @@ document.querySelector('.t-18').oninput = chooseABC;
 //
 // Если игрок ввел число, меньше загаданного, компьютер должен написать 'введите число побольше', а если введено больше загаданного, то, соответственно, компьютер должен написать 'введите число поменьше'.
 
+const start19 = document.querySelector('.start19');
+const play19 = document.querySelector('.play19');
+const out19 = document.querySelector('.out-19');
+
+start19.hidden = false;
+play19.hidden = true;
+
+start19.onclick = () =>{
+    document.querySelector('.counter19').innerHTML = '60';
+    document.querySelector('.out-19').innerHTML = '';
+    document.querySelector('.in-19').value = '';
+    start19.hidden = true;
+    play19.hidden = false;
+    counter19();
+    playGame19();
+}
+
+const counter19 = function(){
+    let numCount = document.querySelector('.counter19').innerText;
+    if (Number(numCount) === 0){
+        document.querySelector('.out-19').innerHTML = 'Вы проиграли... ';
+        setTimeout(() => {
+            location.reload();
+        }, 3000)
+    }else{
+        document.querySelector('.counter19').innerText = Number(numCount) - 1;
+    }
+    setTimeout('counter19()', 1000);
+}
+
+function playGame19(){
+    let num = Math.floor((Math.random() * 100)) + 1;
+
+    function game( num ) {
+        let in19 = document.querySelector('.in-19').value;
+        if ( Number(in19) === num ){
+            out19.innerHTML = 'Вы угадали!!!';
+            document.querySelector('.counter19').innerHTML = "YOU WIN!!!";
+            setTimeout(()=>{
+                location.reload();
+            }, 3000);
+        } else if ( Number(in19) > num ){
+            out19.innerHTML = 'введите число поменьше';
+        } else {
+            out19.innerHTML = "введите число побольше";
+        }
+    }
+    document.querySelector('.b-19').onclick = () => game(num);
+}
+
+
+//
 
