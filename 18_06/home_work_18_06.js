@@ -192,7 +192,7 @@ document.querySelector('.b-10').onclick = dividers3;
 function counterOfWords() {
     const text = document.querySelector('.t-11');
     const count = text.value.trim().split(' ');
-    document.querySelector('.out-11').innerText = count.length;
+    document.querySelector('.out-11').innerText = count[0] === '' ? 0 : count.length;
 }
 
 document.querySelector('.t-11').onmouseout = counterOfWords;
@@ -234,7 +234,7 @@ function counterPercent() {
     let out = [];
 
     for (let i in character){
-        out.push(`${i}: ${(character[i] * 100 / percent).toFixed(2)}%`)
+        out.push(`"${i}":${(character[i] * 100 / percent).toFixed(2)}%`)
     }
 
     document.querySelector('.out-14').innerText = out.join(', ');
@@ -255,7 +255,7 @@ function counterPercent15() {
     let out = [];
 
     for (let i in character){
-        out.push(`${i}: ${(character[i] * 100 / percent).toFixed(2)}%`)
+        out.push(`"${i}":${(character[i] * 100 / percent).toFixed(2)}%`)
     }
 
     document.querySelector('.out-15').innerHTML += 'Counter Percent: ' + out.join(', ');
@@ -296,6 +296,42 @@ function allCounterText() {
 document.querySelector('.t-15').onmouseout = allCounterText;
 
 
-//
+//Задача
+// Пусть даны два textarea. Пусть в первый текстареа вводится текст на русском языке. Сделайте так, чтобы этот текст преобразовался в транслит и вывелся во втором textarea.
+const absCyr = {"а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "jo", "ж": "zh", "з": "z", "и": "i", "й": "j", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "у": "u", "ф": "f", "х": "h", "ц": "c", "ч": "ch", "ш": "sh", "щ": "sch", "ъ": "", "ы": "y", "ь": "'", "э": "e", "ю": "ju", "я": "ja", "А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "Jo", "Ж": "Zh", "З": "Z", "И": "I", "Й": "J", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "H", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ъ": "", "Ы": "Y", "Ь": "'", "Э": "E", "Ю": "Ju", "Я": "Ja"};
+
+function cryABC(x, y){
+    const inText = document.querySelector(x).value;
+    const transl = inText.trim().split('').map(el => absCyr[el] ? absCyr[el] : el);
+    document.querySelector(y).innerHTML = transl.join('')
+}
+
+document.querySelector('.t-16').onmouseout = () => cryABC('.t-16', '.out-16');
+
+
+// Задача
+// Сделайте так, чтобы при вводе во второй текстареа транслита текста, этот текст преобразовывался в русский и выводился в первом текстареа.
+
+const abcLat = { "'": "ь", "A": "А", "B": "Б", "C": "Ц", "Ch": "Ч", "E": "Е" ,"D": "Д", "F": "Ф", "G": "Г", "H": "Х", "I": "И", "J": "Й", "Ja": "Я", "Jo": "Ё", "Ju": "Ю", "K": "К", "L": "Л", "M": "М", "N": "Н", "O": "О", "P": "П", "R": "Р", "S": "С", "Sch": "Щ", "Sh": "Ш", "T": "Т", "U": "У", "V": "В", "Y": "Ы", "Z": "З", "Zh": "Ж", "a": "а", "b": "б", "c": "ц", "ch": "ч", "d": "д", "e": "е", "f": "ф", "g": "г", "h": "х", "i": "и", "j": "й", "ja": "я", "jo": "ё", "ju": "ю", "k": "к", "l": "л", "m": "м", "n": "н", "o": "о", "p": "п", "r": "р", "s": "с", "sch": "щ", "sh": "ш", "t": "т", "u": "у", "v": "в", "w": "в", "W": "В", "y": "ы", "z": "з", "zh": "ж"};
+
+function latABC(x, y){
+    const inText = document.querySelector(x).value;
+    const transl = inText.trim().split('').map(el => abcLat[el] ? abcLat[el] : el);
+    document.querySelector(y).innerHTML = transl.join('')
+}
+
+document.querySelector('.out-17').oninput = () => latABC('.out-17', '.t-17');
+
+//document.querySelector('.t-17').oninput = () => cryABC('.t-17', '.out-17');
+
+
+// Задача
+// Модифицируйте вашу задачу так, чтобы был один текстареа, чекбокс и див. Если чекбокс отмечен, то пусть в див по потери фокуса выводится транслит текста, а если не отмечен - то текст текстареа пусть преобразуется из транслита в русский текст.
+
+
+
+
+// Задача
+// Модифицируйте предыдущую задачу так, чтобы текст в диве появлялся не по потери фокуса, а по мере ввода текста в текстареа.
 
 
