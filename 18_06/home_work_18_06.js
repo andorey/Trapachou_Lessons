@@ -420,5 +420,104 @@ function playGame19(){
 }
 
 
+// Давайте теперь реализуем игру угадай ячейку. В этой игре будет дана таблица 10 на 10. Компьютер случайным образом запоминает 10 ячеек из этой таблицы. Игроку нужно кликать на клетки пока он не найдет все загаданные компьютером клетки.
+// Задача
+// Реализуйте описанную игру.
 //
+// Задача
+// Модифицируйте предыдущую задачу, добавив таймер обратного отсчета. Если игрок не успеет угадать числа за отведенное время - он проиграл.
+
+let game20 = document.querySelector('.task20');
+let table20 = document.createElement('table');
+table20.id = 'tbl20';
+
+document.querySelector('.b-20').onclick = () => {
+    counter20();
+    findGame20();
+}
+
+const random20 = () => Math.floor(Math.random() * 99) + 1;
+
+function tableGame20() {
+    for (let i = 0; i < 10; i++){
+        let tr = document.createElement('tr');
+        for (let j = 0; j < 10; j++){
+            let td = document.createElement('td');
+            td.innerText = '~~';
+            tr.appendChild(td);
+        }
+        table20.appendChild(tr);
+    }
+}
+game20.appendChild(table20);
+
+tableGame20();
+
+function bodyGame20() {
+    let arr = [];
+    while (arr.length < 10){
+        arr.push(Math.floor(Math.random() * 99) + 1)
+        arr = [...new Set(arr)]
+    }
+
+    let tableAll = document.querySelectorAll('#tbl20 td');
+
+    for (let k = 1; k <= 100; k++){
+        if(arr.includes(k)){
+            tableAll[k-1].value = 1;
+        }else{
+            tableAll[k-1].value = 0;
+        }
+    }
+
+}
+
+bodyGame20();
+
+function findGame20() {
+    let tableAll = document.querySelectorAll('#tbl20 td');
+    let cntr = 0;
+
+    for (let k of tableAll){
+        console.log(k)
+        k.addEventListener('click', function () {
+            if(this.value && this.style.color !== 'red'){
+                this.style.color = 'red';
+                this.style.backgroundColor = 'red';
+                cntr += 1;
+                document.querySelector('.out-20').innerText = (10 - cntr) + ' left to find'
+                if (cntr === 10){
+                    document.querySelector('.out-20').hidden = true;
+                    document.querySelector('.counter20').innerHTML = '<h4>!!! YOU WIN !!!</h4>';
+                    setTimeout(()=>{
+                        location.reload();
+                    }, 5000);
+                }
+            }else if(this.style.color === 'red'){
+                cntr += 0;
+            }else{
+                this.style.color = 'blue';
+                this.style.backgroundColor = 'blue';
+            }
+        })
+    }
+
+}
+
+const counter20 = function(){
+    let num = document.querySelector('.counter20').innerText;
+    if (isNaN(Number(num))) return 0;
+
+    if (Number(num) === 0){
+        document.querySelector('.out-20').hidden = true;
+        document.querySelector('.counter20').innerHTML = '<h4>...YOU LOSE... </h4>';
+        setTimeout(() => {
+            location.reload();
+        }, 5000)
+    }else{
+        document.querySelector('.counter20').innerText = Number(num) - 1;
+    }
+    setTimeout('counter20()', 1000);
+}
+
 

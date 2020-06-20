@@ -26,6 +26,11 @@
 			font-size: 15px;
 			color: mediumblue;
 		}
+		table, td{
+			border: 2px solid #7183a0;
+			font-size: 25px;
+			color: white;
+		}
 	</style>
 </head>
 <body>
@@ -291,16 +296,29 @@
 </section>
 <hr>
 
+<section style="display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: baseline;">
+	<p>Давайте теперь реализуем игру угадай ячейку. В этой игре будет дана таблица 10 на 10. Компьютер случайным образом запоминает 10 ячеек из этой таблицы. Игроку нужно кликать на клетки пока он не найдет все загаданные компьютером клетки.<br>
+	   Модифицируйте предыдущую задачу, добавив таймер обратного отсчета. Если игрок не успеет угадать числа за отведенное время - он проиграл.
+	</p>
+	<button class="b-20">START</button>
+	<div class="task20"></div>
+	<div class="out-20" style="font-size: 30px"> 10 left to find </div>
+	<div><span class="counter20" style="font-size: 50px">120</span></div>
+</section>
+<hr>
+
 <section>
 	<p></p>
 	<label>
-		<input class="i-201" type="number">
-		<input class="i-202" type="number">
+		<input type="text" class="in-21">
 	</label>
-	<div>
-		<button class="b-20">CALCULATE</button>
-		<span class="out-20"></span>
-	</div>
+	<button class="b-21"></button>
+	<div class="out-21"></div>
 </section>
 <hr>
 
