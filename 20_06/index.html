@@ -7,16 +7,21 @@
 	<title>20.06.2020</title>
 	<link rel="stylesheet" href="stlyle.css">
 </head>
+
 <body>
 <section>
-	<p></p>
+	<p>Давайте реализуем экранную клавиатуру. На ней должны быть кнопочки со всеми буквами и цифрами клавиатуры компьютера. Кликая мышкой по этим кнопочкам мы сможем вводить данные, например, при неработающей клавиатуре.<br>
+		Реализуйте описанную клавиатуру. Пусть эта клавиатура будет привязана к какому-нибудь инпуту, то есть кликая по ней, мы будем вводить данные в этот инпут.<br>
+		Сделайте на вашей клавиатуре кнопку Caps Lock, которая будет делать так, чтобы все буквы переводились в верхний регистр.
+	</p>
 	<label>
-		<input class="i-11" type="number">
+		<input class="i-11" type="text" style="width: 800px;">
 	</label>
 	<div>
-		<button class="b-1">RUN</button>
-		<span class="out-1"></span>
+		<div class="out-1"></div>
+		<div id="keyboard"></div>
 	</div>
+	<button class="b-1">RUN</button>
 </section>
 <hr>
 
@@ -258,7 +263,7 @@
 
 <section>
 	<p></p>
-	<button class="b-21">START</button>
+	<button class="b-21">RUN</button>
 	<div class="out-21"></div>
 </section>
 <hr>
