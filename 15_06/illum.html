@@ -3,158 +3,154 @@
 <head>
 	<title>Illum</title>
 	<style type="text/css">
-		table, td, tr{
+		table, td, tr {
 			border: 2px solid cyan;
 		}
 	</style>
 </head>
-
 <body style="background: #150101">
-	<p align="center" style="color: #17f1f0; font-size: 25px">CROSS-ZERRO<br>
-		<br>
-	</p>
-	<div align="center">
-		
-		<table border="0" cellspacing="0">
-			<tr>
-				<td align="center"><img src = "../gifki/back.gif" name="pole0" onClick="Place(0)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "../gifki/back.gif" name="pole1" onClick="Place(1)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "../gifki/back.gif" name="pole2" onClick="Place(2)" WIDTH="170" HEIGHT="170"></td>
-			</tr>
-			<tr>
-				<td align="center"><img src = "../gifki/back.gif" name="pole3" onClick="Place(3)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "../gifki/back.gif" name="pole4" onClick="Place(4)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "../gifki/back.gif" name="pole5" onClick="Place(5)" WIDTH="170" HEIGHT="170"></td>
-			</tr>
-			<tr>
-				<td align="center"><img src = "../gifki/back.gif" name="pole6" onClick="Place(6)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "../gifki/back.gif" name="pole7" onClick="Place(7)" WIDTH="170" HEIGHT="170"></td>
-				<td align="center"><img src = "../gifki/back.gif" name="pole8" onClick="Place(8)" WIDTH="170" HEIGHT="170"></td>
-			</tr>
-		</table>
-	</div>
-	
-	<script type="text/javascript">
-        let cell = new Array(9);
+<p style="color: #17f1f0; font-size: 25px; text-align: center">CROSS-ZERRO<br>
+	<br>
+</p>
+<div style="display: flex; align-content: center; justify-content: center">
+	<table>
+		<tr>
+			<td><img src="gifki/back.gif" name="pole0" alt="cube" onClick="Place(0)" style="width: 170px; height: 170px"></td>
+			<td><img src="gifki/back.gif" name="pole1" alt="cube" onClick="Place(1)" style="width: 170px; height: 170px"></td>
+			<td><img src="gifki/back.gif" name="pole2" alt="cube" onClick="Place(2)" style="width: 170px; height: 170px"></td>
+		</tr>
+		<tr>
+			<td><img src="gifki/back.gif" name="pole3" alt="cube" onClick="Place(3)" style="width: 170px; height: 170px"></td>
+			<td><img src="gifki/back.gif" name="pole4" alt="cube" onClick="Place(4)" style="width: 170px; height: 170px"></td>
+			<td><img src="gifki/back.gif" name="pole5" alt="cube" onClick="Place(5)" style="width: 170px; height: 170px"></td>
+		</tr>
+		<tr>
+			<td><img src="gifki/back.gif" name="pole6" alt="cube" onClick="Place(6)" style="width: 170px; height: 170px"></td>
+			<td><img src="gifki/back.gif" name="pole7" alt="cube" onClick="Place(7)" style="width: 170px; height: 170px"></td>
+			<td><img src="gifki/back.gif" name="pole8" alt="cube" onClick="Place(8)" style="width: 170px; height: 170px"></td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+    let cell = new Array(9);
+    for (let i = 0; i < 9; i++) cell[i] = 0;
+
+    x = new Image(170, 170);
+    x.src = "gifki/pyramid.gif";
+    o = new Image(170, 170);
+    o.src = "gifki/cub.gif";
+    e = new Image(170, 170);
+    e.src = "gifki/back.gif";
+
+    function Cross(value) {
+        if (value === 0) document.pole0.src = x.src;
+        if (value === 1) document.pole1.src = x.src;
+        if (value === 2) document.pole2.src = x.src;
+        if (value === 3) document.pole3.src = x.src;
+        if (value === 4) document.pole4.src = x.src;
+        if (value === 5) document.pole5.src = x.src;
+        if (value === 6) document.pole6.src = x.src;
+        if (value === 7) document.pole7.src = x.src;
+        if (value === 8) document.pole8.src = x.src;
+    }
+
+    function Zero(value) {
+        if (value === 0) document.pole0.src = o.src;
+        if (value === 1) document.pole1.src = o.src;
+        if (value === 2) document.pole2.src = o.src;
+        if (value === 3) document.pole3.src = o.src;
+        if (value === 4) document.pole4.src = o.src;
+        if (value === 5) document.pole5.src = o.src;
+        if (value === 6) document.pole6.src = o.src;
+        if (value === 7) document.pole7.src = o.src;
+        if (value === 8) document.pole8.src = o.src;
+    }
+
+    function CheckVictory() {
+        if (cell[0] === cell[1] && cell[1] === cell[2] && cell[2] > 0) return true;
+        if (cell[3] === cell[4] && cell[4] === cell[5] && cell[5] > 0) return true;
+        if (cell[6] === cell[7] && cell[7] === cell[8] && cell[8] > 0) return true;
+        if (cell[6] === cell[3] && cell[3] === cell[0] && cell[0] > 0) return true;
+        if (cell[7] === cell[4] && cell[4] === cell[1] && cell[1] > 0) return true;
+        if (cell[8] === cell[5] && cell[5] === cell[2] && cell[2] > 0) return true;
+        if (cell[6] === cell[4] && cell[4] === cell[2] && cell[2] > 0) return true;
+        if (cell[0] === cell[4] && cell[4] === cell[8] && cell[8] > 0) return true;
+    }
+
+    function CompTurn() {
+        for (let i = 0; i < 9; i++) if (cell[i] === 0) PutHere = i;
+        for (let i = 0; i < 3; i++) {
+            if (cell[0] === cell[1] && cell[2] === 0 && cell[0] === i) PutHere = 2;
+            if (cell[0] === cell[2] && cell[1] === 0 && cell[0] === i) PutHere = 1;
+            if (cell[1] === cell[2] && cell[0] === 0 && cell[2] === i) PutHere = 0;
+            if (cell[3] === cell[4] && cell[5] === 0 && cell[3] === i) PutHere = 5;
+            if (cell[3] === cell[5] && cell[4] === 0 && cell[3] === i) PutHere = 4;
+            if (cell[4] === cell[5] && cell[3] === 0 && cell[5] === i) PutHere = 3;
+            if (cell[6] === cell[7] && cell[8] === 0 && cell[6] === i) PutHere = 8;
+            if (cell[6] === cell[8] && cell[7] === 0 && cell[6] === i) PutHere = 7;
+            if (cell[7] === cell[8] && cell[6] === 0 && cell[8] === i) PutHere = 6;
+
+            if (cell[6] === cell[3] && cell[0] === 0 && cell[6] === i) PutHere = 0;
+            if (cell[6] === cell[0] && cell[3] === 0 && cell[6] === i) PutHere = 3;
+            if (cell[3] === cell[0] && cell[6] === 0 && cell[3] === i) PutHere = 6;
+            if (cell[7] === cell[4] && cell[1] === 0 && cell[7] === i) PutHere = 1;
+            if (cell[7] === cell[1] && cell[4] === 0 && cell[7] === i) PutHere = 4;
+            if (cell[4] === cell[1] && cell[7] === 0 && cell[4] === i) PutHere = 7;
+            if (cell[8] === cell[5] && cell[2] === 0 && cell[8] === i) PutHere = 2;
+            if (cell[8] === cell[2] && cell[5] === 0 && cell[8] === i) PutHere = 5;
+            if (cell[5] === cell[2] && cell[8] === 0 && cell[5] === i) PutHere = 8;
+
+            if (cell[6] === cell[4] && cell[2] === 0 && cell[6] === i) PutHere = 2;
+            if (cell[6] === cell[2] && cell[4] === 0 && cell[6] === i) PutHere = 4;
+            if (cell[4] === cell[2] && cell[6] === 0 && cell[4] === i) PutHere = 6;
+            if (cell[0] === cell[4] && cell[8] === 0 && cell[0] === i) PutHere = 8;
+            if (cell[0] === cell[8] && cell[4] === 0 && cell[0] === i) PutHere = 4;
+            if (cell[4] === cell[8] && cell[0] === 0 && cell[4] === i) PutHere = 0;
+        }
+        Zero(PutHere);
+        cell[PutHere] = 2;
+        if (CheckVictory() === true) {
+            alert("WIN JS !");
+            GameOver();
+        }
+    }
+
+    function GameOver() {
         for (let i = 0; i < 9; i++) cell[i] = 0;
+        document.pole0.src = e.src;
+        document.pole1.src = e.src;
+        document.pole2.src = e.src;
+        document.pole3.src = e.src;
+        document.pole4.src = e.src;
+        document.pole5.src = e.src;
+        document.pole6.src = e.src;
+        document.pole7.src = e.src;
+        document.pole8.src = e.src;
+    }
 
-        x = new Image(170,170);
-        x.src = "../gifki/pyramid.gif";
-        o = new Image(170,170);
-        o.src = "../gifki/cub.gif";
-        e = new Image(170,170);
-        e.src = "../gifki/back.gif";
-
-        function Cross(value) {
-            if (value === 0) document.pole0.src = x.src;
-            if (value === 1) document.pole1.src = x.src;
-            if (value === 2) document.pole2.src = x.src;
-            if (value === 3) document.pole3.src = x.src;
-            if (value === 4) document.pole4.src = x.src;
-            if (value === 5) document.pole5.src = x.src;
-            if (value === 6) document.pole6.src = x.src;
-            if (value === 7) document.pole7.src = x.src;
-            if (value === 8) document.pole8.src = x.src;
+    function CheckNobody() {
+        no = false;
+        for (let i = 0; i < 9; i++) if (cell[i] === 0) no = true;
+        if (no === false) {
+            alert("DRAW");
+            GameOver();
         }
+    }
 
-        function Zero(value) {
-            if (value === 0) document.pole0.src = o.src;
-            if (value === 1) document.pole1.src = o.src;
-            if (value === 2) document.pole2.src = o.src;
-            if (value === 3) document.pole3.src = o.src;
-            if (value === 4) document.pole4.src = o.src;
-            if (value === 5) document.pole5.src = o.src;
-            if (value === 6) document.pole6.src = o.src;
-            if (value === 7) document.pole7.src = o.src;
-            if (value === 8) document.pole8.src = o.src;
-        }
-
-        function CheckVictory() {
-            if (cell[0] === cell[1] && cell[1] === cell[2] && cell[2] > 0) return true;
-            if (cell[3] === cell[4] && cell[4] === cell[5] && cell[5] > 0) return true;
-            if (cell[6] === cell[7] && cell[7] === cell[8] && cell[8] > 0) return true;
-            if (cell[6] === cell[3] && cell[3] === cell[0] && cell[0] > 0) return true;
-            if (cell[7] === cell[4] && cell[4] === cell[1] && cell[1] > 0) return true;
-            if (cell[8] === cell[5] && cell[5] === cell[2] && cell[2] > 0) return true;
-            if (cell[6] === cell[4] && cell[4] === cell[2] && cell[2] > 0) return true;
-            if (cell[0] === cell[4] && cell[4] === cell[8] && cell[8] > 0) return true;
-        }
-
-        function CompTurn() {
-            for (let i = 0; i < 9; i++) if (cell[i] === 0) PutHere = i;
-            for (let i = 0; i < 3; i++) {
-                if (cell[0] === cell[1] && cell[2] === 0 && cell[0] === i) PutHere = 2;
-                if (cell[0] === cell[2] && cell[1] === 0 && cell[0] === i) PutHere = 1;
-                if (cell[1] === cell[2] && cell[0] === 0 && cell[2] === i) PutHere = 0;
-                if (cell[3] === cell[4] && cell[5] === 0 && cell[3] === i) PutHere = 5;
-                if (cell[3] === cell[5] && cell[4] === 0 && cell[3] === i) PutHere = 4;
-                if (cell[4] === cell[5] && cell[3] === 0 && cell[5] === i) PutHere = 3;
-                if (cell[6] === cell[7] && cell[8] === 0 && cell[6] === i) PutHere = 8;
-                if (cell[6] === cell[8] && cell[7] === 0 && cell[6] === i) PutHere = 7;
-                if (cell[7] === cell[8] && cell[6] === 0 && cell[8] === i) PutHere = 6;
-
-                if (cell[6] === cell[3] && cell[0] === 0 && cell[6] === i) PutHere = 0;
-                if (cell[6] === cell[0] && cell[3] === 0 && cell[6] === i) PutHere = 3;
-                if (cell[3] === cell[0] && cell[6] === 0 && cell[3] === i) PutHere = 6;
-                if (cell[7] === cell[4] && cell[1] === 0 && cell[7] === i) PutHere = 1;
-                if (cell[7] === cell[1] && cell[4] === 0 && cell[7] === i) PutHere = 4;
-                if (cell[4] === cell[1] && cell[7] === 0 && cell[4] === i) PutHere = 7;
-                if (cell[8] === cell[5] && cell[2] === 0 && cell[8] === i) PutHere = 2;
-                if (cell[8] === cell[2] && cell[5] === 0 && cell[8] === i) PutHere = 5;
-                if (cell[5] === cell[2] && cell[8] === 0 && cell[5] === i) PutHere = 8;
-
-                if (cell[6] === cell[4] && cell[2] === 0 && cell[6] === i) PutHere = 2;
-                if (cell[6] === cell[2] && cell[4] === 0 && cell[6] === i) PutHere = 4;
-                if (cell[4] === cell[2] && cell[6] === 0 && cell[4] === i) PutHere = 6;
-                if (cell[0] === cell[4] && cell[8] === 0 && cell[0] === i) PutHere = 8;
-                if (cell[0] === cell[8] && cell[4] === 0 && cell[0] === i) PutHere = 4;
-                if (cell[4] === cell[8] && cell[0] === 0 && cell[4] === i) PutHere = 0;
-            }
-            Zero(PutHere);
-            cell[PutHere] = 2;
+    function Place(value) {
+        if (cell[value] === 0) {
+            Cross(value);
+            cell[value] = 1;
             if (CheckVictory() === true) {
-                alert("WIN JS !");
+                alert("YOU WIN CONGRATULATION");
                 GameOver();
+            } else {
+                CheckNobody();
+                CompTurn();
+                CheckNobody();
             }
         }
-
-        function GameOver() {
-            for (let i = 0; i < 9; i++) cell[i] = 0;
-            document.pole0.src = e.src;
-            document.pole1.src = e.src;
-            document.pole2.src = e.src;
-            document.pole3.src = e.src;
-            document.pole4.src = e.src;
-            document.pole5.src = e.src;
-            document.pole6.src = e.src;
-            document.pole7.src = e.src;
-            document.pole8.src = e.src;
-        }
-
-        function CheckNobody() {
-            no = false;
-            for (let i = 0; i < 9; i++) if (cell[i] === 0) no = true;
-            if (no === false) {
-                alert("DRAW");
-                GameOver();
-            }
-        }
-
-        function Place(value) {
-            if (cell[value] === 0) {
-                Cross(value);
-                cell[value] = 1;
-                if (CheckVictory() === true) {
-                    alert("YOU WIN CONGRATULATION");
-                    GameOver();
-                }
-                else {
-                    CheckNobody();
-                    CompTurn();
-                    CheckNobody();
-                }
-            }
-        }
-	</script>
+    }
+</script>
 </body>
 </html>

@@ -296,28 +296,28 @@
 </section>
 <hr>
 
-<section style="display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: center;
-    align-items: baseline;">
+<section>
 	<p>Давайте теперь реализуем игру угадай ячейку. В этой игре будет дана таблица 10 на 10. Компьютер случайным образом запоминает 10 ячеек из этой таблицы. Игроку нужно кликать на клетки пока он не найдет все загаданные компьютером клетки.<br>
 	   Модифицируйте предыдущую задачу, добавив таймер обратного отсчета. Если игрок не успеет угадать числа за отведенное время - он проиграл.
 	</p>
-	<button class="b-20">START</button>
-	<div class="task20"></div>
-	<div class="out-20" style="font-size: 30px"> 10 left to find </div>
-	<div><span class="counter20" style="font-size: 50px">120</span></div>
+	<div style="font-size: 30px; display: flex; align-content: center; justify-content: space-around; flex-direction: row;">
+		<div class="out-20"> 10 left to find </div>
+	</div>
+	<div style="display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: baseline;">
+		<button class="b-20">START</button>
+		<div class="task20"></div>
+		<div><span class="counter20" style="font-size: 50px">88</span></div>
+	</div>
 </section>
 <hr>
 
 <section>
 	<p></p>
-	<label>
-		<input type="text" class="in-21">
-	</label>
-	<button class="b-21"></button>
 	<div class="out-21"></div>
 </section>
 <hr>

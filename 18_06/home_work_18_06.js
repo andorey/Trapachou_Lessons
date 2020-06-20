@@ -487,8 +487,7 @@ function findGame20() {
                 cntr += 1;
                 document.querySelector('.out-20').innerText = (10 - cntr) + ' left to find'
                 if (cntr === 10){
-                    document.querySelector('.out-20').hidden = true;
-                    document.querySelector('.counter20').innerHTML = '<h4>!!! YOU WIN !!!</h4>';
+                    document.querySelector('.counter20').innerHTML = '<h5>YOU WIN !!!</h5>';
                     setTimeout(()=>{
                         location.reload();
                     }, 5000);
@@ -509,8 +508,7 @@ const counter20 = function(){
     if (isNaN(Number(num))) return 0;
 
     if (Number(num) === 0){
-        document.querySelector('.out-20').hidden = true;
-        document.querySelector('.counter20').innerHTML = '<h4>...YOU LOSE... </h4>';
+        document.querySelector('.counter20').innerHTML = '<h5>YOU LOSE... </h5>';
         setTimeout(() => {
             location.reload();
         }, 5000)
