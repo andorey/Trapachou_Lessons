@@ -9,6 +9,7 @@
 const arr11 = ["§", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace", "Tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "Enter", "CapsLock", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "|", "LShift", "`", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "RShift","Fn", "Ctrl", "Alt", "Lcmd", " ", "Rcmd", "Alt"];
 
 let k = 0;
+let sh = 0
 
 function t11() {
     const arr = ["Backspace", "Enter", "LShift", "Lcmd", "Rcmd"];
@@ -37,14 +38,16 @@ document.querySelector('.b-1').onclick = () => {
     t11();
 
     document.querySelector('.i-11').onkeydown = function (event) {
-        console.log(event)
         if (event.code === "OSLeft"){
             document.querySelector(`#keyboard .itemKey[title="lcmd"]`).classList.add('active');
         }else if(event.code === "OSRight" ){
             document.querySelector(`#keyboard .itemKey[title="rcmd"]`).classList.add('active');
+        }else if(event.code === "ShiftLeft") {
+            document.querySelector(`#keyboard .itemKey[title="lshift"]`).classList.add('active');
+        }else if(event.code === "ShiftRight") {
+            document.querySelector(`#keyboard .itemKey[title="rshift"]`).classList.add('active');
         }else{
             document.querySelector(`#keyboard .itemKey[title="${event.key.toLowerCase()}"]`).classList.add('active');
-            console.log(event)
         }
     };
 
@@ -62,15 +65,7 @@ document.querySelector('.b-1').onclick = () => {
         element.onclick = function (event) {
 
             document.querySelectorAll('#keyboard .itemKey').forEach(function(element){
-                if (element.title !== 'capslock') element.classList.remove('active')
-
-                if(element.title === "lshift" || element.title === "rshift"){
-                    if([...element.classList].includes('active')){
-                        document.querySelector('.i-11').value += (element.title ===  'capslock' || element.title ===  'lshift' || element.title ===  'rshift') ? '' : element.title.toUpperCase();
-                        element.classList.remove('active')
-                    }
-                }
-
+                if (element.title !== 'capslock') element.classList.remove('active');
             });
             if (this.title === 'capslock'){
                 if ([...this.classList].includes('active')){
@@ -84,10 +79,24 @@ document.querySelector('.b-1').onclick = () => {
                 this.classList.add('active');
             }
 
-            if(k){
-                document.querySelector('.i-11').value += (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift') ? '' : this.title.toUpperCase()
+            if(this.title === 'lshift' || this.title === 'rshift'){
+                if([...element.classList].includes('active')){
+                    sh = 2;
+                }
+            }
+
+            const str = document.querySelector('.i-11').value;
+
+            if(this.title === 'backspace'){
+                document.querySelector('.i-11').value = str.slice(0, str.length - 1)
+            }
+
+
+            if(k || sh > 0){
+                document.querySelector('.i-11').value += (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift' || this.title === 'backspace') ? '' : this.title.toUpperCase();
+                sh -= 1;
             }else{
-                document.querySelector('.i-11').value += (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift') ? '' : this.title
+                document.querySelector('.i-11').value += (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift' || this.title === 'backspace') ? '' : this.title
             }
         }
     });
