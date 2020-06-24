@@ -5,34 +5,46 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<title>20.06.2020</title>
-	<link rel="stylesheet" href="stlyle.css">
+	<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 <section>
-	<p>Давайте реализуем экранную клавиатуру. На ней должны быть кнопочки со всеми буквами и цифрами клавиатуры компьютера. Кликая мышкой по этим кнопочкам мы сможем вводить данные, например, при неработающей клавиатуре.<br>
-		Реализуйте описанную клавиатуру. Пусть эта клавиатура будет привязана к какому-нибудь инпуту, то есть кликая по ней, мы будем вводить данные в этот инпут.<br>
-		Сделайте на вашей клавиатуре кнопку Caps Lock, которая будет делать так, чтобы все буквы переводились в верхний регистр.
+	<p>Давайте реализуем экранную клавиатуру. На ней должны быть кнопочки со всеми буквами и цифрами клавиатуры
+	   компьютера. Кликая мышкой по этим кнопочкам мы сможем вводить данные, например, при неработающей клавиатуре.<br>
+	   Реализуйте описанную клавиатуру. Пусть эта клавиатура будет привязана к какому-нибудь инпуту, то есть кликая по
+	   ней, мы будем вводить данные в этот инпут.<br>
+	   Сделайте на вашей клавиатуре кнопку Caps Lock, которая будет делать так, чтобы все буквы переводились в верхний
+	   регистр.
 	</p>
 	<label>
 		<input class="i-11" type="text" style="width: 800px;">
 	</label>
 	<div>
-		<div class="out-1"></div>
 		<div id="keyboard"></div>
 	</div>
 	<button class="b-1">RUN</button>
 </section>
 
 <section>
-	<p></p>
-	<label>
-		<input class="i-21" type="number">
-		<input class="i-22" type="number">
-	</label>
+	<p>Давайте реализуем калькулятор. Он будет работать как обычный классический калькулятор: у вас будет инпут, а под
+	   ним кнопочки с цифрами и знаками операций. По нажатию на цифры они должны появляться в инпуте. По нажатию на знак
+	   операции число из инпута должно исчезать. После этого при вводе следующего числа в инпут и нажатия на знак равно
+	   в инпуте должен появится результат операции.<br>
+	   Сделайте так, чтобы над инпутом выводились введенные числа и между ними знак операции.<br>
+	   Сделайте кнопку сброса, которая будет очищать инпут для ввода, а также отменять операцию, если ранее была нажата
+	   кнопка операции.<br>
+	   Сделайте кнопку для памяти. Пусть она запоминает результат какой-нибудь операции. Сделайте кнопку для вставки в
+	   инпут результата из памяти.
+	</p><br>
+	<div id="shell" align="center">
+		<div class="out-2"></div>
+		<label>
+			<input class="i-21" type="text" name="textview" readonly>
+		</label>
+		<div class="calculator"></div>
+	</div>
 	<div>
 		<button class="b-2">RUN</button>
-		<span class="out-2"></span>
 	</div>
 </section>
 
@@ -85,7 +97,6 @@
 		<span class="out-6"></span>
 	</div>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -96,7 +107,6 @@
 		<span class="out-7"></span>
 	</div>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -108,7 +118,6 @@
 		<span class="out-8"></span>
 	</div>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -120,7 +129,6 @@
 		<span class="out-9"></span>
 	</div>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -132,7 +140,6 @@
 		<span class="out-10"></span>
 	</div>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -143,7 +150,6 @@
 		<span class="out-11"></span>
 	</div>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -152,7 +158,6 @@
 	<button class="b-12">RUN</button>
 	<span class="out-12"></span>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -161,16 +166,14 @@
 	<button class="b-13">RUN</button>
 	<span class="out-13"></span>
 </section>
-
 <section>
 	<p></p>
 	<label>
-		<textarea class="t-14" ></textarea>
+		<textarea class="t-14"></textarea>
 	</label>
 	<button class="b-14">RUN</button>
 	<span class="out-14"></span>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -196,7 +199,6 @@
 	<button class="b-15">RUN</button>
 	<span class="out-15"></span>
 </section>
-
 <section>
 	<p></p>&nbsp;
 	<label>
@@ -205,7 +207,6 @@
 	<button class="b-16">RUN</button>
 	<span class="out-16"></span>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -214,7 +215,6 @@
 	<button class="b-17">RUN</button>
 	<span class="out-17"></span>
 </section>
-
 <section>
 	<p></p>&nbsp;
 	<label>
@@ -223,7 +223,6 @@
 	<button class="b-18">RUN</button>
 	<span class="out-18"></span>
 </section>
-
 <section>
 	<p></p>
 	<label>
@@ -232,7 +231,6 @@
 	<button class="b-19">RUN</button>
 	<div class="out-19"></div>
 </section>
-
 <section>
 	<p></p>
 	<div>
@@ -240,15 +238,11 @@
 	<button class="b-20">RUN</button>
 	<div class="out-20"></div>
 </section>
-
 <section>
 	<p></p>
 	<button class="b-21">RUN</button>
 	<div class="out-21"></div>
 </section>
-
-
-
 <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
