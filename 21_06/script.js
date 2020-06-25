@@ -10,6 +10,7 @@ const arr11 = [["±", "§"], ["!", "1"], ["@", "2"], ["#", "3"], ["$", "4"], ["%
 
 let g = 0;
 let sh = 0
+document.querySelector('.apple').hidden = true;
 
 function t11(arr11, k) {
     const arr = ["Backspace", "Enter", "LShift", "Lcmd", "Rcmd"];
@@ -34,8 +35,8 @@ function t11(arr11, k) {
     document.querySelector('#keyboard').innerHTML = out;
 }
 
-function fff(k) {
-
+function funcClav(k) {
+    document.querySelector('.apple').hidden = false;
     t11(arr11, k);
 
     if (sh > 0){
@@ -79,11 +80,11 @@ function fff(k) {
                 if (g){
                     this.classList.remove('active')
                     g = 0
-                    fff(1)
+                    funcClav(1)
                 }else{
                     this.classList.add('active')
                     g = 1;
-                    fff(0)
+                    funcClav(0)
                 }
             }else{
                 this.classList.add('active');
@@ -92,7 +93,7 @@ function fff(k) {
             if(this.title === 'lshift' || this.title === 'rshift'){
                 if([...element.classList].includes('active')){
                     sh = 2;
-                    fff(0)
+                    funcClav(0)
                 }
             }
 
@@ -106,18 +107,21 @@ function fff(k) {
                 document.querySelector('.i-11').value += '\n';
             }
 
+            const condition = (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift' || this.title === 'backspace' || this.title === 'lcmd' || this.title === 'rcmd' || this.title === 'alt' || this.title === 'ctrl' || this.title === 'enter' || this.title === 'fn');
+
             if(g || sh > 0){
-                document.querySelector('.i-11').value += (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift' || this.title === 'backspace' || this.title === 'lcmd' || this.title === 'rcmd' || this.title === 'alt' || this.title === 'ctrl' || this.title === 'enter') ? '' : this.title.toUpperCase();
+                document.querySelector('.i-11').value += condition ? '' : this.title.toUpperCase();
                 sh -= 1;
-                if (sh === 0) fff(1)
+                if (sh === 0 && g === 0) funcClav(1)
+
             }else{
-                document.querySelector('.i-11').value += (this.title ===  'capslock' || this.title ===  'lshift' || this.title ===  'rshift' || this.title === 'backspace' || this.title === 'lcmd' || this.title === 'rcmd' || this.title === 'alt' || this.title === 'ctrl' || this.title === 'enter') ? '' : this.title
+                document.querySelector('.i-11').value += condition ? '' : this.title
             }
         }
     });
 }
 
-document.querySelector('.b-1').onclick = () => fff(1)
+document.querySelector('.b-1').onclick = () => funcClav(1)
 
 // Давайте реализуем калькулятор. Он будет работать как обычный классический калькулятор: у вас будет инпут, а под ним кнопочки с цифрами и знаками операций. По нажатию на цифры они должны появляться в инпуте. По нажатию на знак операции число из инпута должно исчезать. После этого при вводе следующего числа в инпут и нажатия на знак равно в инпуте должен появится результат операции.
 //
@@ -133,21 +137,116 @@ document.querySelector('.b-1').onclick = () => fff(1)
 // Задача
 // Сделайте кнопку для памяти. Пусть она запоминает результат какой-нибудь операции. Сделайте кнопку для вставки в инпут результата из памяти.
 
-const arr2 = ["C", "⇤", "M", "±", "*", "÷", "+", "-", "7", "8", "9", "(", "4", "5", "6", ")", "1", "2", "3", "=", "0", "."];
+document.querySelector('#shell').hidden = true;
+let mem = '';
+
+const arr2 = ["C/Ce", "⇤", "M+/M", "±", "*", "/", "+", "-", "7", "8", "9", "(", "4", "5", "6", ")", "1", "2", "3", "=", "0", "."];
 
 function f2() {
     let out='';
     for (let i=0; i < arr2.length; i++) {
         if (arr2[i] === '⇤') {
-            out += `<div class="itemKey2" title="back"> ${arr2[i]}</div>`;
+            out += `<div class="itemKey2" onclick="del()"> ${arr2[i]}</div>`;
         } else if (arr2[i] === '='){
-            out += `<div class="itemKey2 equal" title="${arr2[i]}">${arr2[i]}</div>`;
+            out += `<div class="itemKey2 equal" onclick="equal()">${arr2[i]}</div>`;
         } else if (arr2[i] === '0'){
-            out += `<div class="itemKey2 zero" title="${arr2[i]}">${arr2[i]}</div>`;
-        }else{
-            out += `<div class="itemKey2" title="${arr2[i]}">${arr2[i]}</div>`;
+            out += `<div class="itemKey2 zero" onclick="insert('${arr2[i]}')">${arr2[i]}</div>`;
+        } else if (arr2[i] === 'C/Ce'){
+            out += `<div class="itemKey2 first" onclick="clean()">${arr2[i]}</div>`;
+        } else if (arr2[i] === '±'){
+            out += `<div class="itemKey2" onclick="plusMinus()">${arr2[i]}</div>`;
+        } else if (arr2[i] === "M+/M"){
+            out += `<div class="itemKey2" onclick="memeory()" title="memo">${arr2[i]}</div>`;
+        } else {
+            out += `<div class="itemKey2" onclick="insert('${arr2[i]}')">${arr2[i]}</div>`;
         }
     }
     document.querySelector('.calculator').innerHTML = out;
 }
-f2();
+
+
+function insert(num) {
+    let str = document.querySelector('.out-2').innerText;
+    if (str.trim() === '0'){
+        document.querySelector('.out-2').innerText = '';
+    }
+    document.querySelector('.out-2').innerText += num;
+
+    if ( Number(num) || num === '0' ){
+        if(document.querySelector('.i-21').value === '0'){
+            document.querySelector('.i-21').value = '';
+        }
+        document.querySelector('.i-21').value += num;
+    } else if( num === '.') {
+        document.querySelector('.i-21').value = '0.';
+    } else {
+        document.querySelector('.i-21').value = '';
+    }
+}
+
+function del(){
+    let str = document.querySelector('.out-2').innerText;
+    document.querySelector('.out-2').innerText = str.slice(0, str.length - 1);
+    let inp = document.querySelector('.i-21').value;
+    document.querySelector('.i-21').value = inp.slice(0, inp.length - 1);
+}
+
+function clean(){
+    const arr = ["+", "-", "/", "*"];
+    let str = document.querySelector('.out-2').innerText;
+    if ( arr.includes(str.slice(str.length-1)) ){
+        document.querySelector('.out-2').innerText = str.slice(0, str.length - 1)
+    }else{
+        document.querySelector('.out-2').innerHTML = '&nbsp;';
+        document.querySelector('.i-21').value = 0;
+    }
+}
+
+function equal(){
+    let str = document.querySelector('.out-2').innerText;
+    if(str){
+        if (eval(str) === undefined){
+            document.querySelector('.out-2').innerHTML = '&nbsp;';
+            document.querySelector('.i-21').value = 0;
+        }else{
+            document.querySelector('.out-2').innerText = eval(str);
+            document.querySelector('.i-21').value = eval(str)
+        }
+    }else{
+        document.querySelector('.i-21').value = 0;
+    }
+}
+
+function plusMinus(){
+    let num = Number( document.querySelector('.i-21').value )
+    document.querySelector('.i-21').value = num * -1;
+    let str = document.querySelector('.out-2').innerText;
+    let inp = (num * -1) > 0 ? ("+" + String(num * -1)) : String(num * -1)
+    if(Math.abs(Number(str)) === Math.abs(Number(inp))){
+        document.querySelector('.out-2').innerText = document.querySelector('.i-21').value
+    }else{
+        document.querySelector('.out-2').innerText = str.slice( 0, (str.length - inp.length) ) + inp;
+    }
+}
+
+function memeory(){
+    let inp = document.querySelector('.i-21').value;
+    if ((inp !== '' || inp !== '0') && mem === ''){
+        mem = inp;
+        document.querySelector('.itemKey2[title="memo"]').classList.add('active');
+    }else{
+        if(inp === '' || inp === '0'){
+            document.querySelector('.i-21').value = mem;
+            document.querySelector('.out-2').innerText += mem;
+            mem = '';
+            document.querySelector('.itemKey2[title="memo"]').classList.remove('active');
+        }else{
+            document.querySelector('.i-21').value = '';
+        }
+    }
+}
+
+document.querySelector('.b-2').onclick = () =>{
+    document.querySelector('#shell').hidden = false;
+    f2();
+}
