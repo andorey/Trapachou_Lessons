@@ -20,19 +20,19 @@ textarea, input{
     font-size: 15px;
     color: mediumblue;
 }
-table, td{
-    border: 2px solid #7183a0;
-    font-size: 25px;
-    color: white;
-}
-#1{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-content: center;
-    align-items: baseline;
-}
+/*table, td{*/
+/*    border: 2px solid #7183a0;*/
+/*    font-size: 25px;*/
+/*    color: white;*/
+/*}*/
+/*#1{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    flex-wrap: nowrap;*/
+/*    justify-content: space-around;*/
+/*    align-content: center;*/
+/*    align-items: baseline;*/
+/*}*/
 
 /*.container  {*/
 /*    width: 100%;*/
@@ -212,5 +212,37 @@ section {
     flex-direction: column;
     align-items: center;
     font-size: 16px;
+}
+
+#calendar {
+    width: 20%;
+    font-family: monospace;
+    line-height: 1.2em;
+    font-size: 15px;
+    text-align: center;
+}
+#calendar thead tr:last-child {
+    font-size: small;
+    color: #23015b;
+}
+
+#calendar tbody td {
+    color: #0614c8;
+}
+#calendar tbody td:nth-child(n+6), #calendar2 .holiday {
+    color: #c1704c;
+}
+#calendar tbody td.today {
+    opacity: initial;
+    width: 10%;
+    height: 10%;
+    border: 3px solid #ff012b;
+    border-radius: 50%;
+}
+
+#calendar span{
+    color: #8b8989;
+    font-size: larger;
+    cursor: initial;
 }
 

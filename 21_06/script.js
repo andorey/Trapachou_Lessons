@@ -278,3 +278,65 @@ document.querySelector('.b-2').onclick = () =>{
 // Сделайте так, чтобы текущий день в календаре был выделен каким-нибудь цветом.
 // Сделайте так, чтобы над списком было написано название текущего месяца по-русски и номер года.
 // Сделайте так, чтобы над календарем появились ссылки вперед и назад, позволяющие менять месяц. Месяц и год, выводимые над календарем, должны соответствовать отображаемому месяцу.
+
+(function() {
+    function Calendar( year, month ) {
+        let monthDays = new Date(year, month + 1, 0).getDate();
+        let arrDay = new Date(year, month, monthDays);
+        let lastDayWeek = new Date(arrDay.getFullYear(), arrDay.getMonth(), monthDays).getDay();
+        let firstDayWeeks = new Date(arrDay.getFullYear(), arrDay.getMonth(), 1).getDay();
+        let string = '<tr>';
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        if (firstDayWeeks !== 0) {
+            for (let j = 1; j < firstDayWeeks; j++) string += '<td>';
+        } else {
+            for (let j = 0; j < 6; j++) string += '<td>';
+        }
+
+        for (let i = 1; i <= monthDays; i++) {
+            if (i === new Date().getDate() && arrDay.getFullYear() === new Date().getFullYear() && arrDay.getMonth() === new Date().getMonth()) {
+                string += '<td class="today">' + i;
+            } else {
+                string += '<td>' + i;
+            }
+            if (new Date(arrDay.getFullYear(), arrDay.getMonth(), i).getDay() === 0) {
+                string += '<tr>';
+            }
+        }
+
+        for (let k = lastDayWeek; k < 7; k++) string += '<td>&nbsp;';
+        document.querySelector('#calendar tbody').innerHTML = string;
+
+        document.querySelector('#calendar thead td:nth-child(2)').innerHTML = arrDay.getFullYear() + "<br>" + months[arrDay.getMonth()];
+
+        document.querySelector('#calendar thead td:nth-child(2)').dataset.month = arrDay.getMonth();
+
+        document.querySelector('#calendar thead td:nth-child(2)').dataset.year = arrDay.getFullYear();
+
+        if (document.querySelectorAll('#calendar tbody tr').length < 6) {
+            document.querySelector('#calendar tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
+        }
+
+        if ([0, 1, 11].includes(arrDay.getMonth())) {
+            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'black';
+        } else if ([2, 3, 4].includes(arrDay.getMonth())) {
+            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'yellowgreen';
+        } else if ([5, 6, 7].includes(arrDay.getMonth())) {
+            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'green';
+        } else {
+            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'chocolate';
+        }
+
+    }
+
+    Calendar( new Date().getFullYear(), new Date().getMonth() );
+
+    document.querySelector('#calendar thead tr:nth-child(1) td:nth-child(1)').onclick = function () {
+        Calendar( document.querySelector('#calendar thead td:nth-child(2)' ).dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month) - 1);
+    }
+
+    document.querySelector('#calendar thead tr:nth-child(1) td:nth-child(3)').onclick = function () {
+        Calendar( document.querySelector('#calendar thead td:nth-child(2)' ).dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month) + 1);
+    }
+})();
