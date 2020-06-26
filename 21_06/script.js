@@ -142,7 +142,7 @@ let mem = '';
 
 const arr2 = ["C/Ce", "⇤", "M+/M", "±", "*", "/", "+", "-", "7", "8", "9", "(", "4", "5", "6", ")", "1", "2", "3", "=", "0", "."];
 
-function f2() {
+function funcCalc() {
     let out='';
     for (let i=0; i < arr2.length; i++) {
         if (arr2[i] === '⇤') {
@@ -248,5 +248,5 @@ function memeory(){
 
 document.querySelector('.b-2').onclick = () =>{
     document.querySelector('#shell').hidden = false;
-    f2();
+    funcCalc();
 }
