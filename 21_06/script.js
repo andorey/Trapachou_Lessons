@@ -146,24 +146,23 @@ function funcCalc() {
     let out='';
     for (let i=0; i < arr2.length; i++) {
         if (arr2[i] === '⇤') {
-            out += `<div class="itemKey2" onclick="del()"> ${arr2[i]}</div>`;
+            out += `<div class="itemKey2"> ${arr2[i]}</div>`;
         } else if (arr2[i] === '='){
-            out += `<div class="itemKey2 equal" onclick="equal()">${arr2[i]}</div>`;
+            out += `<div class="itemKey2 equal">${arr2[i]}</div>`;
         } else if (arr2[i] === '0'){
-            out += `<div class="itemKey2 zero" onclick="insert('${arr2[i]}')">${arr2[i]}</div>`;
+            out += `<div class="itemKey2 zero">${arr2[i]}</div>`;
         } else if (arr2[i] === 'C/Ce'){
-            out += `<div class="itemKey2 first" onclick="clean()">${arr2[i]}</div>`;
+            out += `<div class="itemKey2 first">${arr2[i]}</div>`;
         } else if (arr2[i] === '±'){
-            out += `<div class="itemKey2" onclick="plusMinus()">${arr2[i]}</div>`;
+            out += `<div class="itemKey2">${arr2[i]}</div>`;
         } else if (arr2[i] === "M+/M"){
-            out += `<div class="itemKey2" onclick="memeory()" title="memo">${arr2[i]}</div>`;
+            out += `<div class="itemKey2" >${arr2[i]}</div>`;
         } else {
-            out += `<div class="itemKey2" onclick="insert('${arr2[i]}')">${arr2[i]}</div>`;
+            out += `<div class="itemKey2">${arr2[i]}</div>`;
         }
     }
     document.querySelector('.calculator').innerHTML = out;
 }
-
 
 function insert(num) {
     let str = document.querySelector('.out-2').innerText;
@@ -249,4 +248,23 @@ function memeory(){
 document.querySelector('.b-2').onclick = () =>{
     document.querySelector('#shell').hidden = false;
     funcCalc();
+    document.querySelectorAll('.calculator .itemKey2').forEach( function(element){
+        element.onclick = function(){
+            if (this.innerText === '⇤') {
+                del()
+            } else if (this.innerText === '='){
+                equal()
+            } else if (this.innerText === '0'){
+                insert(this.innerText)
+            } else if (this.innerText === 'C/Ce'){
+                clean()
+            } else if (this.innerText === '±'){
+                plusMinus()
+            } else if (this.innerText === "M+/M"){
+                memeory()
+            } else {
+                insert(this.innerText)
+            }
+        }
+    })
 }
