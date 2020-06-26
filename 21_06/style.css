@@ -1,5 +1,5 @@
 body{
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Rationale', sans-serif;
     padding: 0 10px 10px 10px;
     font-size: 16px;
 }
@@ -112,21 +112,22 @@ section {
 }
 
 #shell{
-    width: 230px;
-    padding: 7px;
+    width: 250px;
+    padding: 4px;
     background-image: -webkit-linear-gradient(top,
-    rgb(0, 1, 2),
-    rgb(35, 157, 214));
+    rgb(2, 79, 112),
+    rgb(185, 147, 197) 50.0%,
+    rgb(27, 116, 158) );
     border-radius: 10px;
 }
 
 .i-21{
-    width: 97%;
+    width: 93%;
     text-align: right;
-    border: darkblue solid 1px;
+    border: #218aad ridge 3px;
     border-radius: 5px;
-    padding: 2px 2px 2px 2px;
-    margin: 0 1px 5px 1px;
+    padding: 3px 3px 3px 3px;
+    margin: 2px 3px 5px 3px;
     font-size: 30px;
     height: 50px;
     background-image: -webkit-linear-gradient(top,
@@ -140,8 +141,10 @@ section {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     background-image: -webkit-linear-gradient(top,
     rgb(35, 157, 214),
-    rgb(0, 1, 2) );
+    rgb(4, 4, 37));
     user-select: none;
+    border-radius: 6px;
+    border: 1px ridge #b0b0b0;
     grid-gap: 2px;
     padding: 6px;
 }
@@ -153,7 +156,7 @@ section {
     border-radius: 3px;
     color: white;
     background-image: -webkit-linear-gradient(top,
-    rgb(0, 0, 0),
+    rgb(4, 4, 37),
     rgb(35, 157, 214) );
     display: flex;
     justify-content: center;
@@ -165,21 +168,21 @@ section {
 .itemKey2:hover{
     background-image: -webkit-linear-gradient(top,
     rgb(35, 157, 214),
-    rgb(0, 0, 0));
+    rgb(4, 4, 37));
 }
 
 .equal{
     grid-column: 4;
     grid-row: 5/7;
     background-image: -webkit-linear-gradient(top,
-    rgb(248, 54, 0),
-    rgb(238, 130, 86));
+    rgb(248, 25, 0),
+    rgb(244, 117, 6));
 }
 
 .first{
     background-image: -webkit-linear-gradient(top,
-    rgb(248, 63, 0),
-    rgb(238, 130, 86));
+    rgb(248, 25, 0),
+    rgb(244, 117, 6));
 }
 
 .zero{
@@ -193,14 +196,21 @@ section {
 
 }
 
-.active {
+.memo.active {
     background-image: -webkit-linear-gradient(top,
     rgb(20, 79, 87),
     rgb(46, 202, 222));
 }
-.active:hover{
+.memo.active:hover{
     background-image: -webkit-linear-gradient(top,
     rgb(46, 202, 222),
     rgb(20, 79, 87) );
+}
+
+.calc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
 }
 
