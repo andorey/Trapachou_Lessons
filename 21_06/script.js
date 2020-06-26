@@ -140,24 +140,22 @@ document.querySelector('.b-1').onclick = () => funcClav(1)
 document.querySelector('#shell').hidden = true;
 let mem = '';
 
+(function () {
+
 const arr2 = ["C/Ce", "⇤", "M+/M", "±", "*", "/", "+", "-", "7", "8", "9", "(", "4", "5", "6", ")", "1", "2", "3", "=", "0", "."];
 
 function funcCalc() {
     let out='';
     for (let i=0; i < arr2.length; i++) {
-        if (arr2[i] === '⇤') {
-            out += `<div class="itemKey2"> ${arr2[i]}</div>`;
-        } else if (arr2[i] === '='){
+        if (arr2[i] === '='){
             out += `<div class="itemKey2 equal">${arr2[i]}</div>`;
         } else if (arr2[i] === '0'){
             out += `<div class="itemKey2 zero">${arr2[i]}</div>`;
         } else if (arr2[i] === 'C/Ce'){
             out += `<div class="itemKey2 first">${arr2[i]}</div>`;
-        } else if (arr2[i] === '±'){
-            out += `<div class="itemKey2">${arr2[i]}</div>`;
         } else if (arr2[i] === "M+/M"){
-            out += `<div class="itemKey2" >${arr2[i]}</div>`;
-        } else {
+            out += `<div class="itemKey2" title="memo">${arr2[i]}</div>`;
+        }else {
             out += `<div class="itemKey2">${arr2[i]}</div>`;
         }
     }
@@ -185,9 +183,11 @@ function insert(num) {
 
 function del(){
     let str = document.querySelector('.out-2').innerText;
-    document.querySelector('.out-2').innerText = str.slice(0, str.length - 1);
-    let inp = document.querySelector('.i-21').value;
-    document.querySelector('.i-21').value = inp.slice(0, inp.length - 1);
+    if(str.trim() !== ''){
+        document.querySelector('.out-2').innerText = str.slice(0, str.length - 1);
+        let inp = document.querySelector('.i-21').value;
+        document.querySelector('.i-21').value = inp.slice(0, inp.length - 1);
+    }
 }
 
 function clean(){
@@ -204,12 +204,13 @@ function clean(){
 function equal(){
     let str = document.querySelector('.out-2').innerText;
     if(str){
-        if (eval(str) === undefined){
+        const res = eval(str);
+        if (res === undefined){
             document.querySelector('.out-2').innerHTML = '&nbsp;';
             document.querySelector('.i-21').value = 0;
         }else{
-            document.querySelector('.out-2').innerText = eval(str);
-            document.querySelector('.i-21').value = eval(str)
+            document.querySelector('.out-2').innerText = res;
+            document.querySelector('.i-21').value = res;
         }
     }else{
         document.querySelector('.i-21').value = 0;
@@ -268,3 +269,5 @@ document.querySelector('.b-2').onclick = () =>{
         }
     })
 }
+
+})();
