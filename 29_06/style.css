@@ -11,15 +11,15 @@ button {
     border-radius: 5px;
     font-size: 14px;
 }
-.out span{
-    font-size: 17px;
-    font-weight: 200;
-    color: #f80101;
+.i-11{
+    font-size: 18px;
+    width: 150px;
+    color: #018df8;
 }
-textarea, input{
-    font-size: 15px;
-    color: mediumblue;
-}
+/*textarea, input{*/
+/*    font-size: 15px;*/
+/*    color: mediumblue;*/
+/*}*/
 /*table, td{*/
 /*    border: 2px solid #7183a0;*/
 /*    font-size: 25px;*/
@@ -38,6 +38,20 @@ section {
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px dashed #444;
+
 }
 
+#qualifier{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    justify-content: space-around;
+    align-items: flex-start;
+    grid-gap: 20px;
 
+}
+
+#qualifier div{
+    background-color: #e7f7ed;
+    font-size: 18px;
+    padding: 10px 20px 20px 20px;
+}

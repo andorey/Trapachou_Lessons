@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en/ru">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,25 @@
 </head>
 <body>
 <section>
-	<p>
+	<p>Поиск тегов на JavaScript<br>
+	   Сделаем сайт, который будет помогать определить значение HTML тега. Пусть в этом скрипте будет инпут, в который пользователь будет вводить имя тега. После этого по нажатию на Enter под инпутом пусть выдается описание этого тега.
 	</p>
-	<label>
-		<input class="i-11" type="text">
-	</label>
-	<div class="d-1">
+	<div id="qualifier">
+		<aside>
+			<label>
+			Choose tag : <select class="i-11"></select>
+			</label>
+		</aside>
+	
+		<article>Spelling :
+			<div class="out-11"></div>
+		</article>
+		
+		<article>Describe :
+			<div class="out-12"></div>
+		</article>
 	</div>
-	<button class="b-1">RUN</button>
+	<button class="b-1">Get Information</button>
 </section>
 
 <section class="calc">
