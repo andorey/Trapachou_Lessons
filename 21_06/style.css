@@ -246,3 +246,50 @@ section {
     cursor: initial;
 }
 
+#wrapp_calendar{
+    display: block;
+    text-align: center;
+    justify-items: center;
+    font-size: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    width: 97%;
+}
+
+.year{
+    font-size: 30px;
+    color: #03475b;
+}
+
+.days ul{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+    align-content: space-around;
+    color: #03475b;
+    padding-right: 25px;
+}
+
+.left, .right{
+    cursor: pointer;
+    color: coral;
+    font-size: 20px;
+}
+
+.mon{
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.month{
+    font-size: 20px;
+    font-weight: lighter;
+    width: 160px;
+}
+
+.curr{
+    background-color: red;
+    color: white;
+    padding: 5px 5px 3px 5px;
+}
+

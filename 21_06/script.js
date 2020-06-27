@@ -340,3 +340,63 @@ document.querySelector('.b-2').onclick = () =>{
         Calendar( document.querySelector('#calendar thead td:nth-child(2)' ).dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month) + 1);
     }
 })();
+
+
+// Линейный календарь на JavaScript
+//    Выведите в виде списка ul все числа текущего месяца. Средствами CSS поставьте пункты списка в ряд.
+//    Сделайте так, чтобы текущий день в календаре был выделен каким-нибудь цветом.
+//    Сделайте так, чтобы над списком было написано название текущего месяца по-русски и номер года.
+//    Сделайте так, чтобы над календарем появились ссылки вперед и назад, позволяющие менять месяц. Месяц и год, выводимые над календарем, должны соответствовать отображаемому месяцу.
+
+(function() {
+    function createCalendar(years, month) {
+        const lastDayMon = new Date(years, month + 1, 0).getDate();
+        const arrDay = new Date(years, month, lastDayMon)
+
+        const arrWeekDay = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+        const arrMonth = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+
+        const days = document.querySelector('.days ul');
+        document.querySelector('.days ul').innerHTML = '';
+
+        for (let i = 1; i <= lastDayMon; i++) {
+            arrDay.setDate(i)
+            let li = document.createElement('li');
+            li.innerHTML = arrWeekDay[arrDay.getDay()] + '<br>' + i;
+
+            if (i === new Date().getDate() && arrDay.getFullYear() === new Date().getFullYear() && arrDay.getMonth() === new Date().getMonth()) {
+                li.className = 'curr';
+            }
+            days.append(li);
+        }
+
+        if ([0, 1, 11].includes(arrDay.getMonth())) {
+            document.querySelector('.month').style.color = 'black';
+        } else if ([2, 3, 4].includes(arrDay.getMonth())) {
+            document.querySelector('.month').style.color = 'yellowgreen';
+        } else if ([5, 6, 7].includes(arrDay.getMonth())) {
+            document.querySelector('.month').style.color = 'green';
+        } else {
+            document.querySelector('.month').style.color = 'chocolate';
+        }
+
+        document.querySelector('.month').innerHTML = arrMonth[arrDay.getMonth()];
+        document.querySelector('.year').innerHTML = arrDay.getFullYear();
+
+        document.querySelector('.year').dataset.val = arrDay.getFullYear();
+        document.querySelector('.month').dataset.val = arrDay.getMonth();
+    }
+
+    createCalendar(new Date().getFullYear(), new Date().getMonth());
+
+    document.querySelector('.left').onclick = function () {
+        createCalendar(document.querySelector('.year').dataset.val, parseFloat(document.querySelector('.month').dataset.val) - 1);
+    }
+
+    document.querySelector('.right').onclick = function () {
+        createCalendar(document.querySelector('.year').dataset.val, parseFloat(document.querySelector('.month').dataset.val) + 1);
+    }
+})();
+
+
+//
