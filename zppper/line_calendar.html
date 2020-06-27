@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>line_calendar</title>
+	<style>
+		#shell{
+			display: block;
+			text-align: center;
+			justify-items: center;
+			font-size: 18px;
+		}
+		
+		.year{
+			font-size: 30px;
+			color: indigo;
+		}
+		
+		.days ul{
+			display: flex;
+			flex-direction: row;
+			align-items: baseline;
+			justify-items: auto;
+			justify-content: space-around;
+			align-content: space-around;
+		}
+		
+		.left, .right{
+			cursor: pointer;
+			color: coral;
+			font-size: 20px;
+		}
+		
+		.month{
+			font-size: 20px;
+		}
+		
+		.act{
+			background-color: red;
+			color: white;
+			margin: -10px 1px -9px 0;
+			padding: 5px 5px 0 5px;
+		}
+	</style>
+</head>
+<body>
+<div id="shell">
+	<div class="year"></div>
+	<span class="left">≤</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	<span class="month"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+	<span class="right">≥</span>
+	<div class="days"><ul></ul></div>
+</div>
+
+<script type="text/javascript">
+	
+	
+	function createCalendar( years, month ) {
+        const lastDayMon = new Date(years, month + 1, 0).getDate();
+        const arrDay = new Date(years, month, lastDayMon)
+        
+        const arrWeekDay = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+        const arrMonth = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+
+        const days = document.querySelector('.days ul');
+        document.querySelector('.days ul').innerHTML = '';
+	    
+		for (let i=1; i <= lastDayMon; i++){
+            arrDay.setDate(i)
+			let li = document.createElement('li');
+			li.innerHTML = arrWeekDay[arrDay.getDay()] + '<br>' + i;
+			
+			if ( i === new Date().getDate() && arrDay.getFullYear() === new Date().getFullYear() && arrDay.getMonth() === new Date().getMonth()){
+			    li.className = 'act';
+			}
+            days.append(li);
+		}
+		
+        document.querySelector('.month').innerHTML = arrMonth[arrDay.getMonth()];
+        document.querySelector('.year').innerHTML = arrDay.getFullYear();
+
+        document.querySelector('.year').dataset.val = arrDay.getFullYear();
+		document.querySelector('.month').dataset.val = arrDay.getMonth();
+    }
+    
+    createCalendar( new Date().getFullYear(), new Date().getMonth() );
+
+    document.querySelector('.left').onclick = function () {
+        createCalendar( document.querySelector('.year').dataset.val, parseFloat(document.querySelector('.month').dataset.val) - 1);
+    }
+
+    document.querySelector('.right').onclick = function () {
+        createCalendar( document.querySelector('.year').dataset.val, parseFloat(document.querySelector('.month').dataset.val) + 1);
+    }
+</script>
+</body>
+</html>
