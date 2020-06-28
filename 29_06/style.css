@@ -43,15 +43,21 @@ section {
 
 #qualifier{
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 0.7fr 1fr 2fr;
     justify-content: space-around;
     align-items: flex-start;
     grid-gap: 20px;
+    width: 90%;
 
 }
 
 #qualifier div{
     background-color: #e7f7ed;
-    font-size: 18px;
+    font-size: 17px;
     padding: 10px 20px 20px 20px;
+}
+
+.out-11{
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
 }
