@@ -1,7 +1,8 @@
 // Поиск тегов на JavaScript
 // Сейчас мы с вами сделаем сайт, который будет помогать определить значение HTML тега. Пусть в этом скрипте будет инпут, в который пользователь будет вводить имя тега. После этого по нажатию на Enter под инпутом пусть выдается описание этого тега.
+
 (function () {
-    const arrTags = {
+    const dicTags = {
         '<!DOCTYPE>': ['<!DOCTYPE>', 'Объявляет тип документа и предоставляет основную информацию для браузера — его язык и версия.'],
         '<html>': ['<html> ... </html>', 'Сообщает браузеру, что необходимо прочитать документ как программный код, написанный на языке HTML.'],
         '<title>': ['<title> ... </title>', 'Обеспечивает название для документа.'],
@@ -57,7 +58,7 @@
         '<input>': ['<input>', 'Создает многофункциональные поля формы, в которые пользователь может вводить данные.'],
         '<textarea>': ['<textarea> ... </textarea>', 'Представляет собой поле формы для создания области многострочного ввода (текстовая область).'],
         '<button>': ['<button> ... </button>', 'Создает интерактивную кнопку. Внутрь тега можно поместить содержимое — текст или изображение.'],
-        '<select>': ['<select> ... </select>', 'Позволяет создать раскрывающийся список.'],
+        '<select>': ['<select> ... </select>', 'Определяет вариант/опцию для выбора в раскрывающемся списке &lt; select &gt;, &lt; optgroup &gt; или &lt; datalist &gt;.'],
         '<optgroup>': ['<optgroup> ... </optgroup>', 'Используется для группировки связанных данных в раскрывающемся списке. контейнер с заголовком для группы элементов &lt; option &gt;'],
         '<option>': ['<option> ... </option>', 'Определяет пункты раскрывающегося списка (параметры для выбора).'],
         '<label>': ['<label> ... </label>', 'Служит текстовой меткой для элемента &lt; input &gt;.'],
@@ -100,7 +101,7 @@
         '<thead>': ['<thead> ... </thead>', 'Используется для содержания заголовка группы в таблице (шапка таблицы).'],
         '<tbody>': ['<tbody> ... </tbody>', 'Используется для содержания "тела" таблицы.'],
         '<tfoot>': ['<tfoot> ... </tfoot>', 'Используется для содержания "подвала" таблицы (футер).'],
-        '<col>': ['<col>', 'Определяет заданные свойства столбцов для каждого столбца в пределах тега &lt; colgroup &gt;.'],
+        '<col>': ['<col>', 'Выбирает для форматирования один или несколько столбцов таблицы, не содержащих информацию одного типа. Определяет заданные свойства столбцов для каждого столбца в пределах тега &lt; colgroup &gt;.'],
         '<colgroup>': ['<colgroup> ... </colgroup>', 'Определяет группу столбцов в таблице.'],
         '<style>': ['<style> ... </style>', 'Элемент, который сообщает браузеру, что внутри него содержится код CSS (стиль).'],
         '<div>': ['<div> ... </div>', 'Тег-контейнер для разделов HTML-документа. Используется для группировки блочных элементов с целью форматирования стилями. Определяет любой отдельный блок содержимого и делит веб-страницу на фрагменты.'],
@@ -120,29 +121,49 @@
         '<script>': ['<script> ... </script>', 'Элемент используется для определения сценария (скрипта) на стороне клиента (обычно JavaScript).'],
         '<noscript>': ['<noscript> ... </noscript>', 'Альтернативный контент для тех пользователей, которые не поддерживают скрипты на стороне клиента (или их отключили).'],
         '<applet>': ['<applet> ... </applet>', 'Не поддерживается в HTML5. Предназначен для вставки на страницу апплетов — небольших программ, выполняющих узкую задачу (написанных, как правило, на языке Java). Используйте вместо данного элемента &lt; embed &gt; или &lt; object &gt;'],
-        '<embed>': ['<embed>', 'Определяет контейнер для интерактивного контента.'],
+        '<embed>': ['<embed>', 'Тег-контейнер для встраивания внешнего интерактивного контента или плагина.'],
         '<object>': ['<object> ... </object>', 'Универсальный способ внедрения в страницу мультимедийного контента — видео, Flash-роликов, апплетов, изображений и даже веб-страниц.'],
         '<param>': ['<param>', 'Используется для определения параметров для плагинов, встроенных в элемент &lt; object &gt;.']
     }
 
-    const sortKeys = Object.keys(arrTags);
+    const sortKeys = Object.keys(dicTags);
 
-    for (let i in sortKeys.sort()) {
-        document.querySelector('.i-11').innerHTML += `<option></option>`;
-        document.querySelector('.i-11')[i].innerText = sortKeys[i];
+    for (let i of sortKeys) {
+        document.querySelector('#prompt').innerHTML += `<option>${i.replace('<', '').replace('>', '')}</option>`;
     }
 
-    document.querySelector('.i-11').onclick = () => {
+    document.querySelector('.b-1').onclick = () => {
         const tag = document.querySelector('.i-11').value;
         const out = document.querySelector('.out-12');
 
-        document.querySelector('.out-11').innerText = arrTags[tag][0]
-        if(arrTags[tag][1].includes('Не поддерживается')){
-            out.innerHTML = arrTags[tag][1]
+        document.querySelector('.out-11').innerText = dicTags[`<${tag}>`][0];
+        if (dicTags[`<${tag}>`][1].includes('Не поддерживается')) {
+            out.innerHTML = dicTags[`<${tag}>`][1]
             out.style.color = 'red';
-        }else{
-            out.innerHTML = arrTags[tag][1];
+        } else {
+            out.innerHTML = dicTags[`<${tag}>`][1];
             out.style.color = 'black'
         }
     }
+
+// Поиск тегов на JavaScript
+    for (let i in sortKeys.sort()) {
+        document.querySelector('.i-2').innerHTML += `<option></option>`;
+        document.querySelector('.i-2')[i].innerText = sortKeys[i]; //d...or(...)[i] <--- !!!
+    }
+
+    document.querySelector('.i-2').onclick = () => {
+        const tag = document.querySelector('.i-2').value;
+        const out = document.querySelector('.out-22');
+
+        document.querySelector('.out-21').innerText = dicTags[tag][0];
+        if (dicTags[tag][1].includes('Не поддерживается')) {
+            out.innerHTML = dicTags[tag][1]
+            out.style.color = 'red';
+        } else {
+            out.innerHTML = dicTags[tag][1];
+            out.style.color = 'black'
+        }
+    }
+
 })();

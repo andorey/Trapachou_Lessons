@@ -11,7 +11,7 @@ button {
     border-radius: 5px;
     font-size: 14px;
 }
-.i-11{
+.i-11, .i-2{
     font-size: 18px;
     width: 150px;
     color: #018df8;
@@ -41,7 +41,7 @@ section {
 
 }
 
-#qualifier{
+#qualifier, #qualif {
     display: grid;
     grid-template-columns: 0.7fr 1fr 2fr;
     justify-content: space-around;
@@ -51,13 +51,13 @@ section {
 
 }
 
-#qualifier div{
+#qualifier div, #qualif div{
     background-color: #e7f7ed;
     font-size: 17px;
     padding: 10px 20px 20px 20px;
 }
 
-.out-11{
+.out-11, .out-21{
     text-align: center;
     font-family: 'Roboto Mono', monospace;
 }
