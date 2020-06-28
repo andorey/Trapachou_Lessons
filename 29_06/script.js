@@ -134,8 +134,15 @@
 
     document.querySelector('.b-1').onclick = () => {
         const tag = document.querySelector('.i-11').value;
-        document.querySelector('.out-11').innerText = arrTags[tag][0]
-        document.querySelector('.out-12').innerHTML = arrTags[tag][1]
+        const out = document.querySelector('.out-12');
 
+        document.querySelector('.out-11').innerText = arrTags[tag][0]
+        if(arrTags[tag][1].includes('Не поддерживается')){
+            out.innerHTML = arrTags[tag][1]
+            out.style.color = 'red';
+        }else{
+            out.innerHTML = arrTags[tag][1];
+            out.style.color = 'black'
+        }
     }
 })();
