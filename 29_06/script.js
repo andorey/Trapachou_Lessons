@@ -79,8 +79,8 @@
         '<figure>': ['<figure> ... </figure>', 'Применяется для обозначения контента, иллюстрирующего или поддерживающего определенную идею текста.'],
         '<audio>': ['<audio> ... </audio>', 'Добавляет аудио-контент на страницу.'],
         '<source>': ['<source>', 'Позволяет указать несколько вариантов формата видео (в этом случае браузер сможет выбрать подходящий формат для загрузки и воспроизведения аудио и видео).'],
-        '<track>': ['<track>', 'Добавляет субтитры к медиа-элементам.'],
-        '<video>': ['<video> ... </video>', 'Добавляет видео-контент на страницу.'],
+        '<track>': ['<track>', 'Добавляет субтитры для элементов &lt; audio &gt; и &lt; video &gt;.'],
+        '<video>': ['<video> ... </video>', 'Добавляет на страницу видео-файлы. Поддерживает 3 видео формата: MP4, WebM, Ogg.'],
         '<a>': ['<a> ... </a>', 'Элемент предназначен для размещения гиперссылок.'],
         '<link>': ['<link>', 'Определяет связь между документом и внешним ресурсом, используется для ссылки на внешние таблицы стилей.'],
         '<nav>': ['<nav> ... </nav>', 'Используется для обозначения содержимого в виде основных навигационных ссылок.'],
@@ -126,37 +126,8 @@
         '<param>': ['<param>', 'Используется для определения параметров для плагинов, встроенных в элемент &lt; object &gt;.']
     }
 
-    const sortKeys = Object.keys(dicTags);
-
-    for (let i of sortKeys) {
-        document.querySelector('#prompt').innerHTML += `<option>${i.replace('<', '').replace('>', '')}</option>`;
-    }
-
-    document.querySelector('.b-1').onclick = () => {
-        const tag = document.querySelector('.i-11').value;
-        const out = document.querySelector('.out-12');
-
-        document.querySelector('.out-11').innerText = dicTags[`<${tag}>`][0];
-        if (dicTags[`<${tag}>`][1].includes('Не поддерживается')) {
-            out.innerHTML = dicTags[`<${tag}>`][1]
-            out.style.color = 'red';
-        } else {
-            out.innerHTML = dicTags[`<${tag}>`][1];
-            out.style.color = 'black'
-        }
-    }
-
-// Поиск тегов на JavaScript
-    for (let i in sortKeys.sort()) {
-        document.querySelector('.i-2').innerHTML += `<option></option>`;
-        document.querySelector('.i-2')[i].innerText = sortKeys[i]; //d...or(...)[i] <--- !!!
-    }
-
-    document.querySelector('.i-2').onclick = () => {
-        const tag = document.querySelector('.i-2').value;
-        const out = document.querySelector('.out-22');
-
-        document.querySelector('.out-21').innerText = dicTags[tag][0];
+    function fillFun( clas, tag, out ){
+        document.querySelector(clas).innerText = dicTags[tag][0];
         if (dicTags[tag][1].includes('Не поддерживается')) {
             out.innerHTML = dicTags[tag][1]
             out.style.color = 'red';
@@ -166,4 +137,34 @@
         }
     }
 
+    const sortKeys = Object.keys(dicTags);
+
+    for (let i in sortKeys) {
+        document.querySelector('#prompt').innerHTML += '<option></option>';
+        const aaa = document.querySelectorAll('#prompt option');
+        aaa[i].innerText = sortKeys[i].replace(/[<>]/g, '');
+    }
+
+
+    document.querySelector('.b-1').onclick = () => {
+        const tag = `<${document.querySelector('.i-11').value}>`;
+        const out = document.querySelector('.out-12');
+        fillFun('.out-11', tag, out)
+    }
+
+// Поиск тегов на JavaScript with <option>
+    for (let i in sortKeys.sort()) {
+        document.querySelector('.i-2').innerHTML += `<option></option>`;
+        document.querySelector('.i-2')[i].innerText = sortKeys[i]; //d...or(...)[i] <--- !!!
+    }
+
+    document.querySelector('.i-2').onclick = () => {
+        const tag = document.querySelector('.i-2').value;
+        const out = document.querySelector('.out-22');
+        fillFun('.out-21', tag, out)
+    }
+
 })();
+
+
+
