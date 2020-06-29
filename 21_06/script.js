@@ -308,26 +308,25 @@ document.querySelector('.b-2').onclick = () =>{
         for (let k = lastDayWeek; k < 7; k++) string += '<td>&nbsp;';
         document.querySelector('#calendar tbody').innerHTML = string;
 
-        document.querySelector('#calendar thead td:nth-child(2)').innerHTML = arrDay.getFullYear() + "<br>" + months[arrDay.getMonth()];
+        const nthChild = document.querySelector('#calendar thead td:nth-child(2)');
 
-        document.querySelector('#calendar thead td:nth-child(2)').dataset.month = arrDay.getMonth();
-
-        document.querySelector('#calendar thead td:nth-child(2)').dataset.year = arrDay.getFullYear();
+        nthChild.innerHTML = arrDay.getFullYear() + "<br>" + months[arrDay.getMonth()];
+        nthChild.dataset.month = arrDay.getMonth();
+        nthChild.dataset.year = arrDay.getFullYear();
 
         if (document.querySelectorAll('#calendar tbody tr').length < 6) {
             document.querySelector('#calendar tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
         }
 
         if ([0, 1, 11].includes(arrDay.getMonth())) {
-            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'black';
+            nthChild.style.color = 'black';
         } else if ([2, 3, 4].includes(arrDay.getMonth())) {
-            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'yellowgreen';
+            nthChild.style.color = 'yellowgreen';
         } else if ([5, 6, 7].includes(arrDay.getMonth())) {
-            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'green';
+            nthChild.style.color = 'green';
         } else {
-            document.querySelector('#calendar thead td:nth-child(2)').style.color = 'chocolate';
+            nthChild.style.color = 'chocolate';
         }
-
     }
 
     Calendar( new Date().getFullYear(), new Date().getMonth() );
@@ -370,21 +369,24 @@ document.querySelector('.b-2').onclick = () =>{
             days.append(li);
         }
 
+        const monthTrans = document.querySelector('.month');
+        const yearTrans = document.querySelector('.year');
+
         if ([0, 1, 11].includes(arrDay.getMonth())) {
-            document.querySelector('.month').style.color = 'black';
+            monthTrans.style.color = 'black';
         } else if ([2, 3, 4].includes(arrDay.getMonth())) {
-            document.querySelector('.month').style.color = 'yellowgreen';
+            monthTrans.style.color = 'yellowgreen';
         } else if ([5, 6, 7].includes(arrDay.getMonth())) {
-            document.querySelector('.month').style.color = 'green';
+            monthTrans.style.color = 'green';
         } else {
-            document.querySelector('.month').style.color = 'chocolate';
+            monthTrans.style.color = 'chocolate';
         }
 
-        document.querySelector('.month').innerHTML = arrMonth[arrDay.getMonth()];
-        document.querySelector('.year').innerHTML = arrDay.getFullYear();
+        monthTrans.innerHTML = arrMonth[arrDay.getMonth()];
+        yearTrans.innerHTML = arrDay.getFullYear();
 
-        document.querySelector('.year').dataset.val = arrDay.getFullYear();
-        document.querySelector('.month').dataset.val = arrDay.getMonth();
+        yearTrans.dataset.val = arrDay.getFullYear();
+        monthTrans.dataset.val = arrDay.getMonth();
     }
 
     createCalendar(new Date().getFullYear(), new Date().getMonth());
