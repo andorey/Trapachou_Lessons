@@ -28,7 +28,7 @@
 
 #sky {
     background:#000 url(images/sky.png) repeat top center;
-    z-index:1;
+    z-index:0;
 }
 
 #stars{
@@ -39,4 +39,52 @@
     -webkit-animation:move-twink-back 200s linear infinite;
     animation:move-twink-back 200s linear infinite;
     z-index:1;
+}
+
+.curr{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 130px;
+    z-index: 4;
+    font-family: 'Roboto Mono', monospace;
+    color: lightcyan;
+    font-size: 48px;
+}
+
+.durascop span{
+    font-size: 100px;
+}
+
+#dataChoose{
+    margin: auto 0;
+    z-index: 3;
+    padding: 2px 0 2px 15px;
+    background-color: #000000;
+    color: lightcyan;
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px dashed lightcyan;
+    cursor: pointer;
+}
+
+span{
+    position: center;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    color: cyan;
+    font-size: 25px;
+}
+
+button{
+    padding: 5px 10px;
+    margin: 10px;
+    background-color: #000000;
+    color: cyan;
+    font-size: 25px;
+    border: 1px dashed lightcyan;
+    cursor: pointer;
+    box-shadow: 3px 3px 14px cyan;
 }
