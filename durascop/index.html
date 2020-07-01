@@ -18,8 +18,18 @@
 		<input type="date" id="dataChoose"><span> и нажмите кнопку</span>
 	</label>
 	<button class="goAway">ДАЛЕЕ</button>
-	<div class="output"></div>
+	<div class="output" hidden>
+		<fieldset>
+			<legend>Ваш прогноз на: </legend>
+			<div class="form-control">
+				<label><input type="radio" name="day" value="today" checked>сегодня</label>
+				<label><input type="radio" name="day" value="tomorrow">завтра</label>
+				<label><input type="radio" name="day" value="aftertomorrow">послезавтра</label>
+			</div>
+		</fieldset>
+	</div>
 </section>
+
 <script type="text/javascript" src="durascop.js"></script>
 </body>
 </html>
