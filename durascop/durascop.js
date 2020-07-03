@@ -200,33 +200,33 @@ document.querySelector('.goAway').onclick = () => {
 
     function chooseDay() {
         const dataChoose = document.querySelector('#dataChoose').value
-        const dCh = dataChoose.split('-');
+        const dataZodiac = dataChoose.split('-');
         let zodiac = '';
 
-        if (dCh[1] === '03') {
-            zodiac = +dCh[2] >= 21 ? "aries" : "pisces";
-        } else if (dCh[1] === '04') {
-            zodiac = +dCh[2] >= 21 ? "taurus" : "aries";
-        } else if (dCh[1] === '05') {
-            zodiac = +dCh[2] >= 22 ? "gemini" : "taurus";
-        } else if (dCh[1] === '06') {
-            zodiac = +dCh[2] >= 22 ? "cancer" : "gemini";
-        } else if (dCh[1] === '07') {
-            zodiac = +dCh[2] >= 23 ? "leo" : "cancer";
-        } else if (dCh[1] === '08') {
-            zodiac = +dCh[2] >= 23 ? "virgo" : "leo";
-        } else if (dCh[1] === '09') {
-            zodiac = +dCh[2] >= 24 ? "libra" : "virgo";
-        } else if (dCh[1] === '10') {
-            zodiac = +dCh[2] >= 24 ? "scorpio" : "libra";
-        } else if (dCh[1] === '11') {
-            zodiac = +dCh[2] >= 23 ? "sagittarius" : "scorpio";
-        } else if (dCh[1] === '12') {
-            zodiac = +dCh[2] >= 22 ? "capricorn" : "sagittarius";
-        } else if (dCh[1] === '01') {
-            zodiac = +dCh[2] >= 21 ? "aquarius" : "capricorn";
-        } else if (dCh[1] === '02') {
-            zodiac = +dCh[2] >= 20 ? "pisces" : "aquarius";
+        if (dataZodiac[1] === '03') {
+            zodiac = +dataZodiac[2] >= 21 ? "aries" : "pisces";
+        } else if (dataZodiac[1] === '04') {
+            zodiac = +dataZodiac[2] >= 21 ? "taurus" : "aries";
+        } else if (dataZodiac[1] === '05') {
+            zodiac = +dataZodiac[2] >= 22 ? "gemini" : "taurus";
+        } else if (dataZodiac[1] === '06') {
+            zodiac = +dataZodiac[2] >= 22 ? "cancer" : "gemini";
+        } else if (dataZodiac[1] === '07') {
+            zodiac = +dataZodiac[2] >= 23 ? "leo" : "cancer";
+        } else if (dataZodiac[1] === '08') {
+            zodiac = +dataZodiac[2] >= 23 ? "virgo" : "leo";
+        } else if (dataZodiac[1] === '09') {
+            zodiac = +dataZodiac[2] >= 24 ? "libra" : "virgo";
+        } else if (dataZodiac[1] === '10') {
+            zodiac = +dataZodiac[2] >= 24 ? "scorpio" : "libra";
+        } else if (dataZodiac[1] === '11') {
+            zodiac = +dataZodiac[2] >= 23 ? "sagittarius" : "scorpio";
+        } else if (dataZodiac[1] === '12') {
+            zodiac = +dataZodiac[2] >= 22 ? "capricorn" : "sagittarius";
+        } else if (dataZodiac[1] === '01') {
+            zodiac = +dataZodiac[2] >= 21 ? "aquarius" : "capricorn";
+        } else if (dataZodiac[1] === '02') {
+            zodiac = +dataZodiac[2] >= 20 ? "pisces" : "aquarius";
         } else {
             zodiac = false;
         }
@@ -246,6 +246,18 @@ document.querySelector('.goAway').onclick = () => {
     }
 
     const days = document.querySelector('.days');
+    const dataPrediction = document.querySelectorAll('[name="day"]')
+    const arrMonth = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+    const currentData = new Date();
+    console.log(currentData.getDate())
+    let temp = new Date().getDate();
+
+
+    for (let i of dataPrediction){
+        currentData.setDate(temp)
+        i.nextSibling.data = currentData.getDate() + '.' + arrMonth[currentData.getMonth()]
+        temp++
+    }
 
     document.querySelectorAll('[name="day"]').forEach(function (element) {
         if(element.checked){
