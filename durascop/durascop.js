@@ -6,6 +6,7 @@
 // Продумайте, как вы будете хранить гороскопы в соответствии с поставленной задачей.
 // Реализуйте показ гороскопа за текущий день.
 // А теперь реализуйте работу радиокнопок, позволяющих выбрать день, за который нужно показать гороскоп.
+(function () {
 
 const horoDict = {
     "aries": {
@@ -180,15 +181,15 @@ const horoDict = {
 
 function animationHeader(){
     const header = document.querySelector('.durascop');
-    const arrHead = ['DU', 'RA', 'S', 'COP'];
+    const arrHead = ['D', 'U', 'R', 'A', 'S', 'C', 'O', 'P'];
     for (let i = 1; i <= arrHead.length; i++) {
         setTimeout(function () {
             header.innerHTML += `<span>${arrHead[i-1]}&nbsp;</span>`
-        }, 500 * i)
+        }, 400 * i)
         if(i === arrHead.length){
             setTimeout(function () {
                 header.innerHTML = '<span>' + header.innerText.replace(/\s/g, '') + '</span>'
-            }, 700 * i)
+            }, 450 * i)
         }
     }
 }
@@ -268,3 +269,4 @@ document.querySelector('.goAway').onclick = () => {
 
 
 }
+})();
