@@ -178,21 +178,23 @@ const horoDict = {
     }
 }
 
-function loose(x){
-    const dur = document.querySelector('.durascop');
-    dur.innerHTML += `<span>${x}&nbsp;</span>`;
+function animationHeader(){
+    const header = document.querySelector('.durascop');
+    const arrHead = ['DU', 'RA', 'S', 'COP'];
+    for (let i = 1; i <= arrHead.length; i++) {
+        setTimeout(function () {
+            header.innerHTML += `<span>${arrHead[i-1]}&nbsp;</span>`
+        }, 500 * i)
+        if(i === arrHead.length){
+            setTimeout(function () {
+                header.innerHTML = '<span>' + header.innerText.replace(/\s/g, '') + '</span>'
+            }, 700 * i)
+        }
+    }
 }
 
-function looseClean(){
-    const dur = document.querySelector('.durascop').innerText;
-    document.querySelector('.durascop').innerHTML = '<span>' + dur.replace(/\s/g, '') + '</span>';
-}
+animationHeader();
 
-setTimeout('loose("DU")', 500);
-setTimeout('loose("RA")', 1700);
-setTimeout('loose("S")', 2200);
-setTimeout('loose("COP")', 2800);
-setTimeout('looseClean()', 3000);
 
 document.querySelector('.goAway').onclick = () => {
 
