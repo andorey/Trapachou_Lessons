@@ -13,42 +13,44 @@ const arrOracle = [
     "Сегодня вечером вас ждет приятная встреча",
     "Сегодня лучше не выходите из дома",
     "Сегодня вас ждет удача и успех во всех начинаниях",
-    "\"Семь раз отмерь, один раз отрежь\", должно стать дивизом вашего дня",
+    "\"Семь раз отмерь, один раз отрежь\", должно стать дивизом вашего дня сегодня",
     "Сегодня вас ждет успех в обучении",
     "Сегодня лучше проведите весь день на диване",
     "Успех, сегодня, на вашей стороне! Смело пускайтесь в авантюры!",
     "Сегодня вы рискуете что-нибудь забыть при выходе из дома",
     "Романтическое приключение ожидает вас сегодня вечером",
+    "Сегодня будьте осторожны со случайными знакомыми",
     "Устройте сегодня себе выходной - пусть весь мир подождет",
+    "Сегодня вы рискуете потерять крупную сумму денег, не делайте инвестиций",
     "Смело беритесь за самые сложные задачи. Сегодня вам все по плечу!"
 ];
 
+const butStart = document.getElementById('start');
+const butStop = document.getElementById('stop');
+const outTimer = document.getElementById('timer');
+const textOracle = document.getElementById('text');
+let counterOracle;
 
+const randomNumber = function(){
+    return Math.floor(Math.random() * arrOracle.length)+1;
+}
 
-
-let timer = document.querySelector('#timer');
-let text  = document.querySelector('#text');
-let start = document.querySelector('#start');
-let stop  = document.querySelector('#stop');
-
-let random;
-let timerId;
-start.addEventListener('click', function() {
-    this.classList.remove('active');
-    stop.classList.add('active');
-
-    timerId = setInterval(function() {
-        timer.innerHTML = random = getRandomInt(1, predictions.length);
+butStart.onclick = () =>{
+    butStart.classList.remove('active');
+    butStop.classList.add('active');
+    counterOracle = setInterval(function () {
+        outTimer.innerText = randomNumber();
     }, 100);
-});
+}
 
-stop.addEventListener('click', function() {
-    this.classList.remove('active');
-    clearInterval(timerId);
+butStop.onclick = () =>{
+    butStop.classList.remove('active');
+    clearInterval(counterOracle);
 
-    text.innerHTML = predictions[random - 1];
-});
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    textOracle.innerText = arrOracle[outTimer.innerHTML - 1]
+    if( outTimer.innerHTML % 2 ){
+        textOracle.style.color = 'cyan'
+    }else{
+        textOracle.style.color = 'orangered'
+    }
 }
