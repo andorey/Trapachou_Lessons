@@ -1,0 +1,114 @@
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-5000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-5000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-5000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-5000px 5000px;}
+}
+
+#sky, #stars {
+    display:block;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+#sky {
+    background:#000 url(images/sky.png) repeat top center;
+    z-index:0;
+}
+
+#stars{
+    background:transparent url(images/starsfon.png) repeat top center;
+    -moz-animation:move-twink-back 200s linear infinite;
+    -ms-animation:move-twink-back 200s linear infinite;
+    -o-animation:move-twink-back 200s linear infinite;
+    -webkit-animation:move-twink-back 200s linear infinite;
+    animation:move-twink-back 200s linear infinite;
+    z-index:1;
+}
+
+.curr{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 130px;
+    z-index: 4;
+    font-family: 'Roboto Mono', monospace;
+    color: lightcyan;
+    font-size: 41px;
+}
+
+.durascop span{
+    font-size: 100px;
+}
+
+#dataChoose{
+    margin: auto 0;
+    z-index: 3;
+    padding: 2px 0 2px 15px;
+    background-color: #000000;
+    color: lightcyan;
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px dashed lightcyan;
+    cursor: pointer;
+}
+
+span{
+    position: center;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    color: cyan;
+    font-size: 25px;
+}
+
+button{
+    padding: 5px 10px;
+    margin: 10px;
+    background-color: #000000;
+    color: cyan;
+    font-size: 25px;
+    border: 1px dashed lightcyan;
+    cursor: pointer;
+    box-shadow: 3px 3px 14px cyan;
+}
+
+fieldset{
+    margin-top: 20px;
+    font-size: 18px;
+    color: #05cfd0;
+    text-align: center;
+}
+
+.elements{
+    margin-top: 20px;
+    font-size: 25px;
+    color: lightcyan;
+}
+
+.days{
+    margin-top: 50px;
+    width: 75%;
+    border: black 3px solid;
+    border-radius: 20px;
+    box-shadow: lightcyan 1px 1px 10px;
+    padding: 10px;
+    font-size: 25px;
+    color: lightcyan;
+}

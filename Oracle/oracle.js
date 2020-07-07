@@ -35,16 +35,17 @@ const randomNumber = function(){
     return Math.floor(Math.random() * arrOracle.length)+1;
 }
 
-butStart.onclick = () =>{
-    butStart.classList.remove('active');
+butStart.addEventListener('click', function () {
+    this.classList.remove('active');
     butStop.classList.add('active');
+
     counterOracle = setInterval(function () {
         outTimer.innerText = randomNumber();
     }, 100);
-}
+})
 
-butStop.onclick = () =>{
-    butStop.classList.remove('active');
+butStop.addEventListener('click', function () {
+    this.classList.remove('active');
     clearInterval(counterOracle);
 
     textOracle.innerText = arrOracle[outTimer.innerHTML - 1]
@@ -53,4 +54,4 @@ butStop.onclick = () =>{
     }else{
         textOracle.style.color = 'orangered'
     }
-}
+})

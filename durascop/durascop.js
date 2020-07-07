@@ -197,7 +197,6 @@
 
     animationHeader();
 
-
     document.querySelector('.goAway').onclick = () => {
 
         function chooseDay() {
@@ -251,9 +250,8 @@
         const dataPrediction = document.querySelectorAll('[name="day"]')
         const arrMonth = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
         const currentData = new Date();
-        console.log(currentData.getDate())
-        let temp = new Date().getDate();
 
+        let temp = new Date().getDate();
 
         for (let i of dataPrediction) {
             currentData.setDate(temp)
