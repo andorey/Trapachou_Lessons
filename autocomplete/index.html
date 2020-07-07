@@ -258,7 +258,7 @@
                     for ( let i of temp ) {
                         outList.innerHTML += `<li>${i}</li>`;
 
-                        document.querySelectorAll('li').forEach(function (el) {
+                        document.querySelectorAll('#list li').forEach(function (el) {
                             el.onclick = () => {
                                 elemInput.value = el.textContent;
                                 outList.innerHTML = '';
