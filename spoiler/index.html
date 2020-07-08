@@ -10,38 +10,49 @@
 	</style>
 </head>
 <body>
-
+<!-- paragraph blocks with spoilers -->
+<div>
+	<p>абзац с текстом
+		<a href="#" class="toggle">развернуть спойлер1</a>
+	</p>
+	<p class="spoiler">скрытый спойлер1</p>
+</div>
 <p>
 	абзац с текстом
-	<a href="#" class="toggle" >развернуть спойлер</a>
 </p>
-<p class="spoiler">
-	скрытый спойлер
-</p>
+<div>
+	<p>абзац с текстом
+		<a href="#" class="toggle">развернуть спойлер2</a>
+	</p>
+	<p class="spoiler">скрытый спойлер2</p>
+</div>
 <p>
 	абзац с текстом
 </p>
-
-
+<div>
+	<p>абзац с текстом
+		<a href="#" class="toggle">развернуть спойлер3</a>
+	</p>
+	<p class="spoiler">скрытый спойлер3</p>
+</div>
+<p>
+	абзац с текстом
+</p>
+<!-- paragraph blocks can be any length -->
 <script>
-
-    window.onload = function() {
-        document.querySelector('.toggle').onclick = function() {
-            openbox('.spoiler');
-            return false;
-        };
+    // without event "onload" this code don't work
+    window.onload = function () {
+        document.querySelectorAll('div').forEach(function (element) {
+            element.onclick = function () {
+                if (this.children[1].classList.value.includes('active')) {
+                    this.children[1].classList.remove('active');
+                } else {
+                    this.children[1].classList.add('active');
+                }
+                return false;
+            };
+        })
     };
-    
-    function openbox(pClass) {
-        let boxParagraph = document.querySelector(pClass);
-        if(boxParagraph.classList.value.includes('active')) {
-            boxParagraph.classList.remove('active');
-        } else {
-            boxParagraph.classList.add('active');
-        }
-    }
-
-
 </script>
 </body>
 </html>
