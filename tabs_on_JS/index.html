@@ -38,9 +38,9 @@
 <body>
 <div id="parent">
 	<div class="menu">
-		<a href="" class="active">вкладка 1</a>
-		<a href="">вкладка 2</a>
-		<a href="">вкладка 3</a>
+		<a href="#" class="active">вкладка 1</a>
+		<a href="#">вкладка 2</a>
+		<a href="#">вкладка 3</a>
 	</div>
 	<div class="tabs">
 		<div class="tab active">
@@ -56,23 +56,21 @@
 </div>
 
 <script>
-    const parent = document.getElementById('parent');
-    const links  = parent.querySelectorAll('.menu a');
-    const tabs   = parent.querySelectorAll('.tab');
+    const titleTab = document.querySelectorAll('.menu a');
+    const contentTabs = document.querySelectorAll('.tab');
 
-    for (let i = 0; i < links.length; i++) {
-        links[i].addEventListener('click', function(event) {
-            let activeLink = parent.querySelector('.menu a.active');
-            activeLink.classList.remove('active');
+    for (let i in [...titleTab]) {
+        titleTab[i].onclick = function(event) {
+            
+            document.querySelector('.menu a.active').classList.remove('active');
+            document.querySelector('.tab.active').classList.remove('active');
 
-            let activeTab = parent.querySelector('.tab.active');
-            activeTab.classList.remove('active');
-
-            tabs[i].classList.add('active');
+            contentTabs[i].classList.add('active');
             this.classList.add('active');
 
             event.preventDefault();
-        });
+            // return false;
+        }
     }
 </script>
 </body>
