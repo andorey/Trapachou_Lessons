@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>spoiler</title>
+	<style>
+		.spoiler:not(.active) {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+<p>
+	абзац с текстом
+	<a href="#" class="toggle" >развернуть спойлер</a>
+</p>
+<p class="spoiler">
+	скрытый спойлер
+</p>
+<p>
+	абзац с текстом
+</p>
+
+
+<script>
+
+    window.onload = function() {
+        document.querySelector('.toggle').onclick = function() {
+            openbox('.spoiler');
+            return false;
+        };
+    };
+    
+    function openbox(pClass) {
+        let boxParagraph = document.querySelector(pClass);
+        if(boxParagraph.classList.value.includes('active')) {
+            boxParagraph.classList.remove('active');
+        } else {
+            boxParagraph.classList.add('active');
+        }
+    }
+
+
+</script>
+</body>
+</html>
