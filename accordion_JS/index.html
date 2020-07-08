@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>accordion JS</title>
+	<style>
+		#parent {
+			margin: 0 auto;
+			width: 400px;
+		}
+		.tab {
+			margin-bottom: 10px;
+		}
+		
+		.tab .link a {
+			display: block;
+			padding: 10px;
+			color: black;
+			text-decoration: none;
+			text-align: center;
+			background: #f8f8f8;
+			border: 1px solid gray;
+		}
+		.tab .link:hover a {
+			background: #f2f2f2;
+		}
+		
+		.tab:not(.active) .text {
+			display: none;
+		}
+		.tab .text {
+			border: 1px dashed gray;
+			border-top: none;
+			
+			padding: 10px;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="parent">
+	<div class="tab active">
+		<div class="link">
+			<a href="#" >вкладка 1</a>
+		</div>
+		<div class="text">
+			текст вкладки 1
+		</div>
+	</div>
+	<div class="tab">
+		<div class="link">
+			<a href="#" >вкладка 2</a>
+		</div>
+		<div class="text">
+			текст вкладки 2
+		</div>
+	</div>
+	<div class="tab">
+		<div class="link">
+			<a href="#" >вкладка 3</a>
+		</div>
+		<div class="text">
+			текст вкладки 3
+		</div>
+	</div>
+</div>
+
+
+<script>
+    const tabTitle  = document.querySelectorAll('.tab .link a');
+
+    for (let i of tabTitle) {
+        i.onclick = function() {
+            let tabActive = document.querySelector('.tab.active');
+
+            if (tabActive) {
+                tabActive.classList.remove('active');
+            }
+
+            let currentTab = i.closest('.tab');
+            if (currentTab !== tabActive) {
+                currentTab.classList.add('active');
+            }
+
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>
