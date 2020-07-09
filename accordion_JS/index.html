@@ -8,6 +8,7 @@
 			margin: 0 auto;
 			width: 400px;
 		}
+		
 		.tab {
 			margin-bottom: 10px;
 		}
@@ -21,6 +22,7 @@
 			background: #f8f8f8;
 			border: 1px solid gray;
 		}
+		
 		.tab .link:hover a {
 			background: #f2f2f2;
 		}
@@ -28,6 +30,7 @@
 		.tab:not(.active) .text {
 			display: none;
 		}
+		
 		.tab .text {
 			border: 1px dashed gray;
 			border-top: none;
@@ -38,11 +41,10 @@
 	</style>
 </head>
 <body>
-
 <div id="parent">
 	<div class="tab active">
 		<div class="link">
-			<a href="#" >вкладка 1</a>
+			<a href="#">вкладка 1</a>
 		</div>
 		<div class="text">
 			текст вкладки 1
@@ -50,7 +52,7 @@
 	</div>
 	<div class="tab">
 		<div class="link">
-			<a href="#" >вкладка 2</a>
+			<a href="#">вкладка 2</a>
 		</div>
 		<div class="text">
 			текст вкладки 2
@@ -58,20 +60,18 @@
 	</div>
 	<div class="tab">
 		<div class="link">
-			<a href="#" >вкладка 3</a>
+			<a href="#">вкладка 3</a>
 		</div>
 		<div class="text">
 			текст вкладки 3
 		</div>
 	</div>
 </div>
-
-
 <script>
     (function () {
         document.querySelectorAll('.tab .link a').forEach(function (element) {
 
-            element.onclick = function() {
+            element.onclick = function () {
                 let tabActive = document.querySelector('.tab.active');
 
                 if (tabActive) {
@@ -82,13 +82,9 @@
                 if (currentTab !== tabActive) {
                     currentTab.classList.add('active');
                 }
-
-                return false;
             }
-    	})
-	})();
-	
+        })
+    })();
 </script>
-
 </body>
 </html>
