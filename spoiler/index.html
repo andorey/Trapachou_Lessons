@@ -40,19 +40,19 @@
 </p>
 <!-- paragraph blocks can be any length -->
 <script>
-    // without event "onload" this code don't work
-    window.onload = function () {
+    // without event "onload" this code works too
+	(function () {
         document.querySelectorAll('div').forEach(function (element) {
-            element.onclick = function () {
+            element.addEventListener ('click', function () {
                 if (this.children[1].classList.value.includes('active')) {
                     this.children[1].classList.remove('active');
                 } else {
                     this.children[1].classList.add('active');
                 }
                 // return false; works and without this
-            };
+            })
         })
-    };
+    })();
 </script>
 </body>
 </html>

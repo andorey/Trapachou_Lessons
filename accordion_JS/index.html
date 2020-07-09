@@ -73,12 +73,12 @@
 
             element.onclick = function () {
                 let tabActive = document.querySelector('.tab.active');
-
+                let currentTab = element.closest('.tab');
+				
                 if (tabActive) {
                     tabActive.classList.remove('active');
                 }
 
-                let currentTab = element.closest('.tab');
                 if (currentTab !== tabActive) {
                     currentTab.classList.add('active');
                 }

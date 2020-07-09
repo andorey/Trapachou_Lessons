@@ -60,7 +60,7 @@
     const contentTabs = document.querySelectorAll('.tab');
 
     for (let i in [...titleTab]) {
-        titleTab[i].onclick = function() {
+        titleTab[i].addEventListener('click', function() {
             
             document.querySelector('.menu a.active').classList.remove('active');
             document.querySelector('.tab.active').classList.remove('active');
@@ -70,7 +70,7 @@
 
             // event.preventDefault();
             return false;
-        }
+        })
     }
 </script>
 </body>
