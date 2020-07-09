@@ -68,24 +68,26 @@
 
 
 <script>
-    const tabTitle  = document.querySelectorAll('.tab .link a');
+    (function () {
+        document.querySelectorAll('.tab .link a').forEach(function (element) {
 
-    for (let i of tabTitle) {
-        i.onclick = function() {
-            let tabActive = document.querySelector('.tab.active');
+            element.onclick = function() {
+                let tabActive = document.querySelector('.tab.active');
 
-            if (tabActive) {
-                tabActive.classList.remove('active');
+                if (tabActive) {
+                    tabActive.classList.remove('active');
+                }
+
+                let currentTab = element.closest('.tab');
+                if (currentTab !== tabActive) {
+                    currentTab.classList.add('active');
+                }
+
+                return false;
             }
-
-            let currentTab = i.closest('.tab');
-            if (currentTab !== tabActive) {
-                currentTab.classList.add('active');
-            }
-
-            return false;
-        }
-    }
+    	})
+	})();
+	
 </script>
 
 </body>
