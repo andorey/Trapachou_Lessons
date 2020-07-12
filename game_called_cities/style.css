@@ -1,0 +1,19 @@
+#field{
+    font-size: 25px;
+    color: navy;
+    padding: 5px;
+}
+
+#message{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Rationale', sans-serif;
+    height: 100px;
+}
+
+.error{
+    font-weight: 600;
+    color: red;
+}
+
