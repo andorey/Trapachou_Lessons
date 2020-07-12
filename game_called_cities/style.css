@@ -9,11 +9,17 @@
     text-align: center;
     font-size: 35px;
     font-family: 'Rationale', sans-serif;
-    height: 100px;
+    height: 160px;
 }
 
 .error{
     font-weight: 600;
     color: red;
+}
+
+.computer, .human{
+    font-size: 20px;
+    color: darkblue;
+    font-family: 'Barlow Condensed', sans-serif;
 }
 
