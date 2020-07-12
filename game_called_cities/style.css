@@ -1,5 +1,5 @@
 #field{
-    font-size: 25px;
+    font-size: 18px;
     color: navy;
     padding: 5px;
 }
@@ -19,7 +19,9 @@
 
 .computer, .human{
     font-size: 20px;
+    height: 46px;
     color: darkblue;
     font-family: 'Barlow Condensed', sans-serif;
 }
+
 
