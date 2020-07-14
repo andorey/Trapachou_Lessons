@@ -1,25 +1,25 @@
-body{
+body {
     justify-content: center;
     text-align: center;
-    background: url("https://www.mapsofworld.com/style_2019/images/world-map.png?v:1")no-repeat;
+    background: url("https://www.mapsofworld.com/style_2019/images/world-map.png?v:1") no-repeat;
     -moz-background-size: 100%;
     -webkit-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
     text-shadow: 1px 2px 5px white,
-            -2px 2px 6px white,
-            -1px 2px 7px white,
-            -2px 1px 11px white;
+    -2px 2px 6px white,
+    -1px 2px 7px white,
+    -2px 1px 11px white;
+    font-family: 'Barlow Condensed', sans-serif;
 }
 
-#field{
-    margin-top: 50px;
+#field {
     font-size: 18px;
     color: navy;
     padding: 5px;
 }
 
-#message{
+#message {
     margin-top: 40px;
     text-align: center;
     font-size: 35px;
@@ -27,25 +27,21 @@ body{
     height: 160px;
 }
 
-.error{
+.error {
     font-weight: 600;
     color: red;
 }
 
-#answer{
+#answer {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.computer, .human{
+.computer, .human {
     font-size: 16px;
-    height: 50px;
-    margin: 15px 20px;
+    margin: 10px 20px 10px;
     color: #00002f;
     font-family: 'Barlow Condensed', sans-serif;
 }
