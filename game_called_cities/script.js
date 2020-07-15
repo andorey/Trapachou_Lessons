@@ -1611,20 +1611,20 @@
         if (event.key === 'Enter') {
             let letter = field.value.trim();
             arrCities.splice(arrCities.indexOf(letter.value), 1);
-            let lastChapter = temp.length > 0 ? temp[0].slice(temp[0].length - 1) : 0;
+            let lastChapter = temp.length > 0 ? temp[0][temp[0].length - 1] : 0;
 
             if (lastChapter === 'ь' || lastChapter === 'ы') {
-                lastChapter = temp[0].slice(temp[0].length - 2, temp[0].length - 1)
+                lastChapter = temp[0][temp[0].length - 2]
             } else if (lastChapter === 'й') {
                 lastChapter = 'и'
             }
 
             let firstChapter = letter[0].toLowerCase();
 
-            let lastLetter = letter.slice(letter.length - 1) === 'ь'
-            || letter.slice(letter.length - 1) === 'ы'
-                ? letter.slice(letter.length - 2, letter.length - 1)
-                : letter.slice(letter.length - 1);
+            let lastLetter = letter[letter.length - 1] === 'ь'
+            || letter[letter.length - 1] === 'ы'
+                ? letter[letter.length - 2]
+                : letter[letter.length - 1];
 
             if (arrCities.includes(letter) && (lastChapter === firstChapter || lastChapter === 0)) {
                 arrCities = arrCities.filter(el => el !== letter);
@@ -1640,8 +1640,8 @@
 
                 message.innerText = temp;
 
-                humanCount.innerHTML += letter + ',&nbsp;&nbsp;';
-                computerCount.innerHTML += temp + ',&nbsp;&nbsp;';
+                humanCount.innerHTML += letter + ', &nbsp;';
+                computerCount.innerHTML += temp + ', &nbsp;';
 
             } else if (lastChapter !== firstChapter && arrCities.includes(letter)) {
                 message.classList.add('error');
