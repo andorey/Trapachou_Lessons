@@ -8,6 +8,10 @@
 			text-align: center;
 		}
 		
+		h2{
+			margin-bottom: -5px;
+		}
+		
 		input {
 			font-size: 18px;
 		}
@@ -20,7 +24,6 @@
 		li .task {
 			font-size: 20px;
 			background: #f0ffef;
-			text-align: left;
 			padding: 7px;
 		}
 		
@@ -57,13 +60,16 @@
 	</style>
 </head>
 <body>
+
 <h2>Write your task:</h2>
+
 <div id="wrapper">
 	<label>
 		<input id="input"><br>
 	</label>
 	<ul id="list"></ul>
 </div>
+
 <script>
     (function () {
         let input = document.querySelector('#input');
@@ -76,6 +82,7 @@
                 let task = document.createElement('span');
                 task.classList.add('task');
                 task.innerHTML = this.value;
+                
                 task.addEventListener('dblclick', function () {
                     let text = this.innerHTML;
                     this.innerHTML = '';
@@ -108,7 +115,7 @@
                     if (mark.innerHTML === 'renew') {
                         mark.innerHTML = 'done';
                     } else {
-                        mark.innerHTML = 'renew'
+                        mark.innerHTML = 'renew';
                     }
                 });
                 li.appendChild(mark);
