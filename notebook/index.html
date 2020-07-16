@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>notebook</title>
+	<style>
+		#wrapper {
+			width: 500px;
+			margin: 0 auto;
+			position: relative;
+		}
+		
+		#menu {
+			width: 150px;
+			position: absolute;
+			right: 105%;
+		}
+		#notes {
+			padding: 0;
+			margin: 0;
+		}
+		#notes li {
+			padding: 5px;
+			text-align: center;
+			margin-bottom: 10px;
+			border: 1px dashed gray;
+			list-style-type: none;
+			cursor: pointer;
+		}
+		#notes li:hover, #notes li.active {
+			background: #f1f1f1;
+		}
+		#create button {
+			width: 100%;
+			padding: 5px;
+		}
+		
+		#text textarea {
+			width: 100%;
+			height: 400px;
+			box-sizing: border-box;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+		#text button {
+			width: 100%;
+			height: 30px;
+		}
+	</style>
+</head>
+<body>
+<div id="wrapper">
+	<div id="menu">
+		<ul id="notes"></ul>
+		<div id="create">
+			<button>новая запись</button>
+		</div>
+	</div>
+	<div id="text">
+		<label>
+			<textarea></textarea>
+		</label>
+		<button>сохранить</button>
+	</div>
+</div>
+
+<script>
+	
+    const texts = {
+        1: 'hello',
+		2: 'World'
+    };
+    
+    let create = document.getElementById('create');
+    let notes = document.getElementById('notes');
+    let buttonSave = document.querySelector('#text button');
+	let textarea = document.querySelector('#text textarea');
+    
+    
+    create.addEventListener('click', function () {
+		let li = document.createElement('li');
+		li.classList.add('notify');
+		notes.appendChild(li)
+		li.innerHTML = 'Note ' + (Object.keys(texts).length + 1);
+    })
+	
+	buttonSave.addEventListener('click', function () {
+		texts[Object.keys(texts).length + 1] = textarea.value;
+		textarea.value = '';
+    })
+	
+	for(let i in texts){
+	    let li = document.createElement('li');
+	    li.classList.add('notify')
+		notes.appendChild(li)
+		li.innerHTML = 'Note' + i;
+	    li.addEventListener('click', function () {
+			let num = this.innerText.replace(/\D+/g, '');
+			console.log(num)
+			textarea.value = texts[num]
+        })
+	}
+ 
+</script>
+</body>
+</html>
