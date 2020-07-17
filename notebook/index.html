@@ -76,14 +76,20 @@
 	let textarea = document.querySelector('#text textarea');
     
     create.addEventListener('click', function () {
-		let li = document.createElement('li');
-		li.classList.add('notify');
-		notes.appendChild(li)
-		li.innerHTML = 'Note ' + (Object.keys(texts).length + 1);
+        let li = document.createElement('li');
+        if (document.querySelectorAll('#notes li').length === Object.keys(texts).length){
+			li.classList.add('notify');
+			notes.appendChild(li)
+			li.innerHTML = 'Note ' + (Object.keys(texts).length + 1);
+        }
 		
         li.addEventListener('click', function () {
             let num = this.innerText.replace(/\D+/g, '');
-            textarea.value = texts[num]
+            if (texts[num]){
+                textarea.value = texts[num];
+			}else if(Object.keys(texts).length > 0){
+                textarea.value = '';
+            }
         })
 
         document.querySelectorAll('#notes li').forEach(function (el) {
@@ -95,11 +101,17 @@
                 el.classList.add('active');
             })
         })
+		
     })
 	
 	buttonSave.addEventListener('click', function () {
-		texts[Object.keys(texts).length + 1] = textarea.value;
-		textarea.value = '';
+        document.querySelectorAll('#notes li').forEach(function (element){
+            if ([...element.classList].includes('active')){
+                let num = element.innerText.replace(/\D+/g, '');
+                texts[num] = textarea.value;
+                textarea.value = '';
+            }
+        })
     })
 
     
