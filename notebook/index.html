@@ -112,8 +112,10 @@
         document.querySelectorAll('#notes li').forEach(function (element){
             if ([...element.classList].includes('active')){
                 let num = element.innerText.replace(/\D+/g, '');
-                texts[num] = textarea.value;
-                textarea.value = '';
+                if(textarea.value.trim() !== ''){
+					texts[num] = textarea.value;
+					textarea.value = '';
+                }
             }
         })
     })
