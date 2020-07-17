@@ -28,7 +28,7 @@
 			cursor: pointer;
 		}
 		#notes li:hover, #notes li.active {
-			background: #f1f1f1;
+			background: #c9e0ff;
 		}
 		#create button {
 			width: 100%;
@@ -81,6 +81,10 @@
 			li.classList.add('notify');
 			notes.appendChild(li)
 			li.innerHTML = 'Note ' + (Object.keys(texts).length + 1);
+            document.querySelectorAll('#notes li').forEach(function (element){
+                element.classList.remove('active')
+            })
+            li.classList.add('active');
         }
 		
         li.addEventListener('click', function () {
