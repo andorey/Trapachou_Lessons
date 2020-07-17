@@ -67,8 +67,7 @@
 <script>
 	
     const texts = {
-        1: 'hello',
-		2: 'World'
+    
     };
     
     let create = document.getElementById('create');
@@ -76,31 +75,34 @@
     let buttonSave = document.querySelector('#text button');
 	let textarea = document.querySelector('#text textarea');
     
-    
     create.addEventListener('click', function () {
 		let li = document.createElement('li');
 		li.classList.add('notify');
 		notes.appendChild(li)
 		li.innerHTML = 'Note ' + (Object.keys(texts).length + 1);
+		
+        li.addEventListener('click', function () {
+            let num = this.innerText.replace(/\D+/g, '');
+            textarea.value = texts[num]
+        })
+
+        document.querySelectorAll('#notes li').forEach(function (el) {
+            el.addEventListener('click', function () {
+                document.querySelectorAll('#notes li').forEach(function (element){
+                    element.classList.remove('active')
+                })
+                
+                el.classList.add('active');
+            })
+        })
     })
 	
 	buttonSave.addEventListener('click', function () {
 		texts[Object.keys(texts).length + 1] = textarea.value;
 		textarea.value = '';
     })
-	
-	for(let i in texts){
-	    let li = document.createElement('li');
-	    li.classList.add('notify')
-		notes.appendChild(li)
-		li.innerHTML = 'Note' + i;
-	    li.addEventListener('click', function () {
-			let num = this.innerText.replace(/\D+/g, '');
-			console.log(num)
-			textarea.value = texts[num]
-        })
-	}
- 
+
+    
 </script>
 </body>
 </html>
