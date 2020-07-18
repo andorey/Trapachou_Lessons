@@ -28,11 +28,12 @@
 			cursor: pointer;
 		}
 		#notes li:hover, #notes li.active {
-			background: #c9e0ff;
+			background: #c9f2ff;
 		}
-		#create button {
+		#create button, #delete button {
 			width: 100%;
 			padding: 5px;
+			margin-bottom: 3px;
 		}
 		
 		#text textarea {
@@ -55,6 +56,9 @@
 		<div id="create">
 			<button>новая запись</button>
 		</div>
+		<div id="delete">
+			<button>удалить запись</button>
+		</div>
 	</div>
 	<div id="text">
 		<label>
@@ -71,6 +75,7 @@
     };
     
     let create = document.getElementById('create');
+    let buttonDel = document.getElementById('delete');
     let notes = document.getElementById('notes');
     let buttonSave = document.querySelector('#text button');
 	let textarea = document.querySelector('#text textarea');
@@ -120,6 +125,17 @@
         })
     })
 
+    textarea.addEventListener('blur', function () {
+        document.querySelectorAll('#notes li').forEach(function (element){
+            if ([...element.classList].includes('active')){
+                let num = element.innerText.replace(/\D+/g, '');
+                if(textarea.value.trim() !== ''){
+                    texts[num] = textarea.value;
+                    textarea.value = '';
+                }
+            }
+        })
+    })
     
 </script>
 </body>
