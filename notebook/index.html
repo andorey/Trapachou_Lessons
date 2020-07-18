@@ -137,6 +137,22 @@
         })
     })
     
+	buttonDel.addEventListener('click', function (event) {
+	    let liAll = document.querySelectorAll('#notes li')
+        liAll.forEach(function (element){
+            if ([...element.classList].includes('active')){
+                let num = element.innerText.replace(/\D+/g, '');
+                for (let i = +num; i < Object.keys(texts).length; i++){
+                    texts[i] = texts[i+1]
+				}
+            }
+			element.classList.remove('active')
+        })
+        delete(texts[liAll.length])
+        textarea.value = '';
+        notes.removeChild(liAll[liAll.length-1]);
+    })
+	
 </script>
 </body>
 </html>
