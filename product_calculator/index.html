@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Product calculator</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		#parent {
+			margin: 0 auto;
+			width: 500px;
+		}
+		
+		#form {
+			display: flex;
+			margin-bottom: 15px;
+		}
+		#form input {
+			padding: 8px;
+			width: 24%;
+			margin: 0 0.5% 10px 0.5%;
+		}
+		
+		h2 {
+			margin-top: 0;
+			margin-bottom: 7px;
+		}
+		
+		#table {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		#table td, #table th {
+			padding: 8px;
+			text-align: center;
+			border: 1px solid black;
+		}
+		#table td.remove {
+			color: blue;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+		#table td.remove:hover {
+			text-decoration: none;
+		}
+		
+		#result {
+			text-align: right;
+			margin-right: 10px;
+		}
+		
+		input[type='number'] {
+			-moz-appearance:textfield;
+		}
+	</style>
+</head>
+<body>
+<div id="parent">
+	<div id="form">
+		<label>
+			<input id="name" placeholder="название" type="text">
+			<input id="price" placeholder="цена" type="number">
+			<input id="amount" placeholder="количество" type="number">
+			<input id="add" type="button" value="добавить">
+		</label>
+	</div>
+	
+	<h2>Таблица продуктов:</h2>
+	<table id="table">
+		<tr>
+			<th>название</th>
+			<th>цена</th>
+			<th>кол-во</th>
+			<th>сумма</th>
+			<th>удалить</th>
+		</tr>
+	</table>
+	<div id="result">
+		общий итог: <span id="total">0</span>
+	</div>
+</div>
+
+<script>
+	
+    let name   = document.querySelector('#name');
+    let price  = document.querySelector('#price');
+    let amount = document.querySelector('#amount');
+    let add    = document.querySelector('#add');
+    let table  = document.querySelector('#table');
+    let total  = document.querySelector('#total');
+
+    function counter() {
+        let sumTotal = 0;
+        document.querySelectorAll('.summ').forEach(function (element) {
+            sumTotal += +element.innerHTML
+        })
+        total.innerHTML = sumTotal;
+    }
+    
+    add.addEventListener('click', function (event) {
+		if (name.value.trim() !== '' && price.value.trim() !== '' && amount.value.trim() !== ''){
+		    let tr = document.createElement('tr');
+			
+		    let thName = document.createElement('td');
+		    thName.classList.add('name');
+		    thName.innerHTML = name.value;
+		    tr.appendChild(thName);
+			
+			let thPrice = document.createElement('td');
+		    thPrice.classList.add('price');
+		    thPrice.innerHTML = price.value;
+		    tr.appendChild(thPrice);
+
+            let thAmount = document.createElement('td');
+            thAmount.classList.add('amount');
+            thAmount.innerHTML = amount.value;
+            tr.appendChild(thAmount);
+
+            let thMulti = document.createElement('td');
+            thMulti.classList.add('summ');
+            thMulti.innerHTML = price.value * amount.value;
+            tr.appendChild(thMulti);
+
+            let thRemove = document.createElement('td');
+            thRemove.classList.add('remove');
+            thRemove.innerHTML = 'удалить';
+            tr.appendChild(thRemove);
+
+            table.appendChild(tr)
+
+            let remove = document.querySelectorAll('.remove');
+            for (let el of remove){
+                el.onclick = () =>{
+                    table.removeChild(el.parentElement);
+
+                    counter();
+				}
+			}
+		}
+		
+        counter();
+		
+    })
+	
+</script>
+</body>
+</html>
