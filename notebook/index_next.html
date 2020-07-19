@@ -104,7 +104,7 @@
             let li = document.createElement('li');
 			
             if (document.querySelectorAll('#notes li').length === texts.length) {
-                li.classList.add(`${texts.length}`);
+                li.dataset.key = texts.length;
                 notes.appendChild(li)
                 li.innerHTML = 'Заметка ' + (texts.length + 1);
                 document.querySelectorAll('#notes li').forEach(function (element) {
@@ -114,7 +114,7 @@
             }
 
             li.addEventListener('click', function () {
-                let num = this.classList[0];
+                let num = this.dataset.key;
                 if (texts[num]) {
                     textarea.value = texts[num];
                 } else if (texts.length > 0) {
@@ -137,7 +137,7 @@
         buttonSave.addEventListener('click', function () {
             document.querySelectorAll('#notes li').forEach(function (element) {
                 if ([...element.classList].includes('active')) {
-                    let num = element.classList[0];
+                    let num = element.dataset.key;
                     if (textarea.value.trim() !== '') {
                         texts[num] = textarea.value;
                         textarea.value = '';
@@ -149,7 +149,7 @@
         textarea.addEventListener('blur', function () {
             document.querySelectorAll('#notes li').forEach(function (element) {
                 if ([...element.classList].includes('active')) {
-                    let num = element.classList[0];
+                    let num = element.dataset.key;
                     if (textarea.value.trim() !== '') {
                         texts[num] = textarea.value;
                         textarea.value = '';
@@ -162,7 +162,7 @@
             let liAll = document.querySelectorAll('#notes li')
             liAll.forEach(function (element) {
                 if ([...element.classList].includes('active')) {
-                    let num = element.classList[0];
+                    let num = element.dataset.key;
                     texts.splice(num, 1);
                 }
                 element.classList.remove('active')
