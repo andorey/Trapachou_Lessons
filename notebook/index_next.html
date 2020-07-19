@@ -92,7 +92,7 @@
 </div>
 <script>
     (function () {
-        const texts = {};
+        const texts = [];
 
         let create = document.getElementById('create');
         let buttonDel = document.getElementById('delete');
@@ -102,10 +102,11 @@
 
         create.addEventListener('click', function () {
             let li = document.createElement('li');
-            if (document.querySelectorAll('#notes li').length === Object.keys(texts).length) {
-                li.classList.add('notify');
+			
+            if (document.querySelectorAll('#notes li').length === texts.length) {
+                li.classList.add(`${texts.length}`);
                 notes.appendChild(li)
-                li.innerHTML = 'Заметка ' + (Object.keys(texts).length + 1);
+                li.innerHTML = 'Заметка ' + (texts.length + 1);
                 document.querySelectorAll('#notes li').forEach(function (element) {
                     element.classList.remove('active')
                 })
@@ -113,10 +114,10 @@
             }
 
             li.addEventListener('click', function () {
-                let num = this.innerText.replace(/\D+/g, '');
+                let num = this.classList[0];
                 if (texts[num]) {
                     textarea.value = texts[num];
-                } else if (Object.keys(texts).length > 0) {
+                } else if (texts.length > 0) {
                     textarea.value = '';
                 }
             })
@@ -136,7 +137,7 @@
         buttonSave.addEventListener('click', function () {
             document.querySelectorAll('#notes li').forEach(function (element) {
                 if ([...element.classList].includes('active')) {
-                    let num = element.innerText.replace(/\D+/g, '');
+                    let num = element.classList[0];
                     if (textarea.value.trim() !== '') {
                         texts[num] = textarea.value;
                         textarea.value = '';
@@ -148,7 +149,7 @@
         textarea.addEventListener('blur', function () {
             document.querySelectorAll('#notes li').forEach(function (element) {
                 if ([...element.classList].includes('active')) {
-                    let num = element.innerText.replace(/\D+/g, '');
+                    let num = element.classList[0];
                     if (textarea.value.trim() !== '') {
                         texts[num] = textarea.value;
                         textarea.value = '';
@@ -161,10 +162,8 @@
             let liAll = document.querySelectorAll('#notes li')
             liAll.forEach(function (element) {
                 if ([...element.classList].includes('active')) {
-                    let num = element.innerText.replace(/\D+/g, '');
-                    for (let i = +num; i < Object.keys(texts).length; i++) {
-                        texts[i] = texts[i + 1]
-                    }
+                    let num = element.classList[0];
+                    texts.splice(num, 1);
                 }
                 element.classList.remove('active')
             })
