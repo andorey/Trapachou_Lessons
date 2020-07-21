@@ -97,13 +97,13 @@
 
         function counter() {
             let sumTotal = 0;
-            document.querySelectorAll('.summ').forEach(function (element) {
+            document.querySelectorAll('.summ').forEach(function(element) {
                 sumTotal += +element.innerHTML
             })
             total.innerHTML = sumTotal;
         }
 
-        add.addEventListener('click', function (event) {
+        add.addEventListener('click', function(event) {
             if (name.value.trim() !== '' && price.value.trim() !== '' && amount.value.trim() !== '') {
                 let tr = document.createElement('tr');
 
@@ -134,14 +134,13 @@
 
                 table.appendChild(tr)
 
-                let remove = document.querySelectorAll('.remove');
-                for (let el of remove) {
-                    el.onclick = () => {
-                        table.removeChild(el.parentElement);
+                document.querySelectorAll('.remove').forEach(function (element) {
+                    element.onclick = () => {
+                        table.removeChild(element.parentElement);
 
                         counter();
                     }
-                }
+                })
             }
 
             counter();
