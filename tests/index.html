@@ -6,6 +6,17 @@
 	<style>
 		body{
 			text-align: center;
+			font-size: 17px;
+			font-family: 'Barlow Condensed', sans-serif;
+		}
+		input{
+			width: 50%;
+			margin-bottom: 10px;
+			font-size: 1em;
+			color: #010160;
+		}
+		p{
+			margin-bottom: -0;
 		}
 		.right {
 			border: 1px solid green;
@@ -18,24 +29,7 @@
 <body>
 <h2>Тест на интеллект:</h2>
 <div id="test">
-	<div>
-		<p>вопрос 1?</p>
-		<label>
-			<input type="text">
-		</label>
-	</div>
-	<div>
-		<p>вопрос 2?</p>
-		<label>
-			<input type="text">
-		</label>
-	</div>
-	<div>
-		<p>вопрос 3?</p>
-		<label>
-			<input type="text">
-		</label>
-	</div>
+
 </div>
 
 <script>
@@ -48,13 +42,34 @@
 	}
 	
 	const answers = {
-	    1: [60, 'шестьдесят', ''],
+	    1: [60, 'шестьдесят', 'sixty'],
 		2: [100, 'сто', 'сотня'],
 		3: ['зеленый', 'green'],
 		4: ['красный', 'red'],
 		5: ['по деньгам', 'дорого']
 	}
 	
+	let questBlock = document.getElementById('test');
+	
+	for (let el of Object.keys(questions)){
+        let divBox = document.createElement('div');
+
+        let pBox = document.createElement('p');
+        pBox.innerHTML = questions[el];
+        divBox.appendChild(pBox);
+        
+        let inputBox = document.createElement('input');
+        inputBox.type = 'text';
+        inputBox.value = '';
+        inputBox.dataset.key = el;
+        divBox.appendChild(inputBox);
+        
+        questBlock.appendChild(divBox);
+	}
+	
+	document.querySelectorAll('#test input').forEach(function (el) {
+		console.log(el.dataset.key)
+    })
 	
 </script>
 </body>
