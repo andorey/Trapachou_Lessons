@@ -4,98 +4,144 @@
 	<meta charset="UTF-8">
 	<title>Tests</title>
 	<style>
-		body{
+		body {
 			text-align: center;
 			font-size: 17px;
 			font-family: 'Barlow Condensed', sans-serif;
 		}
-		input{
-			width: 50%;
-			margin-bottom: 10px;
-			font-size: 1em;
-			color: #010160;
+		
+		label {
+			margin-right: 2em;
+		}
+		
+		fieldset {
 			border: .5px solid lightgray;
+			margin: 0 25% 0 25%;
 		}
+		
+		input{
+			margin-top: 8px;
+		}
+		
 		p{
-			margin-bottom: -0;
+			margin-bottom: auto;
 		}
+		
+		button {
+			margin-top: 15px;
+			font-size: 1em;
+			padding: 3px;
+		}
+		
 		.right {
 			border: 2px solid limegreen;
 		}
+		
 		.wrong {
 			border: 2px solid red;
 		}
 	</style>
 </head>
+
 <body>
 <h2>Тест на интеллект:</h2>
-<div id="test">
-
-</div>
+<div id="test"></div>
+<button id="button">проверить ответы</button>
 
 <script>
-	const questions = {
-	    1: 'Сколько минут в часе?',
-		2: 'Сколько сантиметров в метре?',
-		3: 'Какого цвета разрешающий сигнал светофора?',
-		4: 'Какого цвета запрещающий сигнал светофора?',
-		5: 'По чём в Одессе рубероид?'
-	}
-	
-	const answers = {
-	    1: ['60', 'шестьдесят', 'sixty', 'Шестьдесят', 'Sixty'],
-		2: ['100', 'сто', 'сотня', 'Сто', 'Сотня', 'one hundred', 'One hundred'],
-		3: ['зеленый', 'green', 'Зелёный', 'зелёный', 'Зеленый', 'Green'],
-		4: ['красный', 'red', 'Красный', 'Red'],
-		5: ['по деньгам', 'дорого', 'Дорого', 'much', 'Much', 'По деньгам', 'за деньги', 'За деньги', 'for money', 'For money', 'money', 'Money']
-	}
-	
-	let questBlock = document.getElementById('test');
-	
-	for (let el of Object.keys(questions)){
-        let divBox = document.createElement('div');
+    (function () {
 
-        let pBox = document.createElement('p');
-        pBox.innerHTML = el + ' &nbsp;' + questions[el];
-        divBox.appendChild(pBox);
-        
-        let inputBox = document.createElement('input');
-        inputBox.type = 'text';
-        inputBox.value = '';
-        inputBox.dataset.key = el;
-        divBox.appendChild(inputBox);
-        
-        questBlock.appendChild(divBox);
-	}
-	
-	document.querySelectorAll('#test input').forEach(function (el) {
-		el.addEventListener('blur', function () {
-            if(answers[el.dataset.key].includes(el.value.trim())){
-                el.classList.remove('wrong');
-                el.classList.add('right');
-            }else if(el.value.trim() === ''){
-                el.classList.remove('wrong');
-                el.classList.remove('right');
-            }else{
-                el.classList.add('wrong');
+        const questions = [
+            {
+                text: 'Сколько минут в часе?',
+                right: '60',
+                variants: [
+                    '100',
+                    '60',
+                    '3.14'
+                ]
+            },
+            {
+                text: 'Сколько сантиметров в метре?',
+                right: '100',
+                variants: [
+                    '1024',
+                    '512',
+                    '100'
+                ]
+            },
+            {
+                text: 'Какого цвета разрешающий сигнал светофора?',
+                right: 'зелёный',
+                variants: [
+                    'зелёный',
+                    'синий',
+                    'серый'
+                ]
+            },
+            {
+                text: 'Какого цвета запрещающий сигнал светофора?',
+                right: 'красный',
+                variants: [
+                    'серый',
+                    'жёлтый',
+                    'красный'
+                ]
+            },
+            {
+                text: 'По чём в Одессе рубероид?',
+                right: 'по деньгам',
+                variants: [
+                    'дорого',
+                    'по деньгам',
+                    '47.25'
+                ]
             }
-        })
-		
-		el.addEventListener('keypress', function (event) {
-			if (event.key === 'Enter'){
-                if(answers[el.dataset.key].includes(el.value.trim())){
-                    el.classList.remove('wrong');
-                    el.classList.add('right');
-                }else if(el.value.trim() === ''){
-                    el.classList.remove('wrong');
-                    el.classList.remove('right');
-				}else{
-                    el.classList.add('wrong');
+        ];
+
+        let questBlock = document.getElementById('test');
+
+        for (let el in questions) {
+            let divBox = document.createElement('div');
+
+            let pBox = document.createElement('p');
+            pBox.innerHTML = questions[el].text;
+            divBox.appendChild(pBox);
+
+            let field = document.createElement('fieldset');
+
+            for (let i = 0; i < 3; i++) {
+                let labelBox = document.createElement('label')
+                labelBox.classList.add('form-control')
+                labelBox.innerHTML = questions[el].variants[i];
+                field.appendChild(labelBox);
+
+                let inputBox = document.createElement('input');
+                inputBox.type = 'radio';
+                inputBox.name = el
+                inputBox.value = questions[el].variants[i];
+                labelBox.appendChild(inputBox);
+            }
+
+            divBox.appendChild(field)
+
+            questBlock.appendChild(divBox);
+        }
+
+        document.getElementById('button').addEventListener('click', function () {
+            document.querySelectorAll('#test input[type="radio"]').forEach(function (el) {
+                if (el.checked) {
+                    if (el.value === questions[el.name].right) {
+                        el.parentElement.parentElement.classList.remove('wrong')
+                        el.parentElement.parentElement.classList.add('right')
+                    } else {
+                        el.parentElement.parentElement.classList.add('wrong')
+                    }
                 }
-			}
+            })
         })
-    })
-	
+
+    })();
 </script>
 </body>
 </html>
