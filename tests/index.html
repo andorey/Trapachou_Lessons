@@ -14,15 +14,16 @@
 			margin-bottom: 10px;
 			font-size: 1em;
 			color: #010160;
+			border: .5px solid lightgray;
 		}
 		p{
 			margin-bottom: -0;
 		}
 		.right {
-			border: 1px solid green;
+			border: 2px solid limegreen;
 		}
 		.wrong {
-			border: 1px solid red;
+			border: 2px solid red;
 		}
 	</style>
 </head>
@@ -42,11 +43,11 @@
 	}
 	
 	const answers = {
-	    1: [60, 'шестьдесят', 'sixty'],
-		2: [100, 'сто', 'сотня'],
-		3: ['зеленый', 'green'],
-		4: ['красный', 'red'],
-		5: ['по деньгам', 'дорого']
+	    1: ['60', 'шестьдесят', 'sixty', 'Шестьдесят', 'Sixty'],
+		2: ['100', 'сто', 'сотня', 'Сто', 'Сотня', 'one hundred', 'One hundred'],
+		3: ['зеленый', 'green', 'Зелёный', 'зелёный', 'Зеленый', 'Green'],
+		4: ['красный', 'red', 'Красный', 'Red'],
+		5: ['по деньгам', 'дорого', 'Дорого', 'much', 'Much', 'По деньгам', 'за деньги', 'За деньги', 'for money', 'For money', 'money', 'Money']
 	}
 	
 	let questBlock = document.getElementById('test');
@@ -55,7 +56,7 @@
         let divBox = document.createElement('div');
 
         let pBox = document.createElement('p');
-        pBox.innerHTML = questions[el];
+        pBox.innerHTML = el + ' &nbsp;' + questions[el];
         divBox.appendChild(pBox);
         
         let inputBox = document.createElement('input');
@@ -68,7 +69,31 @@
 	}
 	
 	document.querySelectorAll('#test input').forEach(function (el) {
-		console.log(el.dataset.key)
+		el.addEventListener('blur', function () {
+            if(answers[el.dataset.key].includes(el.value.trim())){
+                el.classList.remove('wrong');
+                el.classList.add('right');
+            }else if(el.value.trim() === ''){
+                el.classList.remove('wrong');
+                el.classList.remove('right');
+            }else{
+                el.classList.add('wrong');
+            }
+        })
+		
+		el.addEventListener('keypress', function (event) {
+			if (event.key === 'Enter'){
+                if(answers[el.dataset.key].includes(el.value.trim())){
+                    el.classList.remove('wrong');
+                    el.classList.add('right');
+                }else if(el.value.trim() === ''){
+                    el.classList.remove('wrong');
+                    el.classList.remove('right');
+				}else{
+                    el.classList.add('wrong');
+                }
+			}
+        })
     })
 	
 </script>
