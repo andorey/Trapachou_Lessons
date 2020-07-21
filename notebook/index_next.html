@@ -136,7 +136,7 @@
 
         buttonSave.addEventListener('click', function () {
             document.querySelectorAll('#notes li').forEach(function (element) {
-                if ([...element.classList].includes('active')) {
+                if (element.classList.contains('active')) {
                     let num = element.dataset.key;
                     if (textarea.value.trim() !== '') {
                         texts[num] = textarea.value;
@@ -148,7 +148,7 @@
 
         textarea.addEventListener('blur', function () {
             document.querySelectorAll('#notes li').forEach(function (element) {
-                if ([...element.classList].includes('active')) {
+                if (element.classList.contains('active')) {
                     let num = element.dataset.key;
                     if (textarea.value.trim() !== '') {
                         texts[num] = textarea.value;
@@ -161,13 +161,13 @@
         buttonDel.addEventListener('click', function (event) {
             let liAll = document.querySelectorAll('#notes li')
             liAll.forEach(function (element) {
-                if ([...element.classList].includes('active')) {
+                if (element.classList.contains('active')) {
                     let num = element.dataset.key;
                     texts.splice(num, 1);
                 }
                 element.classList.remove('active')
             })
-            delete (texts[liAll.length])
+            delete texts[liAll.length]
             textarea.value = '';
             notes.removeChild(liAll[liAll.length - 1]);
         })
