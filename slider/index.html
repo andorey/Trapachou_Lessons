@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slider</title>
+	<style>
+		body{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div id="slider"></div>
+
+<script>
+    const texts = [
+        'Happy',
+		'New',
+		'Year!'
+	];
+    
+    let slider = document.getElementById('slider');
+    let counter = 0;
+    
+    function timeSlider(){
+        if (counter > 2) counter = 0;
+        slider.innerHTML = texts[counter]
+		counter++;
+	}
+	
+	setInterval(timeSlider, 1000);
+</script>
+</body>
+</html>
