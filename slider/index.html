@@ -7,28 +7,46 @@
 		body{
 			text-align: center;
 		}
+		#slider{
+			font-size: 1.5em;
+		}
 	</style>
 </head>
 <body>
+<a href="/" id="left">←</a>
+<a href="/" id="right">→</a>
 <div id="slider"></div>
 
 <script>
-    const texts = [
-        'Happy',
+
+	const texts = [
+		'Happy',
 		'New',
 		'Year!'
 	];
-    
-    let slider = document.getElementById('slider');
-    let counter = 0;
-    
-    function timeSlider(){
-        if (counter > 2) counter = 0;
-        slider.innerHTML = texts[counter]
-		counter++;
-	}
 	
-	setInterval(timeSlider, 1000);
+	let slider = document.getElementById('slider');
+	let left = document.getElementById('left');
+	let right = document.getElementById('right')
+	let counter = 0;
+	
+
+	right.addEventListener('click', function(event){
+		counter += 1;
+		if ( counter > texts.length - 1 ) counter = texts.length - 1;
+        slider.innerHTML = texts[counter]
+		event.preventDefault()
+	})
+
+	left.addEventListener('click', function (event) {
+		counter -= 1;
+		if ( counter < 0 ) counter = 0;
+        slider.innerHTML = texts[counter]
+        event.preventDefault()
+	})
+
+	slider.innerHTML = texts[counter]
+	
 </script>
 </body>
 </html>
