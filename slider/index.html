@@ -8,44 +8,55 @@
 			text-align: center;
 		}
 		#slider{
-			font-size: 1.5em;
+			width: 20%;
 		}
 	</style>
 </head>
 <body>
+
+<img id="slider" src="" alt="image"><br>
 <a href="/" id="left">←</a>
 <a href="/" id="right">→</a>
-<div id="slider"></div>
 
 <script>
 
-	const texts = [
-		'Happy',
-		'New',
-		'Year!'
+	const images = [
+		'img/1.png',
+		'img/2.png',
+		'img/3.png',
+		'img/4.png',
+		'img/5.png'
 	];
 	
 	let slider = document.getElementById('slider');
 	let left = document.getElementById('left');
 	let right = document.getElementById('right')
 	let counter = 0;
+
+	function timer(){
+	    counter++;
+        if ( counter > images.length - 1 ) counter = 0;
+        if ( counter < 0 ) counter = images.length - 1;
+        slider.src = images[counter]
+	}
 	
+	setInterval(timer, 1500);
 
 	right.addEventListener('click', function(event){
 		counter += 1;
-		if ( counter > texts.length - 1 ) counter = texts.length - 1;
-        slider.innerHTML = texts[counter]
+		if ( counter > images.length - 1 ) counter = 0;
+        slider.src = images[counter]
 		event.preventDefault()
 	})
 
 	left.addEventListener('click', function (event) {
 		counter -= 1;
-		if ( counter < 0 ) counter = 0;
-        slider.innerHTML = texts[counter]
+		if ( counter < 0 ) counter = images.length - 1;
+        slider.src = images[counter]
         event.preventDefault()
 	})
 
-	slider.innerHTML = texts[counter]
+	slider.src = images[counter]
 	
 </script>
 </body>
