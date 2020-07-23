@@ -4,60 +4,39 @@
 	<meta charset="UTF-8">
 	<title>slider</title>
 	<style>
-		body{
+		body {
 			text-align: center;
 		}
-		#slider{
+		
+		img {
 			width: 20%;
 		}
 	</style>
 </head>
 <body>
-
-<img id="slider" src="" alt="image"><br>
-<a href="/" id="left">←</a>
-<a href="/" id="right">→</a>
-
+<div id="slider">
+	<img src="img/1.png" alt="" hidden>
+	<img src="img/2.png" alt="" hidden>
+	<img src="img/3.png" alt="" hidden>
+	<img src="img/4.png" alt="" hidden>
+	<img src="img/5.png" alt="" hidden>
+</div>
 <script>
+    (function () {
+        let images = document.querySelectorAll('#slider img');
+        let counter = 0
 
-	const images = [
-		'img/1.png',
-		'img/2.png',
-		'img/3.png',
-		'img/4.png',
-		'img/5.png'
-	];
-	
-	let slider = document.getElementById('slider');
-	let left = document.getElementById('left');
-	let right = document.getElementById('right')
-	let counter = 0;
+        function timer() {
+            for (let i of images) {
+                i.hidden = true;
+            }
+            if (counter > images.length - 1) counter = 0;
+            images[counter].hidden = false;
+            counter++
+        }
 
-	function timer(){
-	    counter++;
-        if ( counter > images.length - 1 ) counter = 0;
-        if ( counter < 0 ) counter = images.length - 1;
-        slider.src = images[counter]
-	}
-	
-	setInterval(timer, 1500);
-
-	right.addEventListener('click', function(event){
-		counter += 1;
-		if ( counter > images.length - 1 ) counter = 0;
-        slider.src = images[counter]
-		event.preventDefault()
-	})
-
-	left.addEventListener('click', function (event) {
-		counter -= 1;
-		if ( counter < 0 ) counter = images.length - 1;
-        slider.src = images[counter]
-        event.preventDefault()
-	})
-
-	slider.src = images[counter]
-	
+        setInterval(timer, 1000);
+    })();
 </script>
 </body>
 </html>
