@@ -34,15 +34,39 @@
 </table>
 
 <script>
-    let cells = document.querySelectorAll('#field td');
+	
+    const wins = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+	
+    const cells = document.querySelectorAll('#field td');
     
     function mark(element, i=0){
         element.forEach(function (el) {
             el.addEventListener('click', function step() {
 				el.innerHTML = ['X', 'O'][i % 2];
-                el.removeEventListener('click', step)
-				i++
 				
+                el.removeEventListener('click', step)
+				
+				if ((el === cells[0])) console.log('0')
+				if ((el === cells[1])) console.log('1')
+				if ((el === cells[2])) console.log('2')
+				if ((el === cells[3])) console.log('3')
+				if ((el === cells[4])) console.log('4')
+				if ((el === cells[5])) console.log('5')
+				if ((el === cells[6])) console.log('6')
+				if ((el === cells[7])) console.log('7')
+				if ((el === cells[8])) console.log('8')
+				if ((el === cells[9])) console.log('9')
+				
+				i++;
             })
         })
 	}
