@@ -38,11 +38,11 @@
     
     function mark(element, i=0){
         element.forEach(function (el) {
-            el.addEventListener('click', function() {
-                if (el.innerHTML === ''){
-                    el.innerHTML = ['X', 'O'][i % 2]
-                    i++
-				}
+            el.addEventListener('click', function step() {
+				el.innerHTML = ['X', 'O'][i % 2];
+                el.removeEventListener('click', step)
+				i++
+				
             })
         })
 	}
