@@ -5,7 +5,7 @@
 	<title>cross_zero</title>
 </head>
 <style>
-	#field div{
+	#field div {
 		font-size: 3em;
 		color: coral;
 	}
@@ -37,48 +37,49 @@
 		<td></td>
 	</tr>
 </table>
-
 <script>
-	
-    const wins = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
-	
-    const cells = document.querySelectorAll('#field td');
-    const resultDiv = document.getElementById('field');
-    
-    function mark(element, i=0){
-        element.forEach(function (el) {
-            el.addEventListener('click', function step() {
-				el.innerHTML = ['X', 'O'][i % 2];
-                el.removeEventListener('click', step)
-				
-				for (let win of wins){
-				    if (
-				        element[win[0]].innerHTML === element[win[1]].innerHTML &&
-						element[win[1]].innerHTML === element[win[2]].innerHTML &&
-						element[win[0]].innerHTML !== ''
-					){
-				        resultDiv.innerHTML = `<div>Игрок ${element[win[0]].innerHTML} победил!</div>`
-					}
-				}
-				
-				i++;
-				
-				if (i > 8) resultDiv.innerHTML = `<div> НИЧЬЯ </div>`
+    (function () {
+
+        const wins = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+
+        const cells = document.querySelectorAll('#field td');
+        const resultDiv = document.getElementById('field');
+
+        function mark(element, i = 0) {
+            element.forEach(function (el) {
+                el.addEventListener('click', function step() {
+                    el.innerHTML = ['X', 'O'][i % 2];
+                    el.removeEventListener('click', step)
+                    i++;
+
+                    if (i > 8) resultDiv.innerHTML = `<div> НИЧЬЯ </div>`;
+
+                    for (let win of wins) {
+                        if (
+                            element[win[0]].innerHTML === element[win[1]].innerHTML &&
+                            element[win[1]].innerHTML === element[win[2]].innerHTML &&
+                            element[win[0]].innerHTML !== ''
+                        ) {
+                            resultDiv.innerHTML =
+								`<div>Игрок ${element[win[0]].innerHTML} победил!</div>`
+                        }
+                    }
+
+                })
             })
-        })
-	}
-	
-	mark(cells)
-	
+        }
+
+        mark(cells)
+    })();
 </script>
 </body>
 </html>
