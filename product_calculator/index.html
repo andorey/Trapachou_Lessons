@@ -133,15 +133,15 @@
                 tr.appendChild(thRemove);
 
                 table.appendChild(tr)
-
-                document.querySelectorAll('.remove').forEach(function (element) {
-                    element.onclick = () => {
-                        table.removeChild(element.parentElement);
-
-                        counter();
-                    }
-                })
             }
+
+            document.querySelectorAll('.remove').forEach(function (element) {
+                element.addEventListener('click', function () {
+                    element.parentElement.remove()
+
+                    counter();
+                })
+            })
 
             counter();
 
