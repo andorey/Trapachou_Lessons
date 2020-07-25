@@ -3,8 +3,45 @@
 <head>
 	<meta charset="UTF-8">
 	<title>find number</title>
+	<style>
+		#parent {
+			text-align: center;
+		}
+		#field {
+			display: inline-block;
+		}
+		
+		#field td {
+			padding: 20px;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+		.active {
+			background: red;
+		}
+	</style>
 </head>
 <body>
+<div id="parent">
+	<table id="field"></table>
+</div>
 
+<script>
+    let field = document.querySelector('#field');
+    
+    function build(x){
+        for (let i = 1; i <= x; i++){
+            let tr = document.createElement('tr');
+            for (let j = 1; j <= x; j++){
+                let td = document.createElement('td');
+                tr.appendChild(td)
+			}
+            field.appendChild(tr)
+		}
+	}
+	
+	build(3)
+	
+</script>
 </body>
 </html>
