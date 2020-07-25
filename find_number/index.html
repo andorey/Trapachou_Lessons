@@ -7,6 +7,7 @@
 		#parent {
 			text-align: center;
 		}
+		
 		#field {
 			display: inline-block;
 		}
@@ -19,6 +20,7 @@
 			text-align: center;
 			cursor: pointer;
 		}
+		
 		.active {
 			background: red;
 		}
@@ -28,61 +30,62 @@
 <div id="parent">
 	<table id="field"></table>
 </div>
-
 <script>
-	
-    let field = document.querySelector('#field');
+    (function () {
+        let field = document.querySelector('#field');
+        
+        game(2);
 
-    game(2);
-    
-    function build(x){
-        for (let i = 1; i <= x; i++){
-            let tr = document.createElement('tr');
-            for (let j = 1; j <= x; j++){
-                let td = document.createElement('td');
-                tr.appendChild(td)
-			}
-            field.appendChild(tr)
-		}
-	}
-
-    function arrRand(x){
-        const arr = []
-        const random = () => Math.floor(Math.random() * x * x + 1);
-        while( arr.length < x * x){
-            let temp = random()
-            if (!arr.includes(temp)){
-                arr.push(temp)
+        function build(x) {
+            for (let i = 1; i <= x; i++) {
+                let tr = document.createElement('tr');
+                for (let j = 1; j <= x; j++) {
+                    let td = document.createElement('td');
+                    tr.appendChild(td)
+                }
+                field.appendChild(tr)
             }
         }
-        return arr;
-    }
-	
-	function game(x){
-        build(x);
-        let arrBuild = arrRand(x);
-        let tdAll = document.querySelectorAll('#field td');
-        for(let i in arrBuild){
-            tdAll[i].innerHTML = arrBuild[i]
-		}
 
-        let num = 1
-		
-        tdAll.forEach(function (element) {
-			element.addEventListener('click', function() {
-			    if (element.innerHTML === `${num}`){
-                    element.classList.add('active')
-					num += 1;
-				}
-			    
-			    if(num  > x*x){
-                    field.innerHTML = '';
-                    game(x + 1);
-				}
+        function arrRand(x) {
+            const arr = []
+            const random = () => Math.floor(Math.random() * x * x + 1);
+            while (arr.length < x * x) {
+                let temp = random()
+                if (!arr.includes(temp)) {
+                    arr.push(temp)
+                }
+            }
+            return arr;
+        }
+
+        function game(x) {
+            build(x);
+            let arrBuild = arrRand(x);
+            let tdAll = document.querySelectorAll('#field td');
+            
+            arrBuild.map((el, i)=> tdAll[i].innerHTML = el);
+            // for (let i in arrBuild) {
+            //     tdAll[i].innerHTML = arrBuild[i]
+            // }
+
+            let num = 1
+
+            tdAll.forEach(function (element) {
+                element.addEventListener('click', function () {
+                    if (element.innerHTML === `${num}`) {
+                        element.classList.add('active')
+                        num += 1;
+                    }
+
+                    if (num > x * x) {
+                        field.innerHTML = '';
+                        game(x + 1);
+                    }
+                })
             })
-        })
-	}
-	
+        }
+    })();
 </script>
 </body>
 </html>
