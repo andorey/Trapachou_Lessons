@@ -38,13 +38,52 @@
 </div>
 
 <script>
+	
     let calendar = document.querySelector('#calendar');
+    let table = calendar.querySelector('table');
     let body = calendar.querySelector('.body');
 
     let date  = new Date();
     let year  = date.getFullYear();
     let month = date.getMonth();
+    let lastDays = new Date(year, month + 1, 0).getDate();
+    let infoMonth = new Date(year, month, lastDays);
+    let firstDay = new Date(infoMonth.getFullYear(), infoMonth.getMonth(), 1).getDay();
     
+    calendarBuild()
+    
+    function calendarBuild(){
+        const arr = arrDays(firstDay,lastDays);
+        build(Math.fround(arr.length/7))
+		let allTd = table.querySelectorAll('td');
+        arr.map((el, i)=> allTd[i].innerHTML = el);
+	}
+    
+    function build(x){
+        for (let i = 0; i < x; i++){
+            let tr = document.createElement('tr');
+            for (let j = 0; j < 7; j++){
+                let td = document.createElement('td');
+                tr.appendChild(td)
+            }
+            table.appendChild(tr)
+        }
+	}
+
+    function arrDays(day, lastDay){
+        const arr = [];
+        let k = 1;
+        for (let i = day > 0 ? 1 - day : -6; i < lastDay; i++){
+            if ( i < 0){
+                arr.push('');
+            }else{
+                arr.push(i+1);
+            }
+        }
+        return arr;
+    }
+	
+ 
 </script>
 </body>
 </html>
