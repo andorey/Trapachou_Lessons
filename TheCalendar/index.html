@@ -21,17 +21,6 @@
 <div id="parent">
 	<div id="calendar">
 		<table>
-			<thead>
-			<tr>
-				<th>пн</th>
-				<th>вт</th>
-				<th>ср</th>
-				<th>чт</th>
-				<th>пт</th>
-				<th>сб</th>
-				<th>вс</th>
-			</tr>
-			</thead>
 			<tbody class="body"></tbody>
 		</table>
 	</div>
@@ -47,19 +36,35 @@
     let year  = date.getFullYear();
     let month = date.getMonth();
     let lastDays = new Date(year, month + 1, 0).getDate();
-    let infoMonth = new Date(year, month, lastDays);
-    let firstDay = new Date(infoMonth.getFullYear(), infoMonth.getMonth(), 1).getDay();
-    
-    calendarBuild()
+    //let infoMonth = new Date(year, month, lastDays);
+    let firstDay = new Date(year, month, 1).getDay();
+    // let firstDay = new Date(infoMonth.getFullYear(), infoMonth.getMonth(), 1).getDay();
+	
+	
+	tableHead();
+    calendarBuild();
+
+    function tableHead() {
+        let thead = document.createElement('thead');
+        let tr = document.createElement('tr');
+        let arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб','вс'];
+        arr.forEach(function(el){
+            let th = document.createElement('th');
+            th.innerHTML = el;
+            tr.appendChild(th)
+        });
+        thead.appendChild(tr)
+        table.appendChild(thead)
+    }
     
     function calendarBuild(){
         const arr = arrDays(firstDay,lastDays);
-        build(Math.fround(arr.length/7))
+        gridBuild(Math.fround(arr.length/7))
 		let allTd = table.querySelectorAll('td');
         arr.map((el, i)=> allTd[i].innerHTML = el);
 	}
-    
-    function build(x){
+	
+    function gridBuild(x){
         for (let i = 0; i < x; i++){
             let tr = document.createElement('tr');
             for (let j = 0; j < 7; j++){
