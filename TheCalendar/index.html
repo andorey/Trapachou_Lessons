@@ -7,108 +7,141 @@
 		#parent {
 			text-align: center;
 		}
+		
 		#calendar {
 			display: inline-block;
 		}
+		
 		#calendar td, #calendar th {
 			padding: 5px 12px;
 			border: 1px solid black;
 			text-align: center;
 		}
-		.today{
+		
+		.today {
 			background: #fe0000;
 			color: white;
+		}
+		
+		.body {
+			color: darkblue;
+			font-size: 1.2em;
+		}
+		
+		.top {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+		
+		.left, .right {
+			font-size: 1.5em;
+			cursor: pointer;
 		}
 	</style>
 </head>
 <body>
 <div id="parent">
 	<div id="calendar">
-		<table>
-			<tbody class="body"></tbody>
-		</table>
+		<div class="top">
+			<span class="left">≤</span><span class="body"></span><span class="right">≥</span>
+		</div>
+		<table></table>
 	</div>
 </div>
-
 <script>
-	
-    let calendar = document.querySelector('#calendar');
-    let table = calendar.querySelector('table');
-    let body = calendar.querySelector('.body');
+    (function () {
+        let calendar = document.querySelector('#calendar');
+        let right = calendar.querySelector('.right');
+        let table = calendar.querySelector('table');
+        let left = calendar.querySelector('.left');
+        let body = calendar.querySelector('.body');
 
-    let date  = new Date();
-    let year  = date.getFullYear();
-    let month = date.getMonth();
-    
-    buildCalendar(year, month);
-	
-    function buildCalendar(year, month) {
-        let lastDays = new Date(year, month + 1, 0).getDate();
-        let infoMonth = new Date(year, month, lastDays);
-        let firstWeekDay = new Date(year, month, 1).getDay();
-        // let firstDay = new Date(infoMonth.getFullYear(), infoMonth.getMonth(), 1).getDay();
+        const arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+        const arrMonth = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth();
 
-        tableHead();
-        calendarBuild();
+        buildCalendar(year, month);
 
-        function tableHead() {
-            let thead = document.createElement('thead');
-            let tr = document.createElement('tr');
-            let arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб','вс'];
-            arr.forEach(function(el){
-                let th = document.createElement('th');
-                th.innerHTML = el;
-                tr.appendChild(th)
-            });
-            thead.appendChild(tr)
-            table.appendChild(thead)
-        }
+        left.addEventListener('click', function () {
+            table.innerHTML = '';
+            buildCalendar(calendar.dataset.year, parseInt(calendar.dataset.month) - 1)
+        })
 
-        function calendarBuild(){
-            const arr = arrDays(firstWeekDay,lastDays);
-            gridBuild(Math.fround(arr.length/7))
-            let allTd = table.querySelectorAll('td');
-            
-			for(let i = 0; i < allTd.length; i++){
-				if(arr[i] === new Date().getDate() &&
-					infoMonth.getFullYear() === new Date().getFullYear() &&
-					infoMonth.getMonth() === new Date().getMonth()
-				){
-				    allTd[i].classList.add('today')
-				}
-				
-				allTd[i].innerHTML = arr[i] === undefined ? '' : arr[i];
-			}
-        }
-    }
-	
-	
-    function gridBuild(x){
-        for (let i = 0; i < x; i++){
-            let tr = document.createElement('tr');
-            for (let j = 0; j < 7; j++){
-                let td = document.createElement('td');
-                tr.appendChild(td)
+        right.addEventListener('click', function () {
+            table.innerHTML = '';
+            buildCalendar(calendar.dataset.year, parseInt(calendar.dataset.month) + 1)
+        })
+
+        function buildCalendar(year, month) {
+            let lastDays = new Date(year, month + 1, 0).getDate();
+            let infoMonth = new Date(year, month, lastDays);
+            let firstWeekDay = new Date(year, month, 1).getDay();
+            body.innerHTML = arrMonth[infoMonth.getMonth()] + '<br>' + infoMonth.getFullYear();
+            calendar.dataset.year = year;
+            calendar.dataset.month = month;
+
+            tableHead();
+            calendarBuild();
+
+            function tableHead() {
+                let thead = document.createElement('thead');
+                let tr = document.createElement('tr');
+
+                arr.forEach(function (el) {
+                    let th = document.createElement('th');
+                    th.innerHTML = el;
+                    tr.appendChild(th)
+                });
+                thead.appendChild(tr)
+                table.appendChild(thead)
             }
-            table.appendChild(tr)
-        }
-	}
 
-    function arrDays(day, lastDay){
-        const arr = [];
-        let k = 1;
-        for (let i = day > 0 ? 1 - day : -6; i < lastDay; i++){
-            if ( i < 0){
-                arr.push('');
-            }else{
-                arr.push(i+1);
+            function calendarBuild() {
+                const arr = arrDays(firstWeekDay, lastDays);
+                gridBuild(Math.fround(arr.length / 7));
+                let allTd = table.querySelectorAll('td');
+
+                for (let i = 0; i < allTd.length; i++) {
+                    if (arr[i] === new Date().getDate() &&
+                        infoMonth.getFullYear() === new Date().getFullYear() &&
+                        infoMonth.getMonth() === new Date().getMonth()
+                    ) {
+                        allTd[i].classList.add('today')
+                    }
+
+                    allTd[i].innerHTML = arr[i] === undefined ? '' : arr[i];
+                }
             }
         }
-        return arr;
-    }
-	
- 
+
+
+        function gridBuild(x) {
+            for (let i = 0; i < x; i++) {
+                let tr = document.createElement('tr');
+                for (let j = 0; j < 7; j++) {
+                    let td = document.createElement('td');
+                    tr.appendChild(td)
+                }
+                table.appendChild(tr)
+            }
+        }
+
+        function arrDays(day, lastDay) {
+            const days = [];
+            for (let i = day > 0 ? 1 - day : -6; i < lastDay; i++) {
+                if (i < 0) {
+                    days.push('');
+                } else {
+                    days.push(i + 1);
+                }
+            }
+            return days;
+        }
+    })();
 </script>
 </body>
 </html>
