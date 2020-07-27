@@ -15,6 +15,10 @@
 			border: 1px solid black;
 			text-align: center;
 		}
+		.today{
+			background: #fe0000;
+			color: white;
+		}
 	</style>
 </head>
 <body>
@@ -35,34 +39,50 @@
     let date  = new Date();
     let year  = date.getFullYear();
     let month = date.getMonth();
-    let lastDays = new Date(year, month + 1, 0).getDate();
-    //let infoMonth = new Date(year, month, lastDays);
-    let firstDay = new Date(year, month, 1).getDay();
-    // let firstDay = new Date(infoMonth.getFullYear(), infoMonth.getMonth(), 1).getDay();
-	
-	
-	tableHead();
-    calendarBuild();
-
-    function tableHead() {
-        let thead = document.createElement('thead');
-        let tr = document.createElement('tr');
-        let arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб','вс'];
-        arr.forEach(function(el){
-            let th = document.createElement('th');
-            th.innerHTML = el;
-            tr.appendChild(th)
-        });
-        thead.appendChild(tr)
-        table.appendChild(thead)
-    }
     
-    function calendarBuild(){
-        const arr = arrDays(firstDay,lastDays);
-        gridBuild(Math.fround(arr.length/7))
-		let allTd = table.querySelectorAll('td');
-        arr.map((el, i)=> allTd[i].innerHTML = el);
-	}
+    buildCalendar(year, month);
+	
+    function buildCalendar(year, month) {
+        let lastDays = new Date(year, month + 1, 0).getDate();
+        let infoMonth = new Date(year, month, lastDays);
+        let firstWeekDay = new Date(year, month, 1).getDay();
+        // let firstDay = new Date(infoMonth.getFullYear(), infoMonth.getMonth(), 1).getDay();
+
+
+        tableHead();
+        calendarBuild();
+
+        function tableHead() {
+            let thead = document.createElement('thead');
+            let tr = document.createElement('tr');
+            let arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб','вс'];
+            arr.forEach(function(el){
+                let th = document.createElement('th');
+                th.innerHTML = el;
+                tr.appendChild(th)
+            });
+            thead.appendChild(tr)
+            table.appendChild(thead)
+        }
+
+        function calendarBuild(){
+            const arr = arrDays(firstWeekDay,lastDays);
+            gridBuild(Math.fround(arr.length/7))
+            let allTd = table.querySelectorAll('td');
+            
+			for(let i = 0; i < allTd.length; i++){
+				if(arr[i] === new Date().getDate() &&
+					infoMonth.getFullYear() === new Date().getFullYear() &&
+					infoMonth.getMonth() === new Date().getMonth()
+				){
+				    allTd[i].classList.add('today')
+				}
+				
+				allTd[i].innerHTML = arr[i] === undefined ? '' : arr[i];
+			}
+        }
+    }
+	
 	
     function gridBuild(x){
         for (let i = 0; i < x; i++){

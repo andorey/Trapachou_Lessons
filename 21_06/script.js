@@ -400,5 +400,3 @@ document.querySelector('.b-2').onclick = () =>{
     }
 })();
 
-
-//
