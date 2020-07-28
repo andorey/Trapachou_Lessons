@@ -44,7 +44,9 @@
 <div id="parent">
 	<div id="calendar">
 		<div class="top">
-			<span class="left">≤</span><span class="body"></span><span class="right">≥</span>
+			<span class="left">←</span>
+			<span class="body"></span>
+			<span class="right">→</span>
 		</div>
 		<table></table>
 	</div>
@@ -58,9 +60,9 @@
         let body = calendar.querySelector('.body');
 
         const arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-        const arrMonth = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+        const arrMonth = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
-        let date = new Date();
+        const date = new Date();
         let year = date.getFullYear();
         let month = date.getMonth();
 
@@ -85,7 +87,7 @@
             calendar.dataset.month = month;
 
             tableHead();
-            calendarBuild();
+            fillingTabs();
 
             function tableHead() {
                 let thead = document.createElement('thead');
@@ -99,16 +101,17 @@
                 thead.appendChild(tr)
                 table.appendChild(thead)
             }
-
-            function calendarBuild() {
-                const arr = arrDays(firstWeekDay, lastDays);
-                gridBuild(Math.fround(arr.length / 7));
+            
+            function fillingTabs() {
+                const arr = fillingDays(firstWeekDay, lastDays);
+                buildingGrid(Math.fround(arr.length / 7));
                 let allTd = table.querySelectorAll('td');
-
+                
                 for (let i = 0; i < allTd.length; i++) {
-                    if (arr[i] === new Date().getDate() &&
-                        infoMonth.getFullYear() === new Date().getFullYear() &&
-                        infoMonth.getMonth() === new Date().getMonth()
+                    if (
+                        arr[i] === date.getDate() &&
+                        infoMonth.getFullYear() === date.getFullYear() &&
+                        infoMonth.getMonth() === date.getMonth()
                     ) {
                         allTd[i].classList.add('today')
                     }
@@ -119,7 +122,7 @@
         }
 
 
-        function gridBuild(x) {
+        function buildingGrid(x) {
             for (let i = 0; i < x; i++) {
                 let tr = document.createElement('tr');
                 for (let j = 0; j < 7; j++) {
@@ -130,7 +133,7 @@
             }
         }
 
-        function arrDays(day, lastDay) {
+        function fillingDays(day, lastDay) {
             const days = [];
             for (let i = day > 0 ? 1 - day : -6; i < lastDay; i++) {
                 if (i < 0) {
