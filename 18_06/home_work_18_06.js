@@ -430,10 +430,14 @@ function playGame19(){
 let game20 = document.querySelector('.task20');
 let table20 = document.createElement('table');
 table20.id = 'tbl20';
+let error = true;
 
 document.querySelector('.b-20').onclick = () => {
-    counter20();
-    findGame20();
+    if( error ){
+        counter20();
+        findGame20();
+        error = false;
+    }
 }
 
 const random20 = () => Math.floor(Math.random() * 99) + 1;
@@ -443,7 +447,7 @@ function tableGame20() {
         let tr = document.createElement('tr');
         for (let j = 0; j < 10; j++){
             let td = document.createElement('td');
-            td.innerText = '~~';
+            //td.innerText = '~~';
             tr.appendChild(td);
         }
         table20.appendChild(tr);
@@ -487,7 +491,7 @@ function findGame20() {
                 cntr += 1;
                 document.querySelector('.out-20').innerText = (10 - cntr) + ' left to find'
                 if (cntr === 10){
-                    document.querySelector('.counter20').innerHTML = '<h5>YOU WIN !!!</h5>';
+                    document.querySelector('.counter20').innerHTML = 'YOU WIN !!!';
                     setTimeout(()=>{
                         location.reload();
                     }, 5000);
@@ -508,14 +512,12 @@ const counter20 = function(){
     if (isNaN(Number(num))) return 0;
 
     if (Number(num) === 0){
-        document.querySelector('.counter20').innerHTML = '<h5>YOU LOSE... </h5>';
-        setTimeout(() => {
-            location.reload();
-        }, 5000)
+        document.querySelector('.counter20').innerHTML = 'YOU LOSE...';
+        setTimeout(() => location.reload(), 5000);
     }else{
         document.querySelector('.counter20').innerText = Number(num) - 1;
     }
-    setTimeout('counter20()', 1000);
+    setTimeout(()=> counter20(), 1000);
 }
 
 
