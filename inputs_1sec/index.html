@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Inputs 1 sec</title>
+	<style>
+		.inputs {
+            width: 190px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			margin: 0 auto;
+		}
+		
+		input {
+			border: solid 2px darkblue;
+			font-size: 1.2em;
+			margin: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="inputs"></div>
+	
+	<script>
+		class Inputs {
+            constructor(selector, num) {
+                this.selector = document.querySelector(selector);
+                this.arr = Array.from({length: num}, (_, i) => i);
+                this.creator();
+            }
+
+            creator() {
+                this.arr.map(el => {
+                    let inpt = document.createElement('input');
+                    inpt.className = el;
+                    this.selector.appendChild(inpt);
+                })
+            }
+        }
+        
+        new Inputs('.inputs', 10)
+		
+	</script>
+</body>
+</html>
