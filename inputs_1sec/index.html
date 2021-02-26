@@ -26,21 +26,27 @@
 		class Inputs {
             constructor(selector, num) {
                 this.selector = document.querySelector(selector);
-                this.arr = Array.from({length: num}, (_, i) => i);
+                this.arr = Array(num).fill(0).map(() => {
+                    let inpt = document.createElement('input');
+                    this.selector.appendChild(inpt);
+                });
+                this.allInputs = this.selector.querySelectorAll('input');
+                this.limit = num;
+                this.counter = 0;
                 this.creator();
+                
             }
 
             creator() {
-                this.arr.map(el => {
-                    let inpt = document.createElement('input');
-                    inpt.className = el;
-                    this.selector.appendChild(inpt);
-                })
+                this.allInputs.forEach((el, i)=>{
+                    setTimeout( () => el.value = ++this.counter, 1000 * i )
+				})
+				setTimeout( () => this.creator(), this.limit * 1000)
             }
         }
+		
         
         new Inputs('.inputs', 10)
-		
 	</script>
 </body>
 </html>
